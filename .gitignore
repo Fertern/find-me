@@ -5,9 +5,9 @@
 /.pnp
 .pnp.js
 
-# CSS result that compile by LESS
+# CSS by LESS
 
-src/styles/App.css
+/dist
 
 
 # testing
@@ -26,5 +26,4 @@ src/styles/App.css
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-src/styles/App.css
-src/styles/App.css
+
