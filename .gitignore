@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 
+# CSS result that compile by LESS
+
+/src/styles/App.css
+
 # testing
 /coverage
 
