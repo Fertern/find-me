@@ -1,13 +1,13 @@
 html {
-    font-size: 15px;
+  font-size: 15px;
 }
 body {
-    margin: 0;
+  margin: 0;
 }
 *,
 *:after,
 *:before {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 h1,
 h2,
@@ -15,18 +15,18 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 0;
+  margin: 0;
 }
 /* Blocks */
 .container {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
 }
 .app-wrapper {
-    display: grid;
-    grid-template-areas: "header header" "nav content";
-    grid-template-rows: 60px 1fr;
-    grid-template-columns: 2fr 10fr;
-    grid-gap: 0px;
+  display: grid;
+  grid-template-areas: "header header" "nav content";
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  grid-gap: 0px;
 }

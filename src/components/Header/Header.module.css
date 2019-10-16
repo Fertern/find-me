@@ -1,7 +1,7 @@
-.header{
-    grid-area: header;
-    background-color: rgb(65, 23, 114);
+.header {
+  grid-area: header;
+  background-color: rgb(65, 23, 114);
 }
-.logo{
-    width: 20px;
+.logo {
+  width: 20px;
 }
