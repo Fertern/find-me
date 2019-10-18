@@ -1,0 +1,12 @@
+.item {
+  padding: 10px;
+}
+
+.item a {
+  color: rgb(53, 53, 53);
+  text-decoration: none;
+}
+.item .active {
+  color: rgb(228, 141, 27);
+  transition: color 0.5s;
+}

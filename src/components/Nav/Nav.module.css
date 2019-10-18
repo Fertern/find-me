@@ -1,12 +1,21 @@
 .nav {
   grid-area: nav;
   background-color: rgba(8, 92, 8);
+  padding: 15px;
+}
+
+.item a {
+  color: aquamarine;
+  text-decoration: none;
 }
 
 .item {
-  color: white;
+  padding: 10px;
 }
 
-.item.active {
-  color: red;
+.item .active {
+  padding-left: 10px;
+  color: rgb(255, 145, 0);
+  border-left: 2px solid rgb(255, 145, 0);
+  transition: color 0.5s, padding-left 0.5s, border-left 0.1s;
 }

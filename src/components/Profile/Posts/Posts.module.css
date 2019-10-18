@@ -10,3 +10,7 @@
 .text {
   font-size: 30px;
 }
+
+.userPosts {
+  padding: 0 10px;
+}

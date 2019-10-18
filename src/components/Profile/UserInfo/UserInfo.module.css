@@ -1,0 +1,12 @@
+.banner {
+  width: 100%;
+  height: 80px;
+}
+
+.logo {
+  width: 10%;
+  margin-top: 1%;
+}
+.info {
+  padding: 0 10px;
+}
