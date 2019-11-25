@@ -6,7 +6,7 @@ const UserInfo = () => {
     <div className={s.user}>
       <img
         className={s.banner}
-        src="https://images.wallpaperscraft.com/image/line_light_shiny_wavy_neon_36863_1680x1050.jpg"
+        src="https://images.wallpaperscraft.com/mage/line_light_shiny_wavy_neon_36863_1680x1050.jpg"
         alt=""
       ></img>
       <div className={s.info}>
