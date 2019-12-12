@@ -9,6 +9,7 @@ const Dialog = props => {
       <NavLink activeClassName={s.active} to={path}>
         {props.name}
       </NavLink>
+      <div className={s.counter}>{props.counter}</div>
     </div>
   );
 };

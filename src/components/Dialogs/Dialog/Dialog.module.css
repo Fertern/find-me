@@ -1,5 +1,7 @@
 .item {
   padding: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .item a {
@@ -9,4 +11,10 @@
 .item .active {
   color: rgb(228, 141, 27);
   transition: color 0.5s;
+}
+.counter {
+  border: 1px solid black;
+  border-radius: 15px;
+  width: 20px;
+  text-align: center;
 }

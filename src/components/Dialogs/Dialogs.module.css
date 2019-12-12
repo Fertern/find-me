@@ -4,3 +4,6 @@
   background-color: bisque;
   min-height: 200px;
 }
+.items {
+  border-right: 1px solid black;
+}

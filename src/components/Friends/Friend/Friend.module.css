@@ -1,0 +1,13 @@
+.logo {
+  width: 60px;
+  height: 60px;
+  margin-top: 1%;
+  border-radius: 30px;
+}
+.friend {
+  padding: 5px;
+}
+.name {
+  text-align: center;
+  color: aquamarine;
+}

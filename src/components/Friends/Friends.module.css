@@ -1,0 +1,10 @@
+.friends {
+  display: flex;
+  justify-content: flex-start;
+}
+.title {
+  font-size: 20px;
+  color: aquamarine;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
