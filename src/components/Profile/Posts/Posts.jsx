@@ -1,6 +1,10 @@
 import React from "react";
 import s from "./Posts.module.css";
 import Post from "./Post/Post";
+import {
+  updatePostTextActionCreator,
+  addPostActionCreator
+} from "../../../redux/profilePageReducer.js";
 
 const Posts = props => {
   let postsElements = props.posts.map(p => (
@@ -8,11 +12,13 @@ const Posts = props => {
   ));
   let newPostElement = React.createRef();
   let addPost = () => {
-    props.addPost();
+    let action = addPostActionCreator();
+    props.dispatch(action);
   };
   let changeText = () => {
     let text = newPostElement.current.value;
-    props.updatePostText(text);
+    let action = updatePostTextActionCreator(text);
+    props.dispatch(action);
   };
   let sender = e => {
     if (e.keyCode === 13) {
@@ -24,6 +30,7 @@ const Posts = props => {
       <div className={s.text}>My post</div>
       <div className={s.writingArea}>
         <textarea
+          placeholder="Write new post!"
           onKeyDown={sender}
           onChange={changeText}
           ref={newPostElement}

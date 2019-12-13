@@ -2,6 +2,10 @@ import React from "react";
 import s from "./Dialogs.module.css";
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
+import {
+  addMessageActionCreator,
+  updateMessageTextActionCreator
+} from "../../redux/dialogsPageReducer";
 
 const Dialogs = props => {
   let dialogsElements = props.state.dialogs.map(d => (
@@ -13,10 +17,12 @@ const Dialogs = props => {
   let messageText = React.createRef();
   let updateText = () => {
     let text = messageText.current.value;
-    props.updateMessageText(text);
+    let action = updateMessageTextActionCreator(text);
+    props.dispatch(action);
   };
   let sendMessage = () => {
-    props.addMessage();
+    let action = addMessageActionCreator();
+    props.dispatch(action);
   };
   let sender = e => {
     if (e.keyCode === 13) {
@@ -31,6 +37,7 @@ const Dialogs = props => {
       <div className={s.messages}>
         {messagesElements}
         <textarea
+          placeholder="Write something..."
           onChange={updateText}
           onKeyDown={sender}
           ref={messageText}
