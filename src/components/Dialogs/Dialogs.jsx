@@ -2,10 +2,6 @@ import React from "react";
 import s from "./Dialogs.module.css";
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
-import {
-  addMessageActionCreator,
-  updateMessageTextActionCreator
-} from "../../redux/dialogsPageReducer";
 
 const Dialogs = props => {
   let dialogsElements = props.state.dialogs.map(d => (
@@ -14,21 +10,19 @@ const Dialogs = props => {
   let messagesElements = props.state.messages.map(m => (
     <Message text={m.text} />
   ));
-  let messageText = React.createRef();
-  let updateText = () => {
-    let text = messageText.current.value;
-    let action = updateMessageTextActionCreator(text);
-    props.dispatch(action);
-  };
-  let sendMessage = () => {
-    let action = addMessageActionCreator();
-    props.dispatch(action);
-  };
-  let sender = e => {
-    if (e.keyCode === 13) {
-      sendMessage();
-    }
-  };
+  const messageText = React.createRef(),
+    updateText = () => {
+      let text = messageText.current.value;
+      props.updateText(text);
+    },
+    sendMessage = () => {
+      props.sendMessage();
+    },
+    sender = e => {
+      if (e.keyCode === 13) {
+        sendMessage();
+      }
+    };
   return (
     <div className={s.dialogs}>
       <div className={s.items}>
