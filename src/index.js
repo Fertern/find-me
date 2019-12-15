@@ -4,10 +4,13 @@ import store from "./redux/redux-store";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import StoreContext from "./StoreContext";
 
 let renderTree = state => {
   ReactDOM.render(
-    <App state={state} dispatch={store.dispatch} store={store} />,
+    <StoreContext.Provider value={store}>
+      <App store={store} />
+    </StoreContext.Provider>,
     document.getElementById("root")
   );
 };

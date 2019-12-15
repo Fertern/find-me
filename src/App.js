@@ -2,9 +2,9 @@ import React from "react";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import Header from "./components/Header/Header";
-import Nav from "./components/Nav/Nav";
 import "./styles/App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import NavContainer from "./components/Nav/NavContainer";
 
 //arrays
 const App = props => {
@@ -13,16 +13,10 @@ const App = props => {
       <div className="container">
         <div className="app-wrapper">
           <Header />
-          <Nav state={props.state.navBar} />
+          <NavContainer />
           <div className="app-content">
-            <Route
-              path="/dialogs"
-              render={() => <DialogsContainer store={props.store} />}
-            />
-            <Route
-              path="/profile"
-              render={() => <ProfileContainer store={props.store} />}
-            />
+            <Route path="/dialogs" render={() => <DialogsContainer />} />
+            <Route path="/profile" render={() => <ProfileContainer />} />
           </div>
         </div>
       </div>

@@ -27,7 +27,7 @@ const Nav = props => {
           Settings
         </NavLink>
       </div>
-      <Friends friendList={props.state.friends} />
+      <Friends friendList={props.friendList} />
     </nav>
   );
 };
