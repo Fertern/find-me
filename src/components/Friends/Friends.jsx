@@ -4,7 +4,7 @@ import s from "./Friends.module.css";
 
 export default function Friends(props) {
   let friends = props.friendList.map(f => (
-    <Friend logo={f.logo} name={f.name} />
+    <Friend logo={f.logo} key={f.id} name={f.name} />
   ));
   return (
     <div className={s.wrapper}>

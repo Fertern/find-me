@@ -1,0 +1,24 @@
+.wrapper {
+  background-color: rgb(249, 204, 162);
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 30px;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+.allUsers {
+  padding-left: 20px;
+  padding-top: 10px;
+}
+.show {
+  margin: 15px auto;
+  display: inline-block;
+  padding: 5px;
+  font-size: 30px;
+  border-radius: 15px;
+  border: 2px solid gray;
+}

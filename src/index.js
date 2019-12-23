@@ -4,22 +4,13 @@ import store from "./redux/redux-store";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { Provider } from "./StoreContext";
+import { Provider } from "react-redux";
 
-let renderTree = () => {
-  ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.getElementById("root")
-  );
-};
-
-renderTree(store.getState());
-
-store.subscribe(() => {
-  let state = store.getState();
-  renderTree(state);
-});
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
 
 serviceWorker.unregister();

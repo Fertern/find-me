@@ -23,8 +23,8 @@ const Nav = props => {
         </NavLink>
       </div>
       <div className={s.item}>
-        <NavLink activeClassName={s.active} to="/settings">
-          Settings
+        <NavLink activeClassName={s.active} to="/users">
+          Users
         </NavLink>
       </div>
       <Friends friendList={props.friendList} />

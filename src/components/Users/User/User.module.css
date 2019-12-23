@@ -1,0 +1,41 @@
+.wrapper {
+  display: flex;
+  padding-top: 20px;
+}
+.logo {
+  width: 50px;
+  border-radius: 15px;
+  width: 90px;
+}
+
+.follow {
+  cursor: pointer;
+  font-size: 20px;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  user-select: none;
+  width: 90px;
+  transition: color 0.25s linear, background-color 0.25s linear;
+}
+.follow:hover {
+  background-color: black;
+  color: rgb(249, 204, 162);
+}
+.logoBlock {
+  padding-right: 5px;
+}
+.infoBlock {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 5px;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

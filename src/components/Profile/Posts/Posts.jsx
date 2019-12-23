@@ -4,9 +4,16 @@ import Post from "./Post/Post";
 
 const Posts = props => {
   let postsElements = props.posts.map(p => (
-    <Post message={p.message} likes={p.likes} />
+    <Post message={p.message} key={p.id} likes={p.likes} />
   ));
-  let sender = e => {
+  const changeText = e => {
+    let text = e.target.value;
+    props.changeText(text);
+  };
+  const addPost = () => {
+    props.addPost();
+  };
+  const sender = e => {
     if (e.keyCode === 13) {
       props.addPost();
     }
@@ -18,10 +25,10 @@ const Posts = props => {
         <textarea
           placeholder="Write new post!"
           onKeyDown={sender}
-          onChange={props.changeText}
+          onChange={changeText}
           value={props.postText}
         ></textarea>
-        <button onClick={props.addPost}>Try it</button>
+        <button onClick={addPost}>Try it</button>
       </div>
       <div className={s.posts}>{postsElements}</div>
     </div>

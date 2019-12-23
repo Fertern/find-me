@@ -5,6 +5,7 @@ import Header from "./components/Header/Header";
 import "./styles/App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import NavContainer from "./components/Nav/NavContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 //arrays
 const App = props => {
@@ -17,6 +18,7 @@ const App = props => {
           <div className="app-content">
             <Route path="/dialogs" render={() => <DialogsContainer />} />
             <Route path="/profile" render={() => <ProfileContainer />} />
+            <Route path="/users" render={() => <UsersContainer />} />
           </div>
         </div>
       </div>

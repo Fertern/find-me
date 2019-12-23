@@ -4,11 +4,11 @@ import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
 
 const Dialogs = props => {
-  let dialogsElements = props.state.dialogs.map(d => (
-    <Dialog name={d.name} id={d.id} counter={d.count} />
+  let dialogsElements = props.dialogsPage.dialogs.map(d => (
+    <Dialog name={d.name} key={d.id} id={d.id} counter={d.count} />
   ));
-  let messagesElements = props.state.messages.map(m => (
-    <Message text={m.text} />
+  let messagesElements = props.dialogsPage.messages.map(m => (
+    <Message key={m.id} text={m.text} />
   ));
   const messageText = React.createRef(),
     updateText = () => {
@@ -35,7 +35,7 @@ const Dialogs = props => {
           onChange={updateText}
           onKeyDown={sender}
           ref={messageText}
-          value={props.state.messageText}
+          value={props.dialogsPage.messageText}
         ></textarea>
         <button onClick={sendMessage}>Send</button>
       </div>
