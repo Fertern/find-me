@@ -16,6 +16,7 @@ const Posts = props => {
   const sender = e => {
     if (e.keyCode === 13) {
       props.addPost();
+      e.preventDefault();
     }
   };
   return (
@@ -23,12 +24,17 @@ const Posts = props => {
       <div className={s.text}>My post</div>
       <div className={s.writingArea}>
         <textarea
+          className={s.textarea}
           placeholder="Write new post!"
           onKeyDown={sender}
           onChange={changeText}
           value={props.postText}
         ></textarea>
-        <button onClick={addPost}>Try it</button>
+        <div className="buttonWrapper">
+          <button className={s.button} onClick={addPost}>
+            Try it
+          </button>
+        </div>
       </div>
       <div className={s.posts}>{postsElements}</div>
     </div>

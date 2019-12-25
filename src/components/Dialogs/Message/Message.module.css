@@ -1,3 +1,13 @@
+.wrapper {
+  margin-top: 10px;
+}
 .message {
-  padding: 10px;
+  min-width: 30px;
+  max-width: 90%;
+  padding: 8px;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: azure;
+  display: inline-block;
+  border-radius: 10px;
 }

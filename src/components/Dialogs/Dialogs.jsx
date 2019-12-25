@@ -21,23 +21,34 @@ const Dialogs = props => {
     sender = e => {
       if (e.keyCode === 13) {
         sendMessage();
+        e.preventDefault();
       }
     };
   return (
     <div className={s.dialogs}>
-      <div className={s.items}>
+      <div className={s.peopleArea}>
         <div className={s.item}>{dialogsElements}</div>
       </div>
-      <div className={s.messages}>
-        {messagesElements}
-        <textarea
-          placeholder="Write something..."
-          onChange={updateText}
-          onKeyDown={sender}
-          ref={messageText}
-          value={props.dialogsPage.messageText}
-        ></textarea>
-        <button onClick={sendMessage}>Send</button>
+      <div className={s.messageArea}>
+        <div className={s.messages}>{messagesElements}</div>
+
+        <div className={s.senderArea}>
+          <div className={s.senderWrapper}>
+            <div className={s.textareaWrapper}>
+              <textarea
+                className={s.textarea}
+                placeholder="Write something..."
+                onChange={updateText}
+                onKeyDown={sender}
+                ref={messageText}
+                value={props.dialogsPage.messageText}
+              ></textarea>
+            </div>
+            <button className={s.button} onClick={sendMessage}>
+              Send
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

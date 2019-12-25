@@ -4,7 +4,7 @@
 .item {
   color: white;
 }
-.actie {
+.active {
   color: green;
 }
 .text {
@@ -13,4 +13,12 @@
 
 .userPosts {
   padding: 0 10px;
+}
+.textarea {
+  width: 30%;
+  padding: 5px;
+}
+
+.button {
+  width: 10%;
 }

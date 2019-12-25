@@ -23,10 +23,15 @@ h6 {
   width: 100%;
   margin: 0 auto;
 }
+textarea {
+  outline: none;
+  resize: none;
+}
 .app-wrapper {
   display: grid;
   grid-template-areas: "header header" "nav content";
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
   grid-gap: 0px;
+  min-height: 500px;
 }
