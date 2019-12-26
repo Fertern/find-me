@@ -4,6 +4,16 @@
   flex-direction: column;
 }
 
+.selected {
+  font-weight: bold;
+  color: red;
+}
+.selected,
+.common {
+  cursor: pointer;
+  font-size: 40px;
+  user-select: none;
+}
 .label {
   font-size: 30px;
   padding-left: 10px;

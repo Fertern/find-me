@@ -12,7 +12,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addPost: () => dispatch(addPostActionCreator()),
-
   changeText: text => dispatch(updatePostTextActionCreator(text))
 });
 

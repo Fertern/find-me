@@ -11,7 +11,7 @@ const User = props => {
             <div
               className={s.follow}
               onClick={() => {
-                props.unfollow(props.id);
+                props.unFollow(props.id);
               }}
             >
               Unfollow

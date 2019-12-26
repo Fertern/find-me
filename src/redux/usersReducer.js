@@ -1,34 +1,17 @@
 const FOLLOW_USER = "FOLLOW-USER";
 const UNFOLLOW_USER = "UNFOLLOW-USER";
 const SET_USERS = "SET-USERS";
+const SET_CURRENT = "SET-CURRENT";
+const SET_COUNT = "SET-ALL-COUNT";
+const TOGGLE_LOADER_STATUS = "TOGGLE-LOADER";
 
 const initialState = {
-  userList: [
-    {
-      logo:
-        "https://i.pinimg.com/originals/51/40/69/5140696fcc077099bd92525eed882e7c.jpg",
-      id: 1,
-      name: "Fedor",
-      location: {
-        country: "Ukraine",
-        city: "Lviv"
-      },
-      description: "What a beautiful Duwang",
-      followed: false
-    },
-    {
-      logo:
-        "https://i.pinimg.com/originals/51/40/69/5140696fcc077099bd92525eed882e7c.jpg",
-      id: 2,
-      name: "Gregor",
-      location: {
-        country: "Belarus",
-        city: "Minsk"
-      },
-      description: "chew",
-      followed: false
-    }
-  ]
+  isLoaded: true,
+  userList: [],
+  page: 1,
+  onPageUsersCount: 4,
+  usersCount: 0,
+  currentPage: 1
 };
 
 const userReducer = (state = initialState, action) => {
@@ -58,15 +41,42 @@ const userReducer = (state = initialState, action) => {
     case SET_USERS:
       return {
         ...state,
-        userList: [...state.userList, ...action.userList]
+        userList: action.userList
+      };
+    case SET_CURRENT:
+      return {
+        ...state,
+        currentPage: action.current
+      };
+    case SET_COUNT:
+      return {
+        ...state,
+        usersCount: action.count
+      };
+    case TOGGLE_LOADER_STATUS:
+      return {
+        ...state,
+        isLoaded: action.isLoaded
       };
 
     default:
       return state;
   }
 };
-export const followAction = userId => ({ type: FOLLOW_USER, userId }),
-  unFollowAction = userId => ({ type: UNFOLLOW_USER, userId }),
-  setUsersAction = userList => ({ type: SET_USERS, userList });
+export const follow = userId => ({ type: FOLLOW_USER, userId }),
+  unFollow = userId => ({ type: UNFOLLOW_USER, userId }),
+  setUsers = userList => ({ type: SET_USERS, userList }),
+  setCurrent = current => ({
+    type: SET_CURRENT,
+    current
+  }),
+  setCount = count => ({
+    type: SET_COUNT,
+    count
+  }),
+  toggleLoaderStatus = isLoaded => ({
+    type: TOGGLE_LOADER_STATUS,
+    isLoaded
+  });
 
 export default userReducer;
