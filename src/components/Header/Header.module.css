@@ -1,7 +1,13 @@
 .header {
   grid-area: header;
-  background-color: rgb(65, 23, 114);
+  background-color: #ff8700;
+  align-items: center;
 }
 .logo {
-  width: 60px;
+  font-size: 3vw;
+  text-align: center;
+  color: #3ba3d0;
+  font-family: "Baloo Bhai", cursive;
+  padding: 5px;
+  padding-bottom: 10px;
 }

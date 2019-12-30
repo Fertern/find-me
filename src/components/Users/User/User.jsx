@@ -1,11 +1,14 @@
 import React from "react";
 import s from "./User.module.css";
+import { NavLink } from "react-router-dom";
 
 const User = props => {
   return (
     <div className={s.wrapper}>
       <div className={s.logoBlock}>
-        <img className={s.logo} src={props.logo} alt="" />
+        <NavLink to={"/profile/" + props.id}>
+          <img className={s.logo} src={props.logo} alt="" />
+        </NavLink>
         <div>
           {props.followed ? (
             <div

@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Nav.module.css";
-import Friends from "../Friends/Friends";
+//import Friends from "../Friends/Friends";
 import { NavLink } from "react-router-dom";
 
 const Nav = props => {
@@ -27,7 +27,7 @@ const Nav = props => {
           Users
         </NavLink>
       </div>
-      <Friends friendList={props.friendList} />
+      {/* <Friends friendList={props.friendList} /> */}
     </nav>
   );
 };

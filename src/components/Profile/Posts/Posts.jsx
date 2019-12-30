@@ -8,7 +8,7 @@ const Posts = props => {
   ));
   const changeText = e => {
     let text = e.target.value;
-    props.changeText(text);
+    props.updatePost(text);
   };
   const addPost = () => {
     props.addPost();

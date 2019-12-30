@@ -35,3 +35,6 @@ textarea {
   grid-gap: 0px;
   min-height: 500px;
 }
+.app-content {
+  grid-area: content;
+}

@@ -1,12 +1,14 @@
 const ADD_POST = "ADD-POST";
 const UPDATE_POST_TEXT = "UPDATE-POST-TEXT";
+const SET_PROFILE = "SET-PROFILE";
 
 const initialState = {
   posts: [
     { id: 1, message: "ZA WARUDO", likes: "20" },
     { id: 2, message: "TOKI WO TOMARE", likes: "0" }
   ],
-  postText: ""
+  postText: "",
+  profile: null
 };
 
 const profilePageReducer = (state = initialState, action) => {
@@ -28,14 +30,24 @@ const profilePageReducer = (state = initialState, action) => {
     case UPDATE_POST_TEXT:
       return { ...state, postText: action.text };
 
+    case SET_PROFILE:
+      return {
+        ...state,
+        profile: action.profile
+      };
+
     default:
       return state;
   }
 };
-export const addPostActionCreator = () => ({ type: ADD_POST }),
-  updatePostTextActionCreator = text => ({
+export const addPost = () => ({ type: ADD_POST }),
+  updatePost = text => ({
     type: UPDATE_POST_TEXT,
-    text: text
+    text
+  }),
+  setProfile = profile => ({
+    type: SET_PROFILE,
+    profile
   });
 
 export default profilePageReducer;
