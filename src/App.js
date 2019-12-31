@@ -6,14 +6,16 @@ import "./styles/App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import NavContainer from "./components/Nav/NavContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 //arrays
 const App = props => {
   return (
     <Router>
+      <hr className="decor"></hr>
       <div className="container">
         <div className="app-wrapper">
-          <Header />
+          <HeaderContainer />
           <NavContainer />
           <div className="app-content">
             <Route path="/dialogs" render={() => <DialogsContainer />} />
