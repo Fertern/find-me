@@ -1,7 +1,34 @@
 .profile {
-  background-color: #63afd0;
   min-height: 500px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+}
+.overBlock {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.overBlock > * {
+  margin-right: 20px;
+}
+.infoBlock {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--primaryColor);
+  border-radius: 4px;
+  margin-right: 0;
+}
+
+@media (max-width: 425px) {
+  .overBlock {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    text-align: center;
+  }
+  .infoBlock {
+    flex-direction: column;
+    padding-top: 10px;
+  }
 }

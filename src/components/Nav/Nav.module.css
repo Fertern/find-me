@@ -1,11 +1,17 @@
 .nav {
-  background-color: #024a68;
+  /* background-color: #024a68; */
   padding: 15px;
+  margin-right: 10px;
 }
 
 .item a {
-  color: #63afd0;
+  color: var(--primaryColor);
   text-decoration: none;
+}
+
+.item :hover {
+  color: #fff540;
+  transition: color 0.5s linear;
 }
 
 .item {
@@ -15,7 +21,7 @@
 
 .item .active {
   padding-left: 10px;
-  color: #ff8700;
-  border-left: 2px solid #ff8700;
+  color: #fff540;
+  border-left: 2px solid #fff540;
   transition: color 0.5s, padding-left 0.5s, border-left 0.1s;
 }

@@ -1,9 +1,22 @@
 html {
   font-size: 15px;
+  --primaryColor: #3490ce;
+  --secondaryColor: #435a7e;
+  --backColor: rgb(183, 231, 178);
+  --focusColor: #fff540;
+  --borderColor: black;
 }
 body {
   margin: 0;
+  background: linear-gradient(to bottom, #2c3e50, #3498db);
 }
+/* background: linear-gradient(to bottom, #56ab2f, #a8e063); */
+/* Another good grad */
+/* background: linear-gradient(
+      45deg,
+      rgba(221, 173, 255, 1) 0%,
+      rgba(0, 128, 128, 1) 100%
+    ); */
 *,
 *:after,
 *:before {
@@ -21,6 +34,7 @@ h6 {
 .container {
   max-width: 1200px;
   width: 100%;
+  min-height: 1024px;
   margin: 0 auto;
 }
 textarea {
@@ -33,8 +47,27 @@ textarea {
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
   grid-gap: 0px;
-  min-height: 500px;
+}
+
+@media (max-width: 768px) {
+  .app-wrapper {
+    display: grid;
+    grid-template-areas: "header" "content" "nav";
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 2fr;
+    grid-gap: 0px;
+  }
 }
 .app-content {
   grid-area: content;
+}
+.decor {
+  z-index: 1;
+  border: none;
+  margin-top: 0;
+  position: absolute;
+  background-color: var(--primaryColor);
+  align-items: center;
+  height: 50px;
+  width: 100%;
 }

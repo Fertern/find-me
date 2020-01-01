@@ -1,12 +1,14 @@
 .header {
   grid-area: header;
-  background-color: #ff8700;
+  z-index: 10;
+  background-color: var(--primaryColor);
   align-items: center;
+  height: 50px;
 }
 .logo {
   font-size: 3vw;
   text-align: center;
-  color: #3ba3d0;
+  color: var(--secondaryColor);
   font-family: "Baloo Bhai", cursive;
   padding: 5px;
   padding-bottom: 10px;

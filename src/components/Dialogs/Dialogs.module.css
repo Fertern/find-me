@@ -5,12 +5,12 @@
   min-height: 500px;
 }
 .peopleArea {
-  border-right: 1px solid black;
+  border-right: 1px solid var(--borderColor);
 }
 .senderArea {
   padding: 10px;
   margin-top: 10px;
-  border-top: 1px solid black;
+  border-top: 1px solid var(--borderColor);
 }
 .messageArea {
   display: flex;

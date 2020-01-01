@@ -1,0 +1,38 @@
+/* Every single link */
+.fa-facebook {
+  background: #3b5998;
+  color: white;
+}
+.fa-twitter {
+  background: #086ebb;
+  color: white;
+}
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+.fa-github {
+  background: #080000;
+  color: aliceblue;
+}
+.fa-vk {
+  background: #3b5998;
+  color: white;
+}
+.fa-link {
+  background: #083daf;
+  color: white;
+}
+.fa-window-maximize {
+  background-color: rgb(236, 127, 94);
+  color: white;
+}
+.off {
+  background: gray;
+  color: white;
+}

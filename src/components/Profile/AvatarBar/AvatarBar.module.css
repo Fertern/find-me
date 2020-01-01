@@ -1,0 +1,32 @@
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  background-color: var(--primaryColor);
+  padding: 15px 20px;
+  border-radius: 4px;
+}
+.logo {
+  width: 10vw;
+  height: 10vw;
+}
+@media (max-width: 768px) {
+  .avatar {
+    padding: 7px 10px;
+  }
+  .logo {
+    width: 15vw;
+    height: 15vw;
+  }
+}
+@media (max-width: 425px) {
+  .avatar {
+    padding: 5px 8px;
+    margin: 0 auto 10px;
+  }
+  .logo {
+    width: 40vw;
+    height: 40vw;
+  }
+}
