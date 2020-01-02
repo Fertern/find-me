@@ -3,10 +3,12 @@ const UNFOLLOW_USER = "UNFOLLOW-USER";
 const SET_USERS = "SET-USERS";
 const SET_CURRENT = "SET-CURRENT";
 const SET_COUNT = "SET-ALL-COUNT";
-const TOGGLE_LOADER_STATUS = "TOGGLE-LOADER";
+const TOGGLE_PAGE_LOADER_STATUS = "TOGGLE-LOADER";
+const TOGGLE_FOLLOW_LOADER_STATUS = "TOGGLE-FOLLOW-LOADER-STATUS";
 
 const initialState = {
-  isLoaded: true,
+  isPageLoaded: true,
+  followInProgressList: [],
   userList: [],
   page: 1,
   onPageUsersCount: 4,
@@ -53,10 +55,17 @@ const userReducer = (state = initialState, action) => {
         ...state,
         usersCount: action.count
       };
-    case TOGGLE_LOADER_STATUS:
+    case TOGGLE_PAGE_LOADER_STATUS:
       return {
         ...state,
-        isLoaded: action.isLoaded
+        isPageLoaded: action.isPageLoaded
+      };
+    case TOGGLE_FOLLOW_LOADER_STATUS:
+      return {
+        ...state,
+        followInProgressList: action.isPageLoaded
+          ? [...state.followInProgressList, action.userId]
+          : state.followInProgressList.filter(id => id !== action.userId)
       };
 
     default:
@@ -74,9 +83,14 @@ export const follow = userId => ({ type: FOLLOW_USER, userId }),
     type: SET_COUNT,
     count
   }),
-  toggleLoaderStatus = isLoaded => ({
-    type: TOGGLE_LOADER_STATUS,
-    isLoaded
+  toggleLoaderStatus = isPageLoaded => ({
+    type: TOGGLE_PAGE_LOADER_STATUS,
+    isPageLoaded
+  }),
+  toggleFollowStatus = (isPageLoaded, userId) => ({
+    type: TOGGLE_FOLLOW_LOADER_STATUS,
+    isPageLoaded,
+    userId
   });
 
 export default userReducer;

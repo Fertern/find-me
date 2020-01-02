@@ -8,7 +8,10 @@ class HeaderContainer extends Component {
   componentDidMount() {
     axios
       .get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-        withCredentials: true
+        withCredentials: true,
+        headers: {
+          "API-KEY": "8200782f-28dc-4c70-82bb-5f5cbe3f8b59"
+        }
       })
       .then(response => {
         if (response.data.resultCode === 0) {
@@ -24,7 +27,7 @@ class HeaderContainer extends Component {
 
 const mapStateToProps = state => ({
   isAuth: state.auth.isAuth,
-  login: state.auth.isAuth
+  id: state.auth.userId
 });
 
 const mapDispatchToProps = { setAuth };

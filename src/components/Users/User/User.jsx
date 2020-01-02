@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./User.module.css";
 import { NavLink } from "react-router-dom";
-import * as axios from "axios";
+import { usersAPI } from "../../../api/api";
 
 const User = props => {
   return (
@@ -12,49 +12,36 @@ const User = props => {
         </NavLink>
         <div>
           {props.followed ? (
-            <div
+            <button
+              disabled={props.followInProgressList.some(id => id === props.id)}
               className={s.follow}
-              onClick={() => {
-                axios
-                  .delete(
-                    `https://social-network.samuraijs.com/api/1.0/follow/` +
-                      props.userId,
-                    null,
-                    {
-                      withCredentials: true
-                    }
-                  )
-                  .then(response => {
-                    if (response.data.resultCode === 0) {
-                      props.unFollow(props.id);
-                    }
-                  });
+              onClick={async () => {
+                props.toggleFollowStatus(true, props.id);
+                let data = await usersAPI.unFollowUser(props.id);
+                if (data.resultCode === 0) {
+                  props.unFollow(props.id);
+                  props.toggleFollowStatus(false, props.id);
+                }
               }}
             >
               Unfollow
-            </div>
+            </button>
           ) : (
-            <div
+            <button
+              disabled={props.followInProgressList.some(id => id === props.id)}
               className={s.follow}
-              onClick={() => {
-                axios
-                  .post(
-                    `https://social-network.samuraijs.com/api/1.0/follow/` +
-                      props.userId,
-                    null,
-                    {
-                      withCredentials: true
-                    }
-                  )
-                  .then(response => {
-                    if (response.data.resultCode === 0) {
-                      props.follow(props.id);
-                    }
-                  });
+              onClick={async () => {
+                props.toggleFollowStatus(true, props.id);
+                let data = await usersAPI.followUser(props.id);
+                if (data.resultCode === 0) {
+                  props.toggleFollowStatus(false, props.id);
+                  props.follow(props.id);
+                }
               }}
             >
+              {" "}
               Follow
-            </div>
+            </button>
           )}
         </div>
       </div>

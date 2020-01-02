@@ -28,6 +28,8 @@ const Users = props => {
       city="u.location.city"
       follow={props.follow}
       unFollow={props.unFollow}
+      toggleFollowStatus={props.toggleFollowStatus}
+      followInProgressList={props.followInProgressList}
     />
   ));
   return (

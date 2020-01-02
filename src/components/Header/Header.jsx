@@ -3,12 +3,13 @@ import s from "./Header.module.css";
 import { NavLink } from "react-router-dom";
 
 const Header = props => {
+  console.log(props);
   return (
     <header className={s.header}>
       <img className={s.logo} src="" alt=""></img>
       <div className={s.login}>
         {props.isAuth ? (
-          <NavLink to={"/profile"}>Profile</NavLink>
+          <NavLink to={"/profile/" + props.id}>Profile</NavLink>
         ) : (
           <NavLink to={"/login"}>Login</NavLink>
         )}

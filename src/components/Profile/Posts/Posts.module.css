@@ -42,6 +42,10 @@
 .posts {
   width: 60%;
 }
+.spy {
+  height: 90px;
+  border-color: transparent;
+}
 
 @media (max-width: 768px) {
   .wrapper {

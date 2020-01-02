@@ -36,6 +36,7 @@ const Posts = props => {
         </div>
       </span>
       <span className={s.posts}>{postsElements}</span>
+      <hr className={s.spy} /> {/* Empty space for mobile fixed navBar*/}
     </span>
   );
 };
