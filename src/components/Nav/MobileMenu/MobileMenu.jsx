@@ -25,7 +25,6 @@ const MobileMenu = () => {
           Users
         </NavLink>
       </div>
-      {/* <Friends friendList={props.friendList} /> */}
     </nav>
   );
 };

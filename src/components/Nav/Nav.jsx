@@ -5,7 +5,6 @@ import { NavLink } from "react-router-dom";
 import MobileNavBar from "./MobileNavBar/MobileNavBar";
 
 const Nav = props => {
-  //debugger;
   return (
     <div className={s.wrapper}>
       <nav className={s.nav} id="menu">

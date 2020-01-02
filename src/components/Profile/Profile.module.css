@@ -1,5 +1,4 @@
 .profile {
-  min-height: 500px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -23,7 +22,6 @@
 
 @media (max-width: 425px) {
   .overBlock {
-    display: flex;
     justify-content: flex-start;
     flex-direction: column;
     text-align: center;
