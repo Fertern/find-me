@@ -20,9 +20,8 @@ const Posts = props => {
     }
   };
   return (
-    <div className={s.userPosts}>
-      <div className={s.text}>My post</div>
-      <div className={s.writingArea}>
+    <span className={s.wrapper}>
+      <span className={s.writingArea}>
         <textarea
           className={s.textarea}
           placeholder="Write new post!"
@@ -30,14 +29,14 @@ const Posts = props => {
           onChange={changeText}
           value={props.postText}
         ></textarea>
-        <div className="buttonWrapper">
+        <div className={s.buttonWrapper}>
           <button className={s.button} onClick={addPost}>
-            Try it
+            Post
           </button>
         </div>
-      </div>
-      <div className={s.posts}>{postsElements}</div>
-    </div>
+      </span>
+      <span className={s.posts}>{postsElements}</span>
+    </span>
   );
 };
 

@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import NavContainer from "./components/Nav/NavContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import MobileMenu from "./components/Nav/MobileMenu/MobileMenu";
 
 //arrays
 const App = props => {
@@ -23,6 +24,7 @@ const App = props => {
               render={() => <ProfileContainer />}
             />
             <Route path="/users" render={() => <UsersContainer />} />
+            <Route path="/menu" render={() => <MobileMenu />} />
           </div>
         </div>
       </div>

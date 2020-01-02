@@ -54,7 +54,8 @@ a > p {
     display: grid;
     grid-template-columns: 21.8vw 21.8vw 21.8vw 21.8vw;
     grid-template-rows: 21.8vw 21.8vw;
-    padding: 0;
-    margin: 0 auto 20px;
+    padding: 5px 30px;
+    margin: 0 auto 0px;
+    border-radius: 0;
   }
 }

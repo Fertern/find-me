@@ -7,6 +7,7 @@
 .overBlock {
   display: flex;
   justify-content: flex-start;
+  margin-bottom: 20px;
 }
 
 .overBlock > * {
@@ -29,6 +30,6 @@
   }
   .infoBlock {
     flex-direction: column;
-    padding-top: 10px;
+    background-color: transparent;
   }
 }

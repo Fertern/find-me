@@ -41,6 +41,7 @@
     font-size: 1.5vw;
   }
   .name {
+    margin-top: 20px;
     font-size: 3vw;
   }
   .lookTrue,
@@ -56,6 +57,8 @@
   }
   .wrapper {
     padding: 0;
+    border-radius: 0;
+    margin-bottom: 10px;
   }
   .status {
     font-size: 6vw;

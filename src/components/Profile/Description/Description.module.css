@@ -1,3 +1,11 @@
 .fullDesc {
-  font-size: 1vw;
+  font-size: 1.5em;
+  padding: 15px;
+  background-color: var(--primaryColor);
+  border-radius: 5px;
+}
+@media (max-width: 768px) {
+  .fullDesc {
+    border-radius: 0;
+  }
 }

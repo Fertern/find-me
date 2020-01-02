@@ -1,12 +1,13 @@
 .wrapper {
-  background-color: rgb(249, 204, 162);
+  background-color: var(--backColor);
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .selected {
   font-weight: bold;
-  color: red;
+  color: var(--focusColor);
 }
 .selected,
 .common {

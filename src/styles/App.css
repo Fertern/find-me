@@ -2,7 +2,7 @@ html {
   font-size: 15px;
   --primaryColor: #3490ce;
   --secondaryColor: #435a7e;
-  --backColor: rgb(183, 231, 178);
+  --backColor: rgb(201, 224, 240);
   --focusColor: #fff540;
   --borderColor: black;
 }

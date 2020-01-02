@@ -1,7 +1,7 @@
 .dialogs {
   display: grid;
   grid-template-columns: 2fr 10fr;
-  background-color: bisque;
+  background-color: var(--backColor);
   min-height: 500px;
 }
 .peopleArea {

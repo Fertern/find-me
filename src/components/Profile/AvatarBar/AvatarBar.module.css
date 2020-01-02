@@ -4,16 +4,16 @@
   justify-content: flex-start;
   flex-direction: column;
   background-color: var(--primaryColor);
-  padding: 15px 20px;
+  padding: 10px 15px;
   border-radius: 4px;
 }
 .logo {
-  width: 10vw;
-  height: 10vw;
+  width: 12vw;
+  height: 12vw;
 }
 @media (max-width: 768px) {
   .avatar {
-    padding: 7px 10px;
+    padding: 5px 10px;
   }
   .logo {
     width: 15vw;
@@ -22,7 +22,7 @@
 }
 @media (max-width: 425px) {
   .avatar {
-    padding: 5px 8px;
+    padding: 5px 5x;
     margin: 0 auto 10px;
   }
   .logo {

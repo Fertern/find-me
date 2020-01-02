@@ -20,8 +20,8 @@
   transition: color 0.25s linear, background-color 0.25s linear;
 }
 .follow:hover {
-  background-color: black;
-  color: rgb(249, 204, 162);
+  background-color: var(--secondaryColor);
+  color: var(--focusColor);
 }
 .logoBlock {
   padding-right: 5px;

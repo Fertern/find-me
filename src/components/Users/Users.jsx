@@ -5,8 +5,8 @@ import s from "./Users.module.css";
 const Users = props => {
   let pageCount = Math.ceil(props.usersCount / props.page);
   //const realPageCount = pageCount;
-  if (pageCount > 20) {
-    pageCount = 20;
+  if (pageCount > 10) {
+    pageCount = 10;
   }
   let pages = [];
   for (let i = 1; i <= pageCount; i++) {

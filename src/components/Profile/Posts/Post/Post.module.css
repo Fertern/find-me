@@ -1,13 +1,26 @@
-.posts {
-  color: #afeb24;
+.wrapper {
+  background-color: var(--backColor);
+  margin-bottom: 20px;
+  border-radius: 5px;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 1.2em;
 }
-.item {
-  color: white;
+.text {
+  margin-bottom: 10px;
 }
-.actie {
-  color: green;
+.stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2em;
 }
-.logo {
-  width: 50px;
-  border-radius: 40px;
+.stats > span > i {
+  color: var(--secondaryColor);
+}
+@media (max-width: 768px) {
+  .wrapper {
+    border-radius: 0;
+  }
 }
