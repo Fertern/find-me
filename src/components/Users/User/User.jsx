@@ -1,45 +1,45 @@
 import React from "react";
 import s from "./User.module.css";
 import { NavLink } from "react-router-dom";
-import { usersAPI } from "../../../api/api";
 
 const User = props => {
+  const {
+    id,
+    followUser,
+    unFollowUser,
+    followed,
+    logo,
+    followInProgressList,
+    name,
+    description,
+    country,
+    city
+  } = props;
   return (
     <div className={s.wrapper}>
       <div className={s.logoBlock}>
-        <NavLink to={"/profile/" + props.id}>
-          <img className={s.logo} src={props.logo} alt="" />
+        <NavLink to={"/profile/" + id}>
+          <img className={s.logo} src={logo} alt="" />
         </NavLink>
         <div>
-          {props.followed ? (
+          {followed ? (
             <button
-              disabled={props.followInProgressList.some(id => id === props.id)}
+              disabled={followInProgressList.some(listId => listId === id)}
               className={s.follow}
-              onClick={async () => {
-                props.toggleFollowStatus(true, props.id);
-                let data = await usersAPI.unFollowUser(props.id);
-                if (data.resultCode === 0) {
-                  props.unFollow(props.id);
-                  props.toggleFollowStatus(false, props.id);
-                }
+              onClick={() => {
+                unFollowUser(id);
               }}
             >
               Unfollow
             </button>
           ) : (
             <button
-              disabled={props.followInProgressList.some(id => id === props.id)}
+              disabled={followInProgressList.some(listId => listId === id)}
               className={s.follow}
-              onClick={async () => {
-                props.toggleFollowStatus(true, props.id);
-                let data = await usersAPI.followUser(props.id);
-                if (data.resultCode === 0) {
-                  props.toggleFollowStatus(false, props.id);
-                  props.follow(props.id);
-                }
+              onClick={() => {
+                followUser(id);
               }}
             >
-              {" "}
               Follow
             </button>
           )}
@@ -47,12 +47,12 @@ const User = props => {
       </div>
       <div className={s.infoBlock}>
         <div className={s.info}>
-          <div className={s.name}>{props.name}</div>
-          <div className={s.description}>{props.description}</div>
+          <div className={s.name}>{name}</div>
+          <div className={s.description}>{description}</div>
         </div>
         <div className={s.location}>
-          <div className={s.country}>{props.country}</div>
-          <div className={s.city}>{props.city}</div>
+          <div className={s.country}>{country}</div>
+          <div className={s.city}>{city}</div>
         </div>
       </div>
     </div>

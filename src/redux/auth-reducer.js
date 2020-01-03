@@ -1,3 +1,5 @@
+import { profileAPI } from "../api/api";
+
 const SET_AUTH = "SET_AUTH";
 
 const initialState = {
@@ -28,5 +30,15 @@ export const setAuth = (userId, email, login) => ({
     login
   }
 });
+
+export const checkAuth = () => dispatch => {
+  (async () => {
+    let data = await profileAPI.authMe();
+    if (data.resultCode === 0) {
+      let { id, login, email } = data.data;
+      dispatch(setAuth(id, login, email));
+    }
+  })();
+};
 
 export default authReducer;

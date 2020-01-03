@@ -21,3 +21,9 @@ export const usersAPI = {
     return instance.delete("/follow/" + userId).then(response => response.data);
   }
 };
+
+export const profileAPI = {
+  authMe: () => instance.get("/auth/me").then(response => response.data),
+  getProfile: userId =>
+    instance.get("/profile/" + userId).then(response => response.data)
+};

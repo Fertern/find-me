@@ -26,12 +26,12 @@ const Users = props => {
       description={u.description}
       country="u.location.country"
       city="u.location.city"
-      follow={props.follow}
-      unFollow={props.unFollow}
-      toggleFollowStatus={props.toggleFollowStatus}
+      followUser={props.followUser}
+      unFollowUser={props.unFollowUser}
       followInProgressList={props.followInProgressList}
     />
   ));
+
   return (
     <div className={s.wrapper}>
       <div className={s.label}>Users</div>

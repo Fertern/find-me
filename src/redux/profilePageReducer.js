@@ -1,3 +1,5 @@
+import { profileAPI } from "../api/api";
+
 const ADD_POST = "ADD-POST";
 const UPDATE_POST_TEXT = "UPDATE-POST-TEXT";
 const SET_PROFILE = "SET-PROFILE";
@@ -49,5 +51,16 @@ export const addPost = () => ({ type: ADD_POST }),
     type: SET_PROFILE,
     profile
   });
+
+export const setUpProfile = id => dispatch => {
+  let userId = id;
+  if (!userId) {
+    userId = 10;
+  }
+  (async () => {
+    let data = await profileAPI.getProfile(userId);
+    dispatch(setProfile(data));
+  })();
+};
 
 export default profilePageReducer;

@@ -2,61 +2,33 @@ import React from "react";
 import Users from "./Users";
 import { connect } from "react-redux";
 import {
-  follow,
-  unFollow,
-  setUsers,
+  followUser,
+  unFollowUser,
   setCurrent,
-  setCount,
-  toggleLoaderStatus,
-  toggleFollowStatus
+  getUsers
 } from "../../redux/usersReducer";
 import Preloader from "../common/Preloader/Preloader";
-import { usersAPI } from "../../api/api";
 
 class UsersReceiver extends React.Component {
   componentDidMount() {
-    this.props.toggleLoaderStatus(true);
-    (async () => {
-      let data = await usersAPI.getUsers(
-        this.props.page,
-        this.props.onPageUsersCount
-      );
-      this.props.toggleLoaderStatus(false);
-      this.props.setUsers(data.items);
-      this.props.setCount(data.totalCount);
-    })();
+    this.props.getUsers(this.props.page, this.props.onPageUsersCount);
   }
-  changeCurrent = p => {
-    this.props.toggleLoaderStatus(true);
-    this.props.setCurrent(p);
-    (async () => {
-      let data = await usersAPI.getUsers(p, this.props.onPageUsersCount);
-      this.props.toggleLoaderStatus(false);
-      this.props.setUsers(data.items);
-    })();
+  changeCurrent = page => {
+    this.props.getUsers(page, this.props.onPageUsersCount);
+    this.props.setCurrent(page);
   };
 
   render() {
     return (
       <div>
-        {this.props.isPageLoaded ? <Preloader /> : null}
-        <Users
-          usersCount={this.props.usersCount}
-          page={this.props.page}
-          userList={this.props.userList}
-          currentPage={this.props.currentPage}
-          follow={this.props.follow}
-          unFollow={this.props.unFollow}
-          changeCurrent={this.changeCurrent}
-          toggleFollowStatus={this.props.toggleFollowStatus}
-          followInProgressList={this.props.followInProgressList}
-        />
+        {this.props.isPageLoading ? <Preloader /> : null}
+        <Users {...this.props} changeCurrent={this.changeCurrent} />
       </div>
     );
   }
 }
 const mapStateToProps = state => ({
-  isPageLoaded: state.usersPage.isPageLoaded,
+  isPageLoading: state.usersPage.isPageLoading,
   followInProgressList: state.usersPage.followInProgressList,
   userList: state.usersPage.userList,
   page: state.usersPage.page,
@@ -66,13 +38,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  follow,
-  unFollow,
-  setUsers,
+  followUser,
+  unFollowUser,
   setCurrent,
-  setCount,
-  toggleLoaderStatus,
-  toggleFollowStatus
+  getUsers
 };
 
 const UsersContainer = connect(
