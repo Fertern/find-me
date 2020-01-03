@@ -7,6 +7,7 @@ import NavContainer from "./components/Nav/NavContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import MobileMenu from "./components/Nav/MobileMenu/MobileMenu";
+import Login from "./components/Login/Login";
 
 //arrays
 const App = props => {
@@ -25,6 +26,7 @@ const App = props => {
             />
             <Route path="/users" render={() => <UsersContainer />} />
             <Route path="/menu" render={() => <MobileMenu />} />
+            <Route path="/login" render={() => <Login />} />
           </div>
         </div>
       </div>
