@@ -3,6 +3,7 @@ import { profileAPI } from "../api/api";
 const ADD_POST = "ADD-POST";
 const UPDATE_POST_TEXT = "UPDATE-POST-TEXT";
 const SET_PROFILE = "SET-PROFILE";
+const SET_STATUS = "SET-STATUS";
 
 const initialState = {
   posts: [
@@ -10,7 +11,8 @@ const initialState = {
     { id: 2, message: "TOKI WO TOMARE", likes: "0" }
   ],
   postText: "",
-  profile: null
+  profile: null,
+  status: ""
 };
 
 const profilePageReducer = (state = initialState, action) => {
@@ -38,6 +40,12 @@ const profilePageReducer = (state = initialState, action) => {
         profile: action.profile
       };
 
+    case SET_STATUS:
+      return {
+        ...state,
+        status: action.status
+      };
+
     default:
       return state;
   }
@@ -50,17 +58,31 @@ export const addPost = () => ({ type: ADD_POST }),
   setProfile = profile => ({
     type: SET_PROFILE,
     profile
+  }),
+  setStatus = status => ({
+    type: SET_STATUS,
+    status
   });
 
 export const setUpProfile = id => dispatch => {
-  let userId = id;
-  if (!userId) {
-    userId = 10;
-  }
-  (async () => {
-    let data = await profileAPI.getProfile(userId);
-    dispatch(setProfile(data));
-  })();
-};
+    (async () => {
+      let data = await profileAPI.getProfile(id);
+      dispatch(setProfile(data));
+    })();
+  },
+  setUpStatus = id => dispatch => {
+    (async () => {
+      let data = await profileAPI.getStatus(id);
+      dispatch(setStatus(data));
+    })();
+  },
+  updateUpStatus = status => dispatch => {
+    (async () => {
+      let data = await profileAPI.updateStatus(status);
+      if (data.resultCode === 0) {
+        dispatch(setStatus(data));
+      }
+    })();
+  };
 
 export default profilePageReducer;

@@ -21,6 +21,8 @@
   font-weight: bold;
   padding: 5px;
   font-size: 1.3em;
+  width: 100%;
+  white-space: nowrap;
 }
 .lookTrue {
   color: rgb(21, 135, 21);
@@ -34,11 +36,10 @@
 }
 .status {
   font-size: 1.2em;
-  margin: 0 auto;
 }
 @media (max-width: 1200px) {
   .status {
-    font-size: 1.5vw;
+    font-size: 2em;
   }
   .name {
     margin-top: 20px;
@@ -48,6 +49,16 @@
   .lookFalse {
     padding: 5px;
     font-size: 2vw;
+  }
+}
+@media (max-width: 769px) {
+  .lookTrue,
+  .lookFalse {
+    padding: 5px;
+    font-size: 2vw;
+  }
+  .status {
+    font-size: 1em;
   }
 }
 @media (max-width: 425px) {
@@ -63,6 +74,7 @@
   .status {
     font-size: 6vw;
     width: 66%;
+    margin: 0 auto;
     margin-bottom: 25px;
     text-align: left;
     margin-top: 10px;

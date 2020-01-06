@@ -42,8 +42,8 @@ const dialogsPageReducer = (state = initialState, action) => {
       return state;
   }
 };
-export const addMessageActionCreator = () => ({ type: ADD_MESSAGE }),
-  updateMessageTextActionCreator = text => ({
+export const sendMessage = () => ({ type: ADD_MESSAGE }),
+  updateText = text => ({
     type: UPDATE_MESSAGE_TEXT,
     text: text
   });

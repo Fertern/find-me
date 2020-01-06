@@ -40,6 +40,23 @@ a > p {
     grid-template-rows: 8vw 8vw;
   }
 }
+
+@media (max-width: 769px) {
+  .links > a,
+  .links > span {
+    border-radius: 50%;
+    width: 9vw;
+    height: 9vw;
+    padding: 2.25vw;
+    font-size: 4.5vw;
+    margin: 1.5vw;
+  }
+  .links {
+    display: grid;
+    grid-template-columns: 12vw 12vw 12vw 12vw;
+    grid-template-rows: 12vw 12vw;
+  }
+}
 @media (max-width: 425px) {
   .links > a,
   .links > span {
