@@ -10,6 +10,7 @@
 }
 .text {
   margin-bottom: 10px;
+  word-break: break-word;
 }
 .stats {
   display: flex;

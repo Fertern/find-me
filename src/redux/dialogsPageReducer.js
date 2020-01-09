@@ -1,5 +1,4 @@
 const ADD_MESSAGE = "ADD-MESSAGE";
-const UPDATE_MESSAGE_TEXT = "UPDATE-MESSAGE-TEXT";
 
 const initialState = {
   messages: [
@@ -13,8 +12,7 @@ const initialState = {
     { id: 2, name: "Second", count: 1 },
     { id: 3, name: "Thirst", count: 1 },
     { id: 4, name: "Fourth", count: 1 }
-  ],
-  messageText: ""
+  ]
 };
 
 const dialogsPageReducer = (state = initialState, action) => {
@@ -25,27 +23,17 @@ const dialogsPageReducer = (state = initialState, action) => {
         messages: [
           ...state.messages,
           {
-            id: `f${(+new Date()).toString(16)}`,
-            text: state.messageText
+            id: `m${(+new Date()).toString(16)}`,
+            text: action.messageText
           }
         ],
         messageText: ""
-      };
-
-    case UPDATE_MESSAGE_TEXT:
-      return {
-        ...state,
-        messageText: action.text
       };
 
     default:
       return state;
   }
 };
-export const sendMessage = () => ({ type: ADD_MESSAGE }),
-  updateText = text => ({
-    type: UPDATE_MESSAGE_TEXT,
-    text: text
-  });
+export const sendMessage = messageText => ({ type: ADD_MESSAGE, messageText });
 
 export default dialogsPageReducer;

@@ -10,4 +10,5 @@
   background-color: azure;
   display: inline-block;
   border-radius: 10px;
+  word-break: break-word;
 }

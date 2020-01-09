@@ -5,16 +5,18 @@ import dialogsPageReducer from "./dialogsPageReducer";
 import navBarReducer from "./navBarReducer";
 import usersReducer from "./usersReducer";
 import authReducer from "./auth-reducer";
+import { reducer as formReducer } from "redux-form";
 
-let reducers = combineReducers({
+const reducers = combineReducers({
   profilePage: profilePageReducer,
   dialogsPage: dialogsPageReducer,
   navBar: navBarReducer,
   usersPage: usersReducer,
-  auth: authReducer
+  auth: authReducer,
+  form: formReducer
 });
 
-let store = createStore(reducers, applyMiddleware(thunkMiddleware));
+const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 window.store = store;
 

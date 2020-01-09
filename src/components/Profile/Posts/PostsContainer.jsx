@@ -1,15 +1,13 @@
 import Posts from "./Posts";
-import { updatePost, addPost } from "../../../redux/profilePageReducer.js";
+import { addPost } from "../../../redux/profilePageReducer.js";
 import { connect } from "react-redux";
 
 const mapStateToProps = state => ({
-  posts: state.profilePage.posts,
-  postText: state.profilePage.postText
+  posts: state.profilePage.posts
 });
 
 const mapDispatchToProps = {
-  addPost,
-  updatePost
+  addPost
 };
 
 const PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts);

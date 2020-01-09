@@ -1,0 +1,44 @@
+.writingArea {
+  background-color: var(--backColor);
+  border-radius: 4px;
+
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 50%;
+  margin-right: 30px;
+}
+.textarea {
+  height: 100%;
+  width: 100%;
+  border: none;
+  padding: 9px;
+  border-radius: 4px;
+  font-size: 1.3em;
+  background-color: var(--backColor);
+}
+.button {
+  padding: 5px;
+  color: white;
+  border: none;
+  margin-left: 80%;
+  width: 20%;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+  background-color: var(--secondaryColor);
+}
+.button:hover {
+  color: var(--focusColor);
+  transition: color 0.2s linear;
+}
+.buttonWrapper {
+  padding: 5px;
+}
+@media (max-width: 768px) {
+  .writingArea {
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 0px;
+  }
+}
