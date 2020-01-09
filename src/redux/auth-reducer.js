@@ -43,17 +43,15 @@ export const setAuth = (userId, email, login) => ({
     type: UNSET_AUTH
   });
 
-export const checkAuth = () => dispatch => {
-  (async () => {
-    let data = await profileAPI.authMe();
-    if (data.resultCode === 0) {
-      let { id, login, email } = data.data;
-      dispatch(setAuth(id, login, email));
-    }
-    if (data.resultCode === 1) {
-      dispatch(unsetAuth());
-    }
-  })();
+export const checkAuth = () => async dispatch => {
+  let data = await profileAPI.authMe();
+  if (data.resultCode === 0) {
+    let { id, login, email } = data.data;
+    dispatch(setAuth(id, login, email));
+  }
+  if (data.resultCode === 1) {
+    dispatch(unsetAuth());
+  }
 };
 
 export default authReducer;

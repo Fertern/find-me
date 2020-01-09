@@ -95,34 +95,29 @@ export const follow = userId => ({ type: FOLLOW_USER, userId }),
     userId
   });
 
-export const getUsers = (page, onPageUsersCount) => dispatch => {
+export const getUsers = (page, onPageUsersCount) => async dispatch => {
     dispatch(toggleLoaderStatus(true));
-    (async () => {
-      let data = await usersAPI.getUsers(page, onPageUsersCount);
-      dispatch(toggleLoaderStatus(false));
-      dispatch(setUsers(data.items));
-      dispatch(setCount(data.totalCount));
-    })();
+
+    let data = await usersAPI.getUsers(page, onPageUsersCount);
+    dispatch(toggleLoaderStatus(false));
+    dispatch(setUsers(data.items));
+    dispatch(setCount(data.totalCount));
   },
-  unFollowUser = id => dispatch => {
-    (async () => {
-      dispatch(toggleFollowStatus(true, id));
-      let data = await usersAPI.unFollowUser(id);
-      if (data.resultCode === 0) {
-        dispatch(unFollow(id));
-        dispatch(toggleFollowStatus(false, id));
-      }
-    })();
+  unFollowUser = id => async dispatch => {
+    dispatch(toggleFollowStatus(true, id));
+    let data = await usersAPI.unFollowUser(id);
+    if (data.resultCode === 0) {
+      dispatch(unFollow(id));
+      dispatch(toggleFollowStatus(false, id));
+    }
   },
-  followUser = id => dispatch => {
-    (async () => {
-      dispatch(toggleFollowStatus(true, id));
-      let data = await usersAPI.followUser(id);
-      if (data.resultCode === 0) {
-        dispatch(follow(id));
-        dispatch(toggleFollowStatus(false, id));
-      }
-    })();
+  followUser = id => async dispatch => {
+    dispatch(toggleFollowStatus(true, id));
+    let data = await usersAPI.followUser(id);
+    if (data.resultCode === 0) {
+      dispatch(follow(id));
+      dispatch(toggleFollowStatus(false, id));
+    }
   };
 
 export default userReducer;

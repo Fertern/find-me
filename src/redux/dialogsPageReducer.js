@@ -23,11 +23,10 @@ const dialogsPageReducer = (state = initialState, action) => {
         messages: [
           ...state.messages,
           {
-            id: `m${(+new Date()).toString(16)}`,
+            id: `f${(+new Date()).toString(16)}`,
             text: action.messageText
           }
-        ],
-        messageText: ""
+        ]
       };
 
     default:
@@ -35,5 +34,12 @@ const dialogsPageReducer = (state = initialState, action) => {
   }
 };
 export const sendMessage = messageText => ({ type: ADD_MESSAGE, messageText });
+
+export const addNewMessage = values => async dispatch => {
+  let data = { resultCode: 0 };
+  if (data.resultCode === 0) {
+    dispatch(sendMessage(values.message));
+  }
+};
 
 export default dialogsPageReducer;

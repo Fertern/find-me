@@ -9,16 +9,21 @@ import { onTapEnter } from "../../../../Utils/onTapEnter";
 
 const maxLength20 = maxLengthCreator(20);
 const AddPostForm = props => {
-  const { handleSubmit } = props;
+  const { handleSubmit, reset, addNewPost } = props;
+  const submit = values => {
+    addNewPost(values);
+    reset();
+  };
+  const customSubmit = handleSubmit(submit);
   return (
-    <form className={s.writingArea} onSubmit={handleSubmit}>
+    <form className={s.writingArea} onSubmit={customSubmit}>
       <Field
         className={s.textarea}
         placeholder="Write new post!"
         component="textarea"
         name="post"
         validate={[requiredField, maxLength20]}
-        onKeyDown={onTapEnter(handleSubmit)}
+        onKeyDown={onTapEnter(customSubmit)}
       />
       <div className={s.buttonWrapper}>
         <button className={s.button}>Post</button>
@@ -27,4 +32,4 @@ const AddPostForm = props => {
   );
 };
 
-export default reduxForm({ form: "dialogAddMessage" })(AddPostForm);
+export default reduxForm({ form: "profileAddPost" })(AddPostForm);

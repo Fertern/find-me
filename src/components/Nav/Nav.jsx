@@ -28,7 +28,6 @@ const Nav = props => {
             Users
           </NavLink>
         </div>
-        {/* <Friends friendList={props.friendList} /> */}
       </nav>
       <MobileNavBar />
     </div>

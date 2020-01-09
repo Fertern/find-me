@@ -25,8 +25,7 @@ const profilePageReducer = (state = initialState, action) => {
             message: action.postText,
             likes: 0
           }
-        ],
-        postText: ""
+        ]
       };
 
     case SET_PROFILE:
@@ -55,25 +54,24 @@ export const addPost = postText => ({ type: ADD_POST, postText }),
     status
   });
 
-export const setUpProfile = id => dispatch => {
-    (async () => {
-      let data = await profileAPI.getProfile(id);
-      dispatch(setProfile(data));
-    })();
+export const setUpProfile = id => async dispatch => {
+    let data = await profileAPI.getProfile(id);
+    dispatch(setProfile(data));
   },
-  setUpStatus = id => dispatch => {
-    (async () => {
-      let data = await profileAPI.getStatus(id);
+  setUpStatus = id => async dispatch => {
+    let data = await profileAPI.getStatus(id);
+    dispatch(setStatus(data));
+  },
+  updateUpStatus = status => async dispatch => {
+    let data = await profileAPI.updateStatus(status);
+    if (data.resultCode === 0) {
       dispatch(setStatus(data));
-    })();
+    }
   },
-  updateUpStatus = status => dispatch => {
-    (async () => {
-      let data = await profileAPI.updateStatus(status);
-      if (data.resultCode === 0) {
-        dispatch(setStatus(data));
-      }
-    })();
+  addNewPost = values => async dispatch => {
+    let data = { resultCode: 0 };
+    if (data.resultCode === 0) {
+      dispatch(addPost(values.post));
+    }
   };
-
 export default profilePageReducer;

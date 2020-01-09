@@ -1,9 +1,7 @@
 import Nav from "./Nav";
 import { connect } from "react-redux";
 
-const mapStateToProps = state => ({
-  friendList: state.navBar.friends
-});
+const mapStateToProps = state => ({});
 
 const NavContainer = connect(mapStateToProps)(Nav);
 

@@ -4,15 +4,14 @@ import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
 import AddMessageForm from "./AddMessageForm/AddMessageForm";
 const Dialogs = props => {
-  const dialogsElements = props.dialogsPage.dialogs.map(d => (
+  const { dialogsPage, addNewMessage } = props;
+  const dialogsElements = dialogsPage.dialogs.map(d => (
       <Dialog name={d.name} key={d.id} id={d.id} counter={d.count} />
     )),
-    messagesElements = props.dialogsPage.messages.map(m => (
+    messagesElements = dialogsPage.messages.map(m => (
       <Message key={m.id} text={m.text} />
     ));
-  const addNewMessage = values => {
-    props.sendMessage(values.message);
-  };
+
   return (
     <div className={s.dialogs}>
       <div className={s.peopleArea}>
@@ -22,7 +21,7 @@ const Dialogs = props => {
         <div className={s.messages}>{messagesElements}</div>
 
         <div className={s.senderArea}>
-          <AddMessageForm onSubmit={addNewMessage} />
+          <AddMessageForm addNewMessage={addNewMessage} />
         </div>
       </div>
     </div>

@@ -4,15 +4,14 @@ import Post from "./Post/Post";
 import AddPostForm from "./AddPostForm/AddPostForm";
 
 const Posts = props => {
-  let postsElements = props.posts.map(p => (
+  const { posts, addNewPost } = props;
+  let postsElements = posts.map(p => (
     <Post message={p.message} key={p.id} likes={p.likes} />
   ));
-  const addPost = values => {
-    props.addPost(values.post);
-  };
+
   return (
     <span className={s.wrapper}>
-      <AddPostForm onSubmit={addPost} />
+      <AddPostForm addNewPost={addNewPost} />
       <span className={s.posts}>{postsElements}</span>
       <hr className={s.spy} /> {/* Empty space for mobile fixed navBar*/}
     </span>
