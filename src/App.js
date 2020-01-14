@@ -7,10 +7,9 @@ import NavContainer from "./components/Nav/NavContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import MobileMenu from "./components/Nav/MobileMenu/MobileMenu";
-import Login from "./components/Login/Login";
+import LoginContainer from "./components/Login/LoginContainer";
 
-//arrays
-const App = props => {
+const App = () => {
   return (
     <Router>
       <hr className="decor"></hr>
@@ -26,7 +25,7 @@ const App = props => {
             />
             <Route path="/users" render={() => <UsersContainer />} />
             <Route path="/menu" render={() => <MobileMenu />} />
-            <Route path="/login" render={() => <Login />} />
+            <Route path="/login" render={() => <LoginContainer />} />
           </div>
         </div>
       </div>

@@ -8,5 +8,22 @@
 
 .button {
   width: 15%;
+
   height: 5%;
+}
+.button {
+  padding: 5px;
+  color: white;
+  border: none;
+  margin-left: 80%;
+  width: 20%;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+  background-color: var(--secondaryColor);
+  margin-left: 0px;
+}
+.button:hover {
+  color: var(--focusColor);
+  transition: color 0.2s linear;
 }

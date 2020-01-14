@@ -10,7 +10,6 @@ import { onTapEnter } from "../../../Utils/onTapEnter";
 const maxLength300 = maxLengthCreator(300);
 const AddMessageForm = props => {
   const { handleSubmit, reset, addNewMessage } = props;
-  console.log(addNewMessage);
   const submit = values => {
     addNewMessage(values);
     reset();
