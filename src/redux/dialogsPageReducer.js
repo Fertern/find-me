@@ -1,4 +1,4 @@
-const ADD_MESSAGE = "ADD-MESSAGE";
+const ADD_MESSAGE = "/dialogsPage/ADD-MESSAGE";
 
 const initialState = {
   messages: [

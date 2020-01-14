@@ -1,3 +1,4 @@
+import React from "react";
 import Posts from "./Posts";
 import { addNewPost } from "../../../redux/profilePageReducer.js";
 import { connect } from "react-redux";
@@ -10,5 +11,6 @@ const mapDispatchToProps = {
   addNewPost
 };
 
-const PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts);
-export default PostsContainer;
+const PostsContainer = React.memo(props => <Posts {...props} />);
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostsContainer);

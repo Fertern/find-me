@@ -8,9 +8,7 @@ import SocialLinks from "./SocialLinks/SocialLinks";
 import Description from "./Description/Description";
 
 const Profile = props => {
-  const { setUpStatus, status, updateUpStatus, profile } = props;
-  console.log(profile);
-  console.log(setUpStatus);
+  const { status, updateUpStatus, profile } = props;
   if (!profile) {
     return <Preloader />;
   }
@@ -30,7 +28,7 @@ const Profile = props => {
           <About
             name={fullName}
             job={lookingForAJob}
-            status={status}
+            newStatus={status}
             updateUpStatus={updateUpStatus}
           />
           <SocialLinks links={contacts} />

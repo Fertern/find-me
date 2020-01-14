@@ -2,19 +2,8 @@
   background-color: var(--backColor);
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
-.selected {
-  font-weight: bold;
-  color: var(--focusColor);
-}
-.selected,
-.common {
-  cursor: pointer;
-  font-size: 40px;
-  user-select: none;
-}
 .label {
   font-size: 30px;
   padding-left: 10px;
@@ -25,6 +14,10 @@
   padding-left: 20px;
   padding-top: 10px;
 }
+.preloader {
+  position: absolute;
+  margin: 0 auto;
+}
 .show {
   margin: 15px auto;
   display: inline-block;
@@ -32,4 +25,13 @@
   font-size: 30px;
   border-radius: 15px;
   border: 2px solid gray;
+}
+.content {
+  min-height: 750px;
+}
+
+@media (max-width: 425px) {
+  .content {
+    min-height: 580px;
+  }
 }

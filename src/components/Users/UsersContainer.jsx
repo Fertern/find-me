@@ -7,34 +7,49 @@ import {
   setCurrent,
   getUsers
 } from "../../redux/usersReducer";
-import Preloader from "../common/Preloader/Preloader";
+import {
+  getUserList,
+  getIsPageLoading,
+  getCurrentPage,
+  getUsersCount,
+  getPageSize,
+  getFollowInProgress,
+  getPageCount
+} from "../../redux/users-selectors";
 
-class UsersReceiver extends React.Component {
+class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.getUsers(this.props.page, this.props.onPageUsersCount);
+    const { currentPage, onPageUsersCount } = this.props;
+    this.props.getUsers(currentPage, onPageUsersCount);
   }
   changeCurrent = page => {
-    this.props.getUsers(page, this.props.onPageUsersCount);
-    this.props.setCurrent(page);
+    const { setCurrent, getUsers, onPageUsersCount } = this.props;
+    setCurrent(page);
+    getUsers(page, onPageUsersCount);
   };
 
   render() {
-    return (
-      <div>
-        {this.props.isPageLoading ? <Preloader /> : null}
-        <Users {...this.props} changeCurrent={this.changeCurrent} />
-      </div>
-    );
+    return <Users {...this.props} changeCurrent={this.changeCurrent} />;
   }
 }
+// const mapStateToProps = state => ({
+//   isPageLoading: state.usersPage.isPageLoading,
+//   followInProgressList: state.usersPage.followInProgressList,
+//   userList: state.usersPage.userList,
+//   page: state.usersPage.page,
+//   onPageUsersCount: state.usersPage.onPageUsersCount,
+//   usersCount: state.usersPage.usersCount,
+//   currentPage: state.usersPage.currentPage
+// });
+
 const mapStateToProps = state => ({
-  isPageLoading: state.usersPage.isPageLoading,
-  followInProgressList: state.usersPage.followInProgressList,
-  userList: state.usersPage.userList,
-  page: state.usersPage.page,
-  onPageUsersCount: state.usersPage.onPageUsersCount,
-  usersCount: state.usersPage.usersCount,
-  currentPage: state.usersPage.currentPage
+  isPageLoading: getIsPageLoading(state),
+  followInProgressList: getFollowInProgress(state),
+  userList: getUserList(state),
+  page: getPageCount(state),
+  onPageUsersCount: getPageSize(state),
+  usersCount: getUsersCount(state),
+  currentPage: getCurrentPage(state)
 });
 
 const mapDispatchToProps = {
@@ -44,9 +59,4 @@ const mapDispatchToProps = {
   getUsers
 };
 
-const UsersContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(UsersReceiver);
-
-export default UsersContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);

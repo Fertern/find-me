@@ -1,18 +1,21 @@
 import React from "react";
 import User from "./User/User";
 import s from "./Users.module.css";
+import PageNumbers from "./PageNumbers/PageNumbers";
+import Preloader from "../common/Preloader/Preloader";
 
-const Users = props => {
-  let pageCount = Math.ceil(props.usersCount / props.page);
-  //const realPageCount = pageCount;
-  if (pageCount > 10) {
-    pageCount = 10;
-  }
-  let pages = [];
-  for (let i = 1; i <= pageCount; i++) {
-    pages.push(i);
-  }
-  const allUsers = props.userList.map(u => (
+const Users = ({
+  page,
+  usersCount,
+  userList,
+  followUser,
+  unFollowUser,
+  followInProgressList,
+  changeCurrent,
+  currentPage,
+  isPageLoading
+}) => {
+  const allUsers = userList.map(u => (
     <User
       id={u.id}
       key={u.id}
@@ -26,29 +29,31 @@ const Users = props => {
       description={u.description}
       country="u.location.country"
       city="u.location.city"
-      followUser={props.followUser}
-      unFollowUser={props.unFollowUser}
-      followInProgressList={props.followInProgressList}
+      followUser={followUser}
+      unFollowUser={unFollowUser}
+      followInProgressList={followInProgressList}
     />
   ));
 
   return (
     <div className={s.wrapper}>
       <div className={s.label}>Users</div>
-      <div className={s.allUsers}>{allUsers}</div>
-      <div>
-        {pages.map(p => (
-          <span
-            key={p}
-            onClick={() => {
-              props.changeCurrent(p);
-            }}
-            className={props.currentPage === p ? s.selected : s.common}
-          >
-            {p}
-          </span>
-        ))}
+      <div className={s.content}>
+        {isPageLoading ? (
+          <div className={s.preloader}>
+            <Preloader />
+          </div>
+        ) : (
+          <div className={s.allUsers}>{allUsers}</div>
+        )}
       </div>
+
+      <PageNumbers
+        page={page}
+        usersCount={usersCount}
+        changeCurrent={changeCurrent}
+        currentPage={currentPage}
+      />
     </div>
   );
 };

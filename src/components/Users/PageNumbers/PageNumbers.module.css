@@ -1,0 +1,10 @@
+.selected {
+  font-weight: bold;
+  color: var(--focusColor);
+}
+.selected,
+.common {
+  cursor: pointer;
+  font-size: 40px;
+  user-select: none;
+}

@@ -13,12 +13,15 @@
   word-break: break-word;
 }
 .stats {
+  color: var(--secondaryColor);
   display: flex;
   justify-content: space-between;
   font-size: 1.2em;
+  user-select: none;
 }
 .stats > span > i {
   color: var(--secondaryColor);
+  cursor: pointer;
 }
 @media (max-width: 768px) {
   .wrapper {

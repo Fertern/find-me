@@ -4,13 +4,13 @@ import s from "./Nav.module.css";
 import { NavLink } from "react-router-dom";
 import MobileNavBar from "./MobileNavBar/MobileNavBar";
 
-const Nav = props => {
+const Nav = () => {
   return (
     <div className={s.wrapper}>
       <nav className={s.nav} id="menu">
         <div className={s.item}>
           <NavLink activeClassName={s.active} to="/profile">
-            Profile
+            Profiles
           </NavLink>
         </div>
         <div className={s.item}>

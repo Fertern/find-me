@@ -8,7 +8,6 @@ const Posts = props => {
   let postsElements = posts.map(p => (
     <Post message={p.message} key={p.id} likes={p.likes} />
   ));
-
   return (
     <span className={s.wrapper}>
       <AddPostForm addNewPost={addNewPost} />

@@ -1,8 +1,10 @@
 import { profileAPI } from "../api/api";
 
-const ADD_POST = "ADD-POST";
-const SET_PROFILE = "SET-PROFILE";
-const SET_STATUS = "SET-STATUS";
+const ADD_POST = "/profilePage/ADD-POST";
+const SET_PROFILE = "/profilePage/SET-PROFILE";
+const SET_STATUS = "/profilePage/SET-STATUS";
+const SET_LAST_USER = "/profilePage/SET-LAST-USER";
+const TOGGLE_PAGE_LOADER_STATUS = "/profilePage/TOGGLE-LOADER";
 
 const initialState = {
   posts: [
@@ -10,7 +12,9 @@ const initialState = {
     { id: 2, message: "TOKI WO TOMARE", likes: "0" }
   ],
   profile: null,
-  status: ""
+  status: "",
+  lastUser: null,
+  isPageLoading: true
 };
 
 const profilePageReducer = (state = initialState, action) => {
@@ -39,6 +43,16 @@ const profilePageReducer = (state = initialState, action) => {
         ...state,
         status: action.status
       };
+    case SET_LAST_USER:
+      return {
+        ...state,
+        lastUser: action.lastUser
+      };
+    case TOGGLE_PAGE_LOADER_STATUS:
+      return {
+        ...state,
+        isPageLoading: action.isPageLoading
+      };
 
     default:
       return state;
@@ -52,10 +66,20 @@ export const addPost = postText => ({ type: ADD_POST, postText }),
   setStatus = status => ({
     type: SET_STATUS,
     status
+  }),
+  setLastUser = lastUser => ({
+    type: SET_LAST_USER,
+    lastUser
+  }),
+  toggleLoaderStatus = isPageLoading => ({
+    type: TOGGLE_PAGE_LOADER_STATUS,
+    isPageLoading
   });
 
 export const setUpProfile = id => async dispatch => {
+    dispatch(toggleLoaderStatus(true));
     let data = await profileAPI.getProfile(id);
+    dispatch(toggleLoaderStatus(false));
     dispatch(setProfile(data));
   },
   setUpStatus = id => async dispatch => {

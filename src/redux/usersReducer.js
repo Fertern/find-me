@@ -1,12 +1,13 @@
 import { usersAPI } from "../api/api";
+import { mapNewUserList } from "../Utils/mapNewUserList";
 
-const FOLLOW_USER = "FOLLOW-USER";
-const UNFOLLOW_USER = "UNFOLLOW-USER";
-const SET_USERS = "SET-USERS";
-const SET_CURRENT = "SET-CURRENT";
-const SET_COUNT = "SET-ALL-COUNT";
-const TOGGLE_PAGE_LOADER_STATUS = "TOGGLE-LOADER";
-const TOGGLE_FOLLOW_LOADER_STATUS = "TOGGLE-FOLLOW-LOADER-STATUS";
+const FOLLOW_USER = "/users/FOLLOW-USER";
+const UNFOLLOW_USER = "/users/UNFOLLOW-USER";
+const SET_USERS = "/users/SET-USERS";
+const SET_CURRENT = "/users/SET-CURRENT";
+const SET_COUNT = "/users/SET-ALL-COUNT";
+const TOGGLE_PAGE_LOADER_STATUS = "/users/TOGGLE-LOADER";
+const TOGGLE_FOLLOW_LOADER_STATUS = "/users/TOGGLE-FOLLOW-LOADER-STATUS";
 
 const initialState = {
   isPageLoading: true,
@@ -23,22 +24,16 @@ const userReducer = (state = initialState, action) => {
     case FOLLOW_USER:
       return {
         ...state,
-        userList: state.userList.map(u => {
-          if (u.id === action.userId) {
-            return { ...u, followed: true };
-          }
-          return u;
+        userList: mapNewUserList(state.userList, action.userId, {
+          followed: true
         })
       };
 
     case UNFOLLOW_USER:
       return {
         ...state,
-        userList: state.userList.map(u => {
-          if (u.id === action.userId) {
-            return { ...u, followed: false };
-          }
-          return u;
+        userList: mapNewUserList(state.userList, action.userId, {
+          followed: false
         })
       };
 

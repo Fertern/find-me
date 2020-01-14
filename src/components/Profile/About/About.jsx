@@ -1,54 +1,66 @@
 import s from "./About.module.css";
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 
-export default class About extends Component {
-  state = {
-    isStatusEditing: false,
-    status: this.props.status
-  };
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.status !== this.props.status) {
-      this.setState({
-        status: this.props.status
-      });
-    }
-  }
-  editStatus = () => {
-    this.setState({ isStatusEditing: !this.state.isStatusEditing });
-    this.props.updateUpStatus(this.state.status);
-  };
-  onStatusChange = e => {
-    this.setState({ status: e.currentTarget.value });
-  };
-  render() {
-    const { name, job } = this.props;
-    const { isStatusEditing, status } = this.state;
-    return (
-      <div className={s.wrapper}>
-        <div className={s.name}>{name}</div>
-        <div className={s.lookingForAJob}>
-          {job ? (
-            <span className={s.lookTrue}>Searching for a job!</span>
-          ) : (
-            <span className={s.lookFalse}>Already has a job</span>
-          )}
-        </div>
-        {isStatusEditing ? (
-          <div className={s.changeStatus}>
-            <input
-              onChange={this.onStatusChange}
-              autoFocus
-              onBlur={this.editStatus}
-              placeholder={"Write new status here!"}
-              value={this.state.status}
-            />
-          </div>
+const About = props => {
+  const { name, job, newStatus } = props,
+    [isStatusEditing, toggleEditStatus] = useState(false),
+    [status, setStatus] = useState(newStatus);
+
+  useEffect(() => {
+    setStatus(newStatus);
+  }, [newStatus]);
+
+  const editStatus = () => {
+      toggleEditStatus(!isStatusEditing);
+      props.updateUpStatus(status);
+    },
+    onStatusChange = e => {
+      setStatus(e.currentTarget.value);
+    };
+  return (
+    <div className={s.wrapper}>
+      <div className={s.name}>{name}</div>
+      <div className={s.lookingForAJob}>
+        {job ? (
+          <span className={s.lookTrue}>Searching for a job!</span>
         ) : (
-          <div onDoubleClick={this.editStatus} className={s.status}>
-            {status || "No status("}
-          </div>
+          <span className={s.lookFalse}>Already has a job</span>
         )}
       </div>
-    );
-  }
-}
+      {isStatusEditing ? (
+        <div className={s.changeStatus}>
+          <input
+            onChange={onStatusChange}
+            autoFocus
+            onBlur={editStatus}
+            placeholder={"Write new status here!"}
+            value={status}
+          />
+        </div>
+      ) : (
+        <div onDoubleClick={editStatus} className={s.status}>
+          {status || "No status("}
+        </div>
+      )}
+    </div>
+  );
+};
+export default About;
+// state = {
+//   isStatusEditing: false,
+//   status: newStatus
+// };
+// componentDidUpdate(prevProps, prevState) {
+//   if (prevnewStatus !== newStatus) {
+//     setState({
+//       status: newStatus
+//     });
+//   }
+// }
+// editStatus = () => {
+//   setState({ isStatusEditing: !state.isStatusEditing });
+//   props.updateUpStatus(state.status);
+// };
+// onStatusChange = e => {
+//   setState({ status: e.currentTarget.value });
+// };
