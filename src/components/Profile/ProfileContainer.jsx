@@ -34,7 +34,6 @@ class ProfileContainer extends React.Component {
     }
   }
   render() {
-    console.log(this.props.isPageLoading);
     return (
       <div>
         {this.props.isPageLoading ? <Preloader /> : <Profile {...this.props} />}
