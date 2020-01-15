@@ -23,7 +23,7 @@ const Profile = props => {
   return (
     <div className={s.profile}>
       <div className={s.overBlock}>
-        <AvatarBar photo={photos} />
+        <AvatarBar userPhoto={photos} />
         <div className={s.infoBlock}>
           <About
             name={fullName}

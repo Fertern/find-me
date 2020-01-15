@@ -1,14 +1,11 @@
 import React from "react";
 import s from "./AvatarBar.module.css";
+import defaultPhoto from "../../../assets/USER-LOGO.png";
 
-const AvatarBar = props => {
-  if (!props.photo.large) {
-    props.photo.large =
-      "https://www.soluzionidifferenti.it/wp-content/uploads/2017/06/USER-LOGO.png";
-  }
+const AvatarBar = ({ userPhoto: { small, large } }) => {
   return (
     <div className={s.avatar}>
-      <img className={s.logo} src={props.photo.large} alt=""></img>
+      <img className={s.logo} src={large || small || defaultPhoto} alt=""></img>
     </div>
   );
 };

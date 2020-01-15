@@ -21,11 +21,7 @@ const Users = ({
     <User
       id={u.id}
       key={u.id}
-      logo={
-        u.photos.small != null
-          ? u.photos.small
-          : "https://i.pinimg.com/originals/51/40/69/5140696fcc077099bd92525eed882e7c.jpg"
-      }
+      logo={u.photos}
       followed={u.followed}
       name={u.name}
       description={u.description}

@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./User.module.css";
 import { NavLink } from "react-router-dom";
+import defaultPhoto from "../../../assets/USER-LOGO.png";
 
 const User = props => {
   const {
@@ -8,7 +9,7 @@ const User = props => {
     followUser,
     unFollowUser,
     followed,
-    logo,
+    logo: { small, large },
     followInProgressList,
     name,
     description,
@@ -19,7 +20,7 @@ const User = props => {
     <div className={s.wrapper}>
       <div className={s.logoBlock}>
         <NavLink to={"/profile/" + id}>
-          <img className={s.logo} src={logo} alt="" />
+          <img className={s.logo} src={small || large || defaultPhoto} alt="" />{" "}
         </NavLink>
         <div>
           {followed ? (

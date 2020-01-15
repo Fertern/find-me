@@ -12,7 +12,6 @@
 
 .allUsers {
   padding-left: 20px;
-  padding-top: 10px;
 }
 .preloader {
   position: absolute;
@@ -27,7 +26,7 @@
   border: 2px solid gray;
 }
 .content {
-  min-height: 750px;
+  min-height: 600px;
 }
 
 @media (max-width: 425px) {
