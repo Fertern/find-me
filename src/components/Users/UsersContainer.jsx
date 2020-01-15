@@ -5,7 +5,8 @@ import {
   followUser,
   unFollowUser,
   setCurrent,
-  getUsers
+  getUsers,
+  setStartNumberInRow
 } from "../../redux/usersReducer";
 import {
   getUserList,
@@ -14,7 +15,8 @@ import {
   getUsersCount,
   getPageSize,
   getFollowInProgress,
-  getPageCount
+  getPageCount,
+  getStartNumberInRow
 } from "../../redux/users-selectors";
 
 class UsersContainer extends React.Component {
@@ -49,14 +51,16 @@ const mapStateToProps = state => ({
   page: getPageCount(state),
   onPageUsersCount: getPageSize(state),
   usersCount: getUsersCount(state),
-  currentPage: getCurrentPage(state)
+  currentPage: getCurrentPage(state),
+  startNumberInRow: getStartNumberInRow(state)
 });
 
 const mapDispatchToProps = {
   followUser,
   unFollowUser,
   setCurrent,
-  getUsers
+  getUsers,
+  setStartNumberInRow
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);

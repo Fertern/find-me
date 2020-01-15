@@ -13,7 +13,9 @@ const Users = ({
   followInProgressList,
   changeCurrent,
   currentPage,
-  isPageLoading
+  isPageLoading,
+  setStartNumberInRow,
+  startNumberInRow
 }) => {
   const allUsers = userList.map(u => (
     <User
@@ -53,6 +55,8 @@ const Users = ({
         usersCount={usersCount}
         changeCurrent={changeCurrent}
         currentPage={currentPage}
+        setStartNumberInRow={setStartNumberInRow}
+        startNumberInRow={startNumberInRow}
       />
     </div>
   );

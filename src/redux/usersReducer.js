@@ -8,6 +8,7 @@ const SET_CURRENT = "/users/SET-CURRENT";
 const SET_COUNT = "/users/SET-ALL-COUNT";
 const TOGGLE_PAGE_LOADER_STATUS = "/users/TOGGLE-LOADER";
 const TOGGLE_FOLLOW_LOADER_STATUS = "/users/TOGGLE-FOLLOW-LOADER-STATUS";
+const SET_START_NUMBER_IM_ROW = "./users/SET-START-NUMBER-IM-ROW";
 
 const initialState = {
   isPageLoading: true,
@@ -16,7 +17,8 @@ const initialState = {
   page: 1,
   onPageUsersCount: 4,
   usersCount: 0,
-  currentPage: 1
+  currentPage: 1,
+  startNumberInRow: 1
 };
 
 const userReducer = (state = initialState, action) => {
@@ -64,6 +66,11 @@ const userReducer = (state = initialState, action) => {
           ? [...state.followInProgressList, action.userId]
           : state.followInProgressList.filter(id => id !== action.userId)
       };
+    case SET_START_NUMBER_IM_ROW:
+      return {
+        ...state,
+        startNumberInRow: action.newRow
+      };
 
     default:
       return state;
@@ -88,6 +95,10 @@ export const follow = userId => ({ type: FOLLOW_USER, userId }),
     type: TOGGLE_FOLLOW_LOADER_STATUS,
     isFollowInProgress,
     userId
+  }),
+  setStartNumberInRow = newRow => ({
+    type: SET_START_NUMBER_IM_ROW,
+    newRow
   });
 
 export const getUsers = (page, onPageUsersCount) => async dispatch => {

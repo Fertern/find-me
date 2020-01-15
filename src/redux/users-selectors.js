@@ -15,6 +15,8 @@ export const getFollowInProgress = state =>
   state.usersPage.followInProgressList;
 //
 export const getPageCount = state => state.usersPage.page;
+//
+export const getStartNumberInRow = state => state.usersPage.startNumberInRow;
 
 // Uncommon selector test
 export const getSuper = createSelector(getUserList, userList => {
