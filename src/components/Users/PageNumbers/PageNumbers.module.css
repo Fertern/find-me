@@ -12,10 +12,6 @@
   width: 40px;
 }
 
-.selected {
-  font-weight: bold;
-  color: var(--focusColor);
-}
 .selected,
 .common {
   margin: 0 5px;
@@ -23,6 +19,10 @@
   cursor: pointer;
   font-size: 40px;
   user-select: none;
+}
+.selected {
+  font-weight: bold;
+  color: var(--focusColor);
 }
 
 @media (max-width: 425px) {
