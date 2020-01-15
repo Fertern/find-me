@@ -8,8 +8,7 @@ import CustomInput from "../../common/FormElements/CustomInput";
 import s from "./LoginForm.module.css";
 
 const maxLength25 = maxLengthCreator(25);
-const LoginForm = props => {
-  const { handleSubmit, login, error } = props;
+const LoginForm = ({ handleSubmit, login, error }) => {
   const submit = values => {
     login(values.email, values.password, values.rememberMe);
   };

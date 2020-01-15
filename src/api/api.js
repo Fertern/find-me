@@ -25,7 +25,20 @@ export const profileAPI = {
     instance.get("profile/" + userId).then(response => response.data),
   getStatus: userId =>
     instance.get("profile/status/" + userId).then(response => response.data),
-  updateStatus: status => instance.put("profile/status", { status })
+  updateStatus: status => instance.put("profile/status", { status }),
+  updatePhoto: photoFile => {
+    const formData = new FormData();
+    formData.append("image", photoFile);
+    return instance
+      .put("profile/photo", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      })
+      .then(response => response.data);
+  },
+  updateProfileData: profile =>
+    instance.put("profile", profile).then(response => response.data)
 };
 
 export const authAPI = {

@@ -5,7 +5,10 @@ import {
   setUpProfile,
   setUpStatus,
   updateUpStatus,
-  setLastUser
+  setLastUser,
+  setIsOwnProfile,
+  setUpPhoto,
+  setUpProfileData
 } from "../../redux/profilePageReducer";
 import { withRouter } from "react-router-dom";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
@@ -21,9 +24,11 @@ class ProfileContainer extends React.Component {
         userId = this.props.id;
       }
     }
+
     this.props.setLastUser(userId);
     this.props.setUpProfile(userId);
     this.props.setUpStatus(userId);
+    this.props.setIsOwnProfile(+userId === this.props.id);
   }
   componentDidMount() {
     this.restartProfile();
@@ -47,14 +52,18 @@ const mapStateToProps = state => ({
   status: state.profilePage.status,
   id: state.auth.userId,
   lastUser: state.profilePage.lastUser,
-  isPageLoading: state.profilePage.isPageLoading
+  isPageLoading: state.profilePage.isPageLoading,
+  isOwnProfile: state.profilePage.isOwnProfile
 });
 
 const mapDispatchToProps = {
   setUpProfile,
   setUpStatus,
   updateUpStatus,
-  setLastUser
+  setLastUser,
+  setIsOwnProfile,
+  setUpPhoto,
+  setUpProfileData
 };
 
 export default compose(

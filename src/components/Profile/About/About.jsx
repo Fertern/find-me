@@ -1,9 +1,8 @@
 import s from "./About.module.css";
 import React, { useState, useEffect } from "react";
 
-const About = props => {
-  const { name, job, newStatus } = props,
-    [isStatusEditing, toggleEditStatus] = useState(false),
+const About = ({ name, job, newStatus, updateUpStatus }) => {
+  const [isStatusEditing, toggleEditStatus] = useState(false),
     [status, setStatus] = useState(newStatus);
 
   useEffect(() => {
@@ -12,7 +11,7 @@ const About = props => {
 
   const editStatus = () => {
       toggleEditStatus(!isStatusEditing);
-      props.updateUpStatus(status);
+      updateUpStatus(status);
     },
     onStatusChange = e => {
       setStatus(e.currentTarget.value);

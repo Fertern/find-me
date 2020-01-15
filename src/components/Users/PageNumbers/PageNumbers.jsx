@@ -16,19 +16,18 @@ const PageNumbers = ({
   let isNextCorrect = true;
   let i = startNumberInRow;
   let pagesInRow = 10;
-
-  const PreviousRow = () => {
-    const newPrevRow = startNumberInRow - 10;
-    setStartNumberInRow(newPrevRow);
-  };
-  const NextRow = () => {
-    const newNextRow = startNumberInRow + 10;
-    setStartNumberInRow(newNextRow);
-  };
-
   if (isPhoneView) {
     pagesInRow = 5;
   }
+  const PreviousRow = () => {
+    const newPrevRow = startNumberInRow - pagesInRow;
+    setStartNumberInRow(newPrevRow);
+  };
+  const NextRow = () => {
+    const newNextRow = startNumberInRow + pagesInRow;
+    setStartNumberInRow(newNextRow);
+  };
+
   for (let x = 0; x < pagesInRow; x++) {
     if (i > pageCount) {
       isNextCorrect = false;
