@@ -1,35 +1,3 @@
-html {
-  font-size: 15px;
-  --primaryColor: #3490ce;
-  --secondaryColor: #435a7e;
-  --backColor: rgb(201, 224, 240);
-  --focusColor: #fff540;
-  --borderColor: black;
-}
-body {
-  margin: 0;
-  background: linear-gradient(to bottom, #2c3e50, #3498db);
-}
-/* background: linear-gradient(to bottom, #56ab2f, #a8e063); */
-/* Another good grad */
-/* background: linear-gradient(
-      45deg,
-      rgba(221, 173, 255, 1) 0%,
-      rgba(0, 128, 128, 1) 100%
-    ); */
-*,
-*:after,
-*:before {
-  box-sizing: border-box;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-}
 /* Blocks */
 .container {
   max-width: 1200px;
@@ -40,6 +8,34 @@ h6 {
 textarea {
   outline: none;
   resize: none;
+}
+
+.error-wrapper {
+  display: flex;
+  align-items: flex-end;
+  margin-left: 10px;
+}
+
+.error-label {
+  text-align: left;
+  font-weight: bold;
+}
+
+.error-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.warning-emoji {
+  margin-right: 8px;
+  font-size: 30px;
+}
+.errors {
+  background-color: brown !important;
+  color: azure !important;
+  text-align: center !important;
+  width: 400px;
 }
 .app-wrapper {
   display: grid;

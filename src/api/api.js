@@ -25,7 +25,8 @@ export const profileAPI = {
     instance.get("profile/" + userId).then(response => response.data),
   getStatus: userId =>
     instance.get("profile/status/" + userId).then(response => response.data),
-  updateStatus: status => instance.put("profile/status", { status }),
+  updateStatus: status =>
+    instance.put("profile/status", { status }).then(response => response.data),
   updatePhoto: photoFile => {
     const formData = new FormData();
     formData.append("image", photoFile);
@@ -44,7 +45,6 @@ export const profileAPI = {
 export const authAPI = {
   authMe: () => instance.get("/auth/me").then(response => response.data),
   login: (email, password, rememberMe = false, captcha) => {
-    console.log(captcha);
     return instance
       .post("auth/login", { email, password, rememberMe, captcha })
       .then(response => response.data);

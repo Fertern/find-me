@@ -11,25 +11,11 @@ const About = ({
   setIsProfileEditing,
   errorMessage
 }) => {
-  let statusLength;
-  if (!newStatus) {
-    statusLength = 0;
-  } else {
-    statusLength = newStatus.length;
-  }
-  let shortStatus = newStatus;
-  if (statusLength > 77) {
-    shortStatus =
-      newStatus
-        .split("")
-        .slice(0, 77)
-        .join("") + "...";
-  }
   const [isStatusEditing, toggleEditStatus] = useState(false),
-    [status, setStatus] = useState(shortStatus);
+    [status, setStatus] = useState(newStatus);
   useEffect(() => {
-    setStatus(shortStatus);
-  }, [shortStatus]);
+    setStatus(newStatus);
+  }, [newStatus]);
 
   const editStatus = () => {
       toggleEditStatus(!isStatusEditing);
@@ -71,26 +57,12 @@ const About = ({
           />
         </div>
       ) : isOwnProfile ? (
-        <div
-          onDoubleClick={editStatus}
-          onClick={() => {
-            setStatus(newStatus);
-          }}
-          className={s.status}
-        >
+        <div onDoubleClick={editStatus} className={s.status}>
           {status || <span>Double click here to create new status</span>}
         </div>
       ) : (
-        <div
-          onClick={() => {
-            setStatus(status);
-          }}
-          className={s.status}
-        >
-          {status || " "}
-        </div>
+        <div className={s.status}>{status || " "}</div>
       )}
-      {errorMessage && <span>{errorMessage}</span>}
     </div>
   );
 };

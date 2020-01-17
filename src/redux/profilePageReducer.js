@@ -1,5 +1,6 @@
 import { profileAPI } from "../api/api";
 import { stopSubmit } from "redux-form";
+import { showError, hideError } from "./errorsReducer";
 
 const ADD_POST = "/profilePage/ADD-POST";
 const SET_PROFILE = "/profilePage/SET-PROFILE";
@@ -123,9 +124,10 @@ export const setUpProfile = id => async dispatch => {
   updateUpStatus = status => async dispatch => {
     let data = await profileAPI.updateStatus(status);
     if (data.resultCode === 0) {
-      dispatch(setStatus(data));
-    } else {
-      dispatch(statusError(data.data.messages));
+      dispatch(setStatus(status));
+    } else if (data.resultCode === 1) {
+      dispatch(showError(data.messages));
+      dispatch(hideError(data.messages));
     }
   },
   addNewPost = values => async dispatch => {

@@ -24,7 +24,11 @@ const SocialLinks = props => {
     }
     return <span className={`fa fa-${serviceClass} off`} key={serviceName} />;
   });
-  return <div className={s.links}>{linksElements}</div>;
+  return (
+    <div className={s.linksWrapper}>
+      <div className={s.links}>{linksElements}</div>
+    </div>
+  );
 };
 
 export default SocialLinks;
