@@ -1,24 +1,58 @@
 import s from "./About.module.css";
 import React, { useState, useEffect } from "react";
 
-const About = ({ name, job, newStatus, updateUpStatus }) => {
+const About = ({
+  name,
+  job,
+  newStatus,
+  updateUpStatus,
+  isOwnProfile,
+  isProfileEditing,
+  setIsProfileEditing,
+  errorMessage
+}) => {
+  let statusLength;
+  if (!newStatus) {
+    statusLength = 0;
+  } else {
+    statusLength = newStatus.length;
+  }
+  let shortStatus = newStatus;
+  if (statusLength > 77) {
+    shortStatus =
+      newStatus
+        .split("")
+        .slice(0, 77)
+        .join("") + "...";
+  }
   const [isStatusEditing, toggleEditStatus] = useState(false),
-    [status, setStatus] = useState(newStatus);
-
+    [status, setStatus] = useState(shortStatus);
   useEffect(() => {
-    setStatus(newStatus);
-  }, [newStatus]);
+    setStatus(shortStatus);
+  }, [shortStatus]);
 
   const editStatus = () => {
       toggleEditStatus(!isStatusEditing);
       updateUpStatus(status);
     },
     onStatusChange = e => {
-      setStatus(e.currentTarget.value);
+      if (e.currentTarget.value !== " ") {
+        setStatus(e.currentTarget.value);
+        toggleEditStatus(true);
+      }
     };
+  const startEditProfile = () => {
+    setIsProfileEditing(true);
+  };
+
   return (
     <div className={s.wrapper}>
-      <div className={s.name}>{name}</div>
+      <div className="nameBlock">
+        <span className={s.name}>{name}</span>
+        {isOwnProfile && !isProfileEditing && (
+          <button onClick={startEditProfile}>Edit</button>
+        )}
+      </div>
       <div className={s.lookingForAJob}>
         {job ? (
           <span className={s.lookTrue}>Searching for a job!</span>
@@ -36,11 +70,27 @@ const About = ({ name, job, newStatus, updateUpStatus }) => {
             value={status}
           />
         </div>
+      ) : isOwnProfile ? (
+        <div
+          onDoubleClick={editStatus}
+          onClick={() => {
+            setStatus(newStatus);
+          }}
+          className={s.status}
+        >
+          {status || <span>Double click here to create new status</span>}
+        </div>
       ) : (
-        <div onDoubleClick={editStatus} className={s.status}>
-          {status || "No status("}
+        <div
+          onClick={() => {
+            setStatus(status);
+          }}
+          className={s.status}
+        >
+          {status || " "}
         </div>
       )}
+      {errorMessage && <span>{errorMessage}</span>}
     </div>
   );
 };

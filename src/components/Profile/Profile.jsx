@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import s from "./Profile.module.css";
 import PostsContainer from "./Posts/PostsContainer";
 import Preloader from "../common/Preloader/Preloader";
@@ -14,8 +14,10 @@ const Profile = ({
   profile,
   isOwnProfile,
   setUpPhoto,
-  setUpProfileData
+  setUpProfileData,
+  errorMessage
 }) => {
+  const [isProfileEditing, setIsProfileEditing] = useState(false);
   if (!profile) {
     return <Preloader />;
   }
@@ -34,7 +36,9 @@ const Profile = ({
           userPhoto={photos}
           isOwnProfile={isOwnProfile}
           setUpPhoto={setUpPhoto}
+          isProfileEditing={isProfileEditing}
         />
+
         <div className={s.infoBlock}>
           <About
             name={fullName}
@@ -42,15 +46,19 @@ const Profile = ({
             newStatus={status}
             updateUpStatus={updateUpStatus}
             isOwnProfile={isOwnProfile}
+            isProfileEditing={isProfileEditing}
+            setIsProfileEditing={setIsProfileEditing}
+            errorMessage={errorMessage}
           />
           <SocialLinks links={contacts} />
         </div>
       </div>
-      <EditProfileForm
-        initialValues={profile}
-        setUpProfileData={setUpProfileData}
-        contacts={contacts}
-      />
+      {isOwnProfile && isProfileEditing && (
+        <EditProfileForm
+          setUpProfileData={setUpProfileData}
+          contacts={contacts}
+        />
+      )}
       <Description text={lookingForAJobDescription} />
       <PostsContainer />
     </div>

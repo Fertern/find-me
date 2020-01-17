@@ -3,38 +3,36 @@ import {
   requiredField,
   maxLengthCreator
 } from "../../../Utils/validators/validators";
-import { reduxForm, Field } from "redux-form";
+import { reduxForm } from "redux-form";
 import CustomInput from "../../common/FormElements/CustomInput";
 import s from "./LoginForm.module.css";
+import { fieldGenerator } from "../../../Utils/fieldGenerator";
 
 const maxLength25 = maxLengthCreator(25);
-const LoginForm = ({ handleSubmit, login, error }) => {
-  const submit = values => {
-    login(values.email, values.password, values.rememberMe);
+const LoginForm = ({ handleSubmit, login, capthcaUrl, error }) => {
+  const submit = ({ email, password, rememberMe, captcha }) => {
+    login(email, password, rememberMe, captcha);
   };
   const customSubmit = handleSubmit(submit);
   return (
     <form onSubmit={customSubmit}>
-      <div className="">
-        <Field
-          name={"email"}
-          placeholder="Email"
-          component={CustomInput}
-          validate={[requiredField, maxLength25]}
-        />
+      {fieldGenerator(
+        ["email", "password"],
+        ["Email", "Password"],
+        CustomInput,
+        ["text", "password"],
+        [requiredField, maxLength25],
+        "same"
+      )}
+      <div className={s.checkbox}>
+        {fieldGenerator("rememberMe", null, "input", "checkbox")}
       </div>
-      <div className="">
-        <Field
-          name={"password"}
-          placeholder="Password"
-          type="password"
-          component={CustomInput}
-          validate={[requiredField, maxLength25]}
-        />
-      </div>
-      <div className="">
-        <Field name={"remember"} component={"input"} type="checkbox" />
-      </div>
+      {capthcaUrl && <img src={capthcaUrl} alt="" />}
+      {capthcaUrl &&
+        fieldGenerator("captcha", "Write here", CustomInput, "text", [
+          requiredField,
+          maxLength25
+        ])}
       {error && <div className={s.errorMessage}>{error}</div>}
       <div className="">
         <button type="submit">Login</button>

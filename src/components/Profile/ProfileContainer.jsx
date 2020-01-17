@@ -53,7 +53,8 @@ const mapStateToProps = state => ({
   id: state.auth.userId,
   lastUser: state.profilePage.lastUser,
   isPageLoading: state.profilePage.isPageLoading,
-  isOwnProfile: state.profilePage.isOwnProfile
+  isOwnProfile: state.profilePage.isOwnProfile,
+  errorMessage: state.profilePage.statusErrorMessage
 });
 
 const mapDispatchToProps = {

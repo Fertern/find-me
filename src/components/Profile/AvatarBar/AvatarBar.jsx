@@ -5,7 +5,8 @@ import defaultPhoto from "../../../assets/USER-LOGO.png";
 const AvatarBar = ({
   userPhoto: { small, large },
   isOwnProfile,
-  setUpPhoto
+  setUpPhoto,
+  isProfileEditing
 }) => {
   const onSelectPhoto = e => {
     if (e.target.files.length) {
@@ -15,7 +16,9 @@ const AvatarBar = ({
   return (
     <div className={s.avatar}>
       <img className={s.logo} src={large || small || defaultPhoto} alt=""></img>
-      {isOwnProfile && <input type="file" onChange={onSelectPhoto} />}
+      {isOwnProfile && isProfileEditing && (
+        <input type="file" onChange={onSelectPhoto} />
+      )}
     </div>
   );
 };

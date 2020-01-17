@@ -8,6 +8,7 @@ const SET_LAST_USER = "/profilePage/SET-LAST-USER";
 const TOGGLE_PAGE_LOADER_STATUS = "/profilePage/TOGGLE-LOADER";
 const SET_IS_OWN_PROFILE = "/profilePage/SET-IS-OWN-PROFILE";
 const SET_PHOTO = "/profilePage/SET-PHOTO";
+const STATUS_ERROR = "/profilePage/STATUS-ERROR";
 
 const initialState = {
   posts: [
@@ -16,6 +17,7 @@ const initialState = {
   ],
   profile: null,
   status: "",
+  statusErrorMessage: null,
   lastUser: null,
   isPageLoading: true,
   isOwnProfile: false
@@ -45,7 +47,8 @@ const profilePageReducer = (state = initialState, action) => {
     case SET_STATUS:
       return {
         ...state,
-        status: action.status
+        status: action.status,
+        statusErrorMessage: null
       };
     case SET_LAST_USER:
       return {
@@ -66,6 +69,11 @@ const profilePageReducer = (state = initialState, action) => {
       return {
         ...state,
         profile: { ...state.profile, photos: action.photos }
+      };
+    case STATUS_ERROR:
+      return {
+        ...state,
+        statusErrorMessage: action.statusErrorMessage
       };
 
     default:
@@ -96,6 +104,10 @@ export const addPost = postText => ({ type: ADD_POST, postText }),
   setPhoto = photos => ({
     type: SET_PHOTO,
     photos
+  }),
+  statusError = statusErrorMessage => ({
+    type: STATUS_ERROR,
+    statusErrorMessage
   });
 
 export const setUpProfile = id => async dispatch => {
@@ -112,6 +124,8 @@ export const setUpProfile = id => async dispatch => {
     let data = await profileAPI.updateStatus(status);
     if (data.resultCode === 0) {
       dispatch(setStatus(data));
+    } else {
+      dispatch(statusError(data.data.messages));
     }
   },
   addNewPost = values => async dispatch => {
@@ -129,14 +143,24 @@ export const setUpProfile = id => async dispatch => {
     }
   },
   setUpProfileData = profileData => async (dispatch, getState) => {
-    console.log("setupdata work");
-    dispatch(toggleLoaderStatus(true));
     let data = await profileAPI.updateProfileData(profileData);
-    dispatch(toggleLoaderStatus(false));
     if (data.resultCode === 0) {
       dispatch(setUpProfile(getState().auth.userId));
     } else {
-      dispatch(stopSubmit("editProfile", { _error: data.messages }));
+      let message;
+      const errorLocation = [];
+      for (let i = 0; i < data.messages.length; i++) {
+        message = data.messages[i]
+          .split("")
+          .slice(30, data.messages[i].length - 1)
+          .join("");
+        errorLocation.push(message);
+      }
+      dispatch(
+        stopSubmit("editProfile", {
+          _error: "Invalid URL format on " + errorLocation
+        })
+      );
     }
   };
 export default profilePageReducer;
