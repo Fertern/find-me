@@ -14,6 +14,8 @@ import LoginContainer from "./components/Login/LoginContainer";
 import withSuspense from "./hoc/withSuspense";
 import "react-toastify/dist/ReactToastify.css";
 import ErrorNotification from "./components/ErrorNotification/ErrorNotification";
+import Preloader from "./components/common/Preloader/Preloader";
+import { useSelector } from "react-redux";
 
 const MobileMenu = React.lazy(() =>
   import("./components/Nav/MobileMenu/MobileMenu")
@@ -23,12 +25,25 @@ const DialogsContainer = React.lazy(() =>
 );
 
 const App = () => {
+  const { authenticated, loaded } = useSelector(state => ({
+    authenticated: state.auth.isAuth,
+    loaded: state.auth.isLoading
+  }));
+  if (loaded) {
+    return (
+      <div className="Preloader">
+        <Preloader />
+      </div>
+    );
+  }
+  const appWrapperStyle = authenticated ? "app-wrapper" : "app-wrapper_login";
+  console.log(authenticated);
   return (
     <Router>
       <hr className="decor"></hr>
       <div className="container">
         <ErrorNotification />
-        <div className="app-wrapper">
+        <div className={appWrapperStyle}>
           <HeaderContainer />
           <NavContainer />
           <div className="app-content">

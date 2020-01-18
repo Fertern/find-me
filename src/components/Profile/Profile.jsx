@@ -22,7 +22,7 @@ const Profile = ({
     return <Preloader />;
   }
   const {
-    //aboutMe,
+    aboutMe,
     contacts,
     lookingForAJob,
     lookingForAJobDescription,
@@ -37,6 +37,7 @@ const Profile = ({
           isOwnProfile={isOwnProfile}
           setUpPhoto={setUpPhoto}
           isProfileEditing={isProfileEditing}
+          altText={fullName}
         />
 
         <div className={s.infoBlock}>
@@ -59,7 +60,10 @@ const Profile = ({
           contacts={contacts}
         />
       )}
-      <Description text={lookingForAJobDescription} />
+      <Description
+        aboutMe={aboutMe}
+        lookingForAJobDescription={lookingForAJobDescription}
+      />
       <PostsContainer />
     </div>
   );

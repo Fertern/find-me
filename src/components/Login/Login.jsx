@@ -12,7 +12,7 @@ import defaultPhoto from "./../../assets/USER-LOGO.png";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"made by Fertern © "}
+      {"created by Fertern © "}
       <Link color="inherit" href="https://material-ui.com/">
         https://github.com/Fertern
       </Link>

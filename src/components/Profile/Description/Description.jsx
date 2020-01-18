@@ -1,18 +1,30 @@
 import React from "react";
-import s from "./Description.module.css";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import { Typography } from "@material-ui/core";
+import { useStyles } from "./DescriptionMaterial";
 
-const Description = props => {
+const Description = ({ aboutMe, lookingForAJobDescription }) => {
+  const { card, title, text } = useStyles();
   return (
-    <div className={s.fullDesc}>
-      {props.text}
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque iure sint
-      error iste? Mollitia eum dicta earum, dolorum quae est enim explicabo
-      dolore quam sapiente corrupti pariatur ipsam veniam sint odio commodi iste
-      quia ipsa minima tempora similique reiciendis dolores eaque? Quos at sunt
-      dolores ut consectetur praesentium magnam modi ad voluptate doloremque
-      quod repudiandae harum, repellendus, beatae laboriosam explicabo
-      voluptates ducimus. Non facere eligendi deleniti labore.
-    </div>
+    <Card className={card}>
+      <CardContent>
+        <Typography className={title} color="textSecondary">
+          About
+        </Typography>
+        <Typography className={text} variant="body2" component="p">
+          {aboutMe}
+        </Typography>
+      </CardContent>
+      <CardContent>
+        <Typography className={title} color="textSecondary">
+          Job description
+        </Typography>
+        <Typography className={text} variant="body2" component="p">
+          {lookingForAJobDescription}
+        </Typography>
+      </CardContent>
+    </Card>
   );
 };
 

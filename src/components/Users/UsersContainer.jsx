@@ -18,6 +18,8 @@ import {
   getPageCount,
   getStartNumberInRow
 } from "../../redux/users-selectors";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -63,4 +65,7 @@ const mapDispatchToProps = {
   setStartNumberInRow
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default compose(
+  withAuthRedirect,
+  connect(mapStateToProps, mapDispatchToProps)
+)(UsersContainer);

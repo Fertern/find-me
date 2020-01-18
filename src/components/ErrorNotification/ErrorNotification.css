@@ -1,0 +1,38 @@
+.error-wrapper {
+  display: flex;
+  align-items: flex-end;
+  margin-left: 10px;
+  user-select: none;
+}
+
+.connection-error-wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  user-select: none;
+}
+
+.error-label {
+  text-align: left;
+  font-weight: bold;
+}
+
+.connection-error {
+  text-align: left;
+}
+.error-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.warning-emoji {
+  margin-right: 8px;
+  font-size: 30px;
+}
+.errors {
+  background-color: brown !important;
+  color: azure !important;
+  text-align: center !important;
+  width: 400px;
+}

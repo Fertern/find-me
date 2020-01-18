@@ -10,48 +10,17 @@ textarea {
   resize: none;
 }
 
-.error-wrapper {
-  display: flex;
-  align-items: flex-end;
-  margin-left: 10px;
-  user-select: none;
-}
-
-.connection-error-wrapper {
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
-  user-select: none;
-}
-
-.error-label {
-  text-align: left;
-  font-weight: bold;
-}
-
-.connection-error {
-  text-align: left;
-}
-.error-right {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.warning-emoji {
-  margin-right: 8px;
-  font-size: 30px;
-}
-.errors {
-  background-color: brown !important;
-  color: azure !important;
-  text-align: center !important;
-  width: 400px;
-}
 .app-wrapper {
   display: grid;
   grid-template-areas: "header header" "nav content";
   grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  grid-gap: 0px;
+}
+.app-wrapper_login {
+  display: grid;
+  grid-template-areas: "header header" "content content";
+  grid-template-rows: 10fr;
   grid-template-columns: 2fr 10fr;
   grid-gap: 0px;
 }

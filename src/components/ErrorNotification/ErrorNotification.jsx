@@ -1,6 +1,7 @@
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { connect } from "react-redux";
+import "./ErrorNotification.css";
 
 const ErrorNotification = ({ errors, errorsCount }) => {
   if (errors.length > 0) {

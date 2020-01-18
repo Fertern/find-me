@@ -5,11 +5,8 @@ import { NavLink } from "react-router-dom";
 const Header = ({ id, logout, isAuth }) => {
   return (
     <header className={s.header}>
-      {isAuth ? (
-        <NavLink to={"/profile/" + id}>My profile</NavLink>
-      ) : (
-        <NavLink to={"/login"}>Login</NavLink>
-      )}
+      {isAuth && <NavLink to={"/profile/" + id}>My profile</NavLink>}
+
       {isAuth && (
         <button className={s.logout} onClick={logout}>
           Logout

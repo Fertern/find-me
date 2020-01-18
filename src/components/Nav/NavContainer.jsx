@@ -1,8 +1,16 @@
+import React from "react";
 import Nav from "./Nav";
 import { connect } from "react-redux";
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  isAuth: state.auth.isAuth
+});
 
-const NavContainer = connect(mapStateToProps)(Nav);
+const NavContainer = ({ isAuth }) => {
+  if (!isAuth) {
+    return null;
+  }
+  return <Nav />;
+};
 
-export default NavContainer;
+export default connect(mapStateToProps)(NavContainer);
