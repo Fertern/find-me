@@ -8,8 +8,7 @@ const About = ({
   updateUpStatus,
   isOwnProfile,
   isProfileEditing,
-  setIsProfileEditing,
-  errorMessage
+  setIsProfileEditing
 }) => {
   const [isStatusEditing, toggleEditStatus] = useState(false),
     [status, setStatus] = useState(newStatus);

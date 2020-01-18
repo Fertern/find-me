@@ -1,3 +1,5 @@
+import { thunkErrorDecorator } from "../Utils/thunkErrorDecorator";
+
 const ADD_MESSAGE = "/dialogsPage/ADD-MESSAGE";
 
 const initialState = {
@@ -33,13 +35,14 @@ const dialogsPageReducer = (state = initialState, action) => {
       return state;
   }
 };
+
 export const sendMessage = messageText => ({ type: ADD_MESSAGE, messageText });
 
-export const addNewMessage = values => async dispatch => {
+export const addNewMessage = thunkErrorDecorator(values => async dispatch => {
   let data = { resultCode: 0 };
   if (data.resultCode === 0) {
     dispatch(sendMessage(values.message));
   }
-};
+});
 
 export default dialogsPageReducer;

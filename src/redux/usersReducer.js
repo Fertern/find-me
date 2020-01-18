@@ -1,5 +1,7 @@
 import { usersAPI } from "../api/api";
 import { mapNewUserList } from "../Utils/mapNewUserList";
+import { thunkErrorDecorator } from "../Utils/thunkErrorDecorator";
+import { showError } from "./errorsReducer";
 
 const FOLLOW_USER = "/users/FOLLOW-USER";
 const UNFOLLOW_USER = "/users/UNFOLLOW-USER";
@@ -101,29 +103,43 @@ export const follow = userId => ({ type: FOLLOW_USER, userId }),
     newRow
   });
 
-export const getUsers = (page, onPageUsersCount) => async dispatch => {
+export const getUsers = thunkErrorDecorator(
+  (page, onPageUsersCount) => async dispatch => {
     dispatch(toggleLoaderStatus(true));
 
     let data = await usersAPI.getUsers(page, onPageUsersCount);
     dispatch(toggleLoaderStatus(false));
     dispatch(setUsers(data.items));
     dispatch(setCount(data.totalCount));
-  },
-  unFollowUser = id => async dispatch => {
+  }
+);
+export const unFollowUser = id => async dispatch => {
+  try {
     dispatch(toggleFollowStatus(true, id));
     let data = await usersAPI.unFollowUser(id);
     if (data.resultCode === 0) {
       dispatch(unFollow(id));
       dispatch(toggleFollowStatus(false, id));
     }
-  },
-  followUser = id => async dispatch => {
+  } catch (error) {
+    dispatch(showError([error.message]));
+  } finally {
+    dispatch(toggleFollowStatus(false, id));
+  }
+};
+export const followUser = id => async dispatch => {
+  try {
     dispatch(toggleFollowStatus(true, id));
     let data = await usersAPI.followUser(id);
     if (data.resultCode === 0) {
       dispatch(follow(id));
       dispatch(toggleFollowStatus(false, id));
     }
-  };
+  } catch (error) {
+    dispatch(showError([error.message]));
+  } finally {
+    dispatch(toggleFollowStatus(false, id));
+  }
+};
 
 export default userReducer;

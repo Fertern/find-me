@@ -1,5 +1,7 @@
 import { authAPI, securityAPI } from "../api/api";
 import { stopSubmit } from "redux-form";
+import { thunkErrorDecorator } from "../Utils/thunkErrorDecorator";
+import { showError } from "./errorsReducer";
 
 const SET_AUTH = "/auth/SET-AUTH";
 const UNSET_AUTH = "/auth/UNSET-AUTH";
@@ -58,17 +60,18 @@ export const setAuth = (userId, email, login) => ({
     capthcaUrl
   });
 
-export const checkAuth = () => async dispatch => {
-    let data = await authAPI.authMe();
-    if (data.resultCode === 0) {
-      let { id, login, email } = data.data;
-      dispatch(setAuth(id, login, email));
-    }
-    if (data.resultCode === 1) {
-      dispatch(unsetAuth());
-    }
-  },
-  login = (email, password, rememberMe, captcha = null) => async dispatch => {
+export const checkAuth = thunkErrorDecorator(() => async dispatch => {
+  let data = await authAPI.authMe();
+  if (data.resultCode === 0) {
+    let { id, login, email } = data.data;
+    dispatch(setAuth(id, login, email));
+  }
+  if (data.resultCode === 1) {
+    dispatch(unsetAuth());
+  }
+});
+export const login = thunkErrorDecorator(
+  (email, password, rememberMe, captcha = null) => async dispatch => {
     let data = await authAPI.login(email, password, rememberMe, captcha);
     if (data.resultCode === 0) {
       dispatch(checkAuth());
@@ -77,18 +80,20 @@ export const checkAuth = () => async dispatch => {
         dispatch(getCaptcha());
       }
       dispatch(stopSubmit("login", { _error: data.messages }));
+      dispatch(showError(data.messages));
     }
-  },
-  logout = () => async dispatch => {
-    let data = await authAPI.logout();
-    if (data.resultCode === 0) {
-      dispatch(unsetAuth());
-    }
-  },
-  getCaptcha = () => async dispatch => {
-    let data = await securityAPI.getCaptcha();
-    const capthcaUrl = data.url;
-    dispatch(successCaptcha(capthcaUrl));
-  };
+  }
+);
+export const logout = thunkErrorDecorator(() => async dispatch => {
+  let data = await authAPI.logout();
+  if (data.resultCode === 0) {
+    dispatch(unsetAuth());
+  }
+});
+export const getCaptcha = thunkErrorDecorator(() => async dispatch => {
+  let data = await securityAPI.getCaptcha();
+  const capthcaUrl = data.url;
+  dispatch(successCaptcha(capthcaUrl));
+});
 
 export default authReducer;

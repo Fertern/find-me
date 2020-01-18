@@ -39,11 +39,16 @@ export const addError = error => ({
     error
   });
 
-export const showError = error => dispatch => {
+export const showNewError = error => dispatch => {
     dispatch(addError(error));
   },
   hideError = error => dispatch => {
     dispatch(deleteError(error));
   };
+
+export const showError = error => dispatch => {
+  dispatch(addError(error));
+  dispatch(deleteError(error));
+};
 
 export default errorsReducer;

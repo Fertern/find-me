@@ -1,6 +1,7 @@
 import { profileAPI } from "../api/api";
 import { stopSubmit } from "redux-form";
-import { showError, hideError } from "./errorsReducer";
+import { showError } from "./errorsReducer";
+import { thunkErrorDecorator } from "../Utils/thunkErrorDecorator";
 
 const ADD_POST = "/profilePage/ADD-POST";
 const SET_PROFILE = "/profilePage/SET-PROFILE";
@@ -111,44 +112,46 @@ export const addPost = postText => ({ type: ADD_POST, postText }),
     statusErrorMessage
   });
 
-export const setUpProfile = id => async dispatch => {
-    dispatch(toggleLoaderStatus(true));
-    let data = await profileAPI.getProfile(id);
-    dispatch(toggleLoaderStatus(false));
-    dispatch(setProfile(data));
-  },
-  setUpStatus = id => async dispatch => {
-    let data = await profileAPI.getStatus(id);
-    dispatch(setStatus(data));
-  },
-  updateUpStatus = status => async dispatch => {
-    let data = await profileAPI.updateStatus(status);
-    if (data.resultCode === 0) {
-      dispatch(setStatus(status));
-    } else if (data.resultCode === 1) {
-      dispatch(showError(data.messages));
-      dispatch(hideError(data.messages));
-    }
-  },
-  addNewPost = values => async dispatch => {
-    let data = { resultCode: 0 };
-    if (data.resultCode === 0) {
-      dispatch(addPost(values.post));
-    }
-  },
-  setUpPhoto = file => async dispatch => {
-    dispatch(toggleLoaderStatus(true));
-    let data = await profileAPI.updatePhoto(file);
-    dispatch(toggleLoaderStatus(false));
-    if (data.resultCode === 0) {
-      dispatch(setPhoto(data.data.photos));
-    }
-  },
-  setUpProfileData = profileData => async (dispatch, getState) => {
+export const updateUpStatus = thunkErrorDecorator(status => async dispatch => {
+  let data = await profileAPI.updateStatus(status);
+  if (data.resultCode === 0) {
+    dispatch(setStatus(status));
+  } else if (data.resultCode === 1) {
+    dispatch(showError(data.messages));
+  }
+});
+export const setUpProfile = thunkErrorDecorator(id => async dispatch => {
+  dispatch(toggleLoaderStatus(true));
+  let data = await profileAPI.getProfile(id);
+  dispatch(toggleLoaderStatus(false));
+  dispatch(setProfile(data));
+});
+export const setUpStatus = thunkErrorDecorator(id => async dispatch => {
+  let data = await profileAPI.getStatus(id);
+  dispatch(setStatus(data));
+});
+
+export const addNewPost = thunkErrorDecorator(values => async dispatch => {
+  let data = { resultCode: 0 };
+  if (data.resultCode === 0) {
+    dispatch(addPost(values.post));
+  }
+});
+
+export const setUpPhoto = thunkErrorDecorator(file => async dispatch => {
+  dispatch(toggleLoaderStatus(true));
+  let data = await profileAPI.updatePhoto(file);
+  dispatch(toggleLoaderStatus(false));
+  if (data.resultCode === 0) {
+    dispatch(setPhoto(data.data.photos));
+  }
+});
+export const setUpProfileData = thunkErrorDecorator(
+  profileData => async (dispatch, getState) => {
     let data = await profileAPI.updateProfileData(profileData);
     if (data.resultCode === 0) {
       dispatch(setUpProfile(getState().auth.userId));
-    } else {
+    } else if (data.resultCode === 1) {
       let message;
       const errorLocation = [];
       for (let i = 0; i < data.messages.length; i++) {
@@ -156,13 +159,18 @@ export const setUpProfile = id => async dispatch => {
           .split("")
           .slice(30, data.messages[i].length - 1)
           .join("");
-        errorLocation.push(message);
+        errorLocation.push(` ${message}`);
       }
+      const formProfileErrorMessage = [
+        "Invalid URL format on " + errorLocation + " "
+      ];
       dispatch(
         stopSubmit("editProfile", {
-          _error: "Invalid URL format on " + errorLocation
+          _error: formProfileErrorMessage
         })
       );
+      dispatch(showError(formProfileErrorMessage));
     }
-  };
+  }
+);
 export default profilePageReducer;
