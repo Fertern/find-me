@@ -11,8 +11,20 @@ import CustomInput, {
 } from "../../common/FormElements/CustomInput";
 import s from "./LoginForm.module.css";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
 import { fieldGenerator } from "../../../Utils/fieldGenerator";
+import { createMuiTheme } from "@material-ui/core/styles";
+
+const blueTheme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#3490ce"
+    },
+    secondary: {
+      main: "#435a7e"
+    }
+  }
+});
 
 const useStyles = makeStyles(theme => ({
   form: {
@@ -21,8 +33,7 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
-  },
-  login: {}
+  }
 }));
 
 const maxLength25 = maxLengthCreator(25);
@@ -34,39 +45,47 @@ const LoginForm = ({ handleSubmit, login, capthcaUrl, error }) => {
   };
   const customSubmit = handleSubmit(submit);
   return (
-    <form onSubmit={customSubmit} className={classes.form}>
-      {fieldGenerator(
-        ["email", "password"],
-        ["Email", "Password"],
-        [CustomInputLogin, CustomInputPassword],
-        ["text", "password"],
-        [
-          [requiredField, maxLength25],
-          [requiredField, maxLength30]
-        ],
-        "custom"
-      )}
+    <ThemeProvider theme={blueTheme}>
+      <form onSubmit={customSubmit} className={classes.form}>
+        {fieldGenerator(
+          ["email", "password"],
+          ["Email", "Password"],
+          [CustomInputLogin, CustomInputPassword],
+          ["text", "password"],
+          [
+            [requiredField, maxLength25],
+            [requiredField, maxLength30]
+          ],
+          "custom"
+        )}
 
-      <div className={s.checkbox}>
-        {fieldGenerator("rememberMe", null, CustomInputRememberMe, "checkbox")}
-      </div>
-      {capthcaUrl && <img src={capthcaUrl} alt="" />}
-      {capthcaUrl &&
-        fieldGenerator("captcha", "Write here", CustomInput, "text", [
-          requiredField,
-          maxLength25
-        ])}
-      <div className="">
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          className={classes.submit}
-        >
-          Sign In
-        </Button>
-      </div>
-    </form>
+        <div className={s.checkbox}>
+          {fieldGenerator(
+            "rememberMe",
+            null,
+            CustomInputRememberMe,
+            "checkbox"
+          )}
+        </div>
+        {capthcaUrl && <img src={capthcaUrl} alt="" />}
+        {capthcaUrl &&
+          fieldGenerator("captcha", "Write here", CustomInput, "text", [
+            requiredField,
+            maxLength25
+          ])}
+        <div className="">
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            className={classes.submit}
+            color="primary"
+          >
+            Sign In
+          </Button>
+        </div>
+      </form>
+    </ThemeProvider>
   );
 };
 

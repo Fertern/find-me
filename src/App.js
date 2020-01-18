@@ -12,8 +12,8 @@ import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginContainer from "./components/Login/LoginContainer";
 import withSuspense from "./hoc/withSuspense";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ErrorNotification from "./components/ErrorNotification/ErrorNotification";
 
 const MobileMenu = React.lazy(() =>
   import("./components/Nav/MobileMenu/MobileMenu")
@@ -27,17 +27,7 @@ const App = () => {
     <Router>
       <hr className="decor"></hr>
       <div className="container">
-        <ToastContainer
-          position="top-center"
-          autoClose={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnVisibilityChange
-          draggable
-          className="error"
-          toastClassName="errors"
-        />
+        <ErrorNotification />
         <div className="app-wrapper">
           <HeaderContainer />
           <NavContainer />

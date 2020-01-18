@@ -4,9 +4,7 @@ import { logout } from "../../redux/authReducer";
 
 const mapStateToProps = state => ({
   isAuth: state.auth.isAuth,
-  id: state.auth.userId,
-  errors: state.errors.error,
-  errorsCount: state.errors.errorsCount
+  id: state.auth.userId
 });
 
 const mapDispatchToProps = { logout };
