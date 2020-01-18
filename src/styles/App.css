@@ -14,6 +14,14 @@ textarea {
   display: flex;
   align-items: flex-end;
   margin-left: 10px;
+  user-select: none;
+}
+
+.connection-error-wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  user-select: none;
 }
 
 .error-label {
@@ -21,6 +29,9 @@ textarea {
   font-weight: bold;
 }
 
+.connection-error {
+  text-align: left;
+}
 .error-right {
   display: flex;
   flex-direction: column;
