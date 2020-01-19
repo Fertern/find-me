@@ -4,8 +4,9 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import PersonIcon from "@material-ui/icons/Person";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
-import { Paper } from "@material-ui/core";
+import { Paper, Button } from "@material-ui/core";
 import DefaultLogo from "../../../assets/defaultLogo";
+import { AvatarBarEditingStyles, AvatarBarStyles } from "./AvatarBarMaterial";
 
 const AvatarBar = ({
   userPhoto: { small, large },
@@ -14,44 +15,15 @@ const AvatarBar = ({
   isProfileEditing,
   altText
 }) => {
-  let useStyles;
-  if (isOwnProfile && isProfileEditing) {
-    useStyles = makeStyles(theme => ({
-      avatar: {
-        width: "100%",
-        height: "90%",
-        backgroundColor: "var(--primaryColor)"
-      },
-      wrapper: {
-        width: theme.spacing(30),
-        height: theme.spacing(30),
-        padding: "10px 15px",
-        backgroundColor: "var(--primaryColor)"
-      }
-    }));
-  } else {
-    useStyles = makeStyles(theme => ({
-      avatar: {
-        width: "100%",
-        height: "100%",
-        backgroundColor: "var(--primaryColor)"
-      },
-      wrapper: {
-        width: theme.spacing(30),
-        height: theme.spacing(30),
-        padding: "10px 15px",
-        backgroundColor: "var(--primaryColor)"
-      }
-    }));
-  }
+  const editingClasses = AvatarBarEditingStyles();
+  const { avatar, wrapper, inputButton } = AvatarBarStyles();
+  const isEditModeOn = isOwnProfile && isProfileEditing;
 
   const onSelectPhoto = e => {
     if (e.target.files.length) {
       setUpPhoto(e.target.files[0]);
     }
   };
-
-  const { wrapper, avatar } = useStyles();
 
   return (
     <div className={style.wrapperAdaptive}>
@@ -61,7 +33,7 @@ const AvatarBar = ({
             alt={altText}
             variant="rounded"
             src={large || small}
-            className={avatar}
+            className={isEditModeOn ? editingClasses.avatar : avatar}
           />
         ) : (
           <DefaultLogo alt={altText} size="200px" />
@@ -69,12 +41,21 @@ const AvatarBar = ({
 
         {isOwnProfile && isProfileEditing && (
           <label>
-            <div className={style.inputFile}></div>
             <input
-              type="file"
               onChange={onSelectPhoto}
               className={style.customFileInput}
-            ></input>
+              id="contained-button-file"
+              type="file"
+            />
+            <label htmlFor="contained-button-file">
+              <Button
+                variant="contained"
+                className={inputButton}
+                component="span"
+              >
+                Upload new avatar
+              </Button>
+            </label>
           </label>
         )}
       </Paper>
