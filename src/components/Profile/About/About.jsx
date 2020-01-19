@@ -9,7 +9,10 @@ import {
   Box,
   Input
 } from "@material-ui/core";
+//import { EditIcon, DoneIcon, WorkIcon } from "@material-ui/icons";
+import WorkIcon from "@material-ui/icons/Work";
 import EditIcon from "@material-ui/icons/Edit";
+import SearchIcon from "@material-ui/icons/Search";
 import { aboutStyle } from "./AboutStyle";
 
 const About = ({
@@ -80,22 +83,26 @@ const About = ({
             </Paper>
           ) : isOwnProfile ? (
             <Typography onDoubleClick={editStatus} className={s.status}>
-              {status || (
-                <Typography>Double click here to create new status</Typography>
-              )}
+              {status || "Double click here to create new status"}
             </Typography>
           ) : (
             <Typography className={s.status}>{status || " "}</Typography>
           )}
 
-          <div className={lookingForAJob}>
-            {job ? (
-              <Paper variant="outlined" className={lookTrue}>
-                <Typography>Searching for a job!</Typography>
-              </Paper>
-            ) : (
-              <Paper className={lookFalse}>Already has a job</Paper>
-            )}
+          <div className={s.lookingForAJob}>
+            <Paper variant="outlined" className={job ? lookTrue : lookFalse}>
+              {job ? (
+                <>
+                  <Typography variant="h6">Searching for a job</Typography>
+                  <SearchIcon />
+                </>
+              ) : (
+                <>
+                  <Typography variant="h6">Already has a job</Typography>
+                  <WorkIcon />
+                </>
+              )}
+            </Paper>
           </div>
         </div>
       </CardContent>
@@ -103,21 +110,3 @@ const About = ({
   );
 };
 export default About;
-// state = {
-//   isStatusEditing: false,
-//   status: newStatus
-// };
-// componentDidUpdate(prevProps, prevState) {
-//   if (prevnewStatus !== newStatus) {
-//     setState({
-//       status: newStatus
-//     });
-//   }
-// }
-// editStatus = () => {
-//   setState({ isStatusEditing: !state.isStatusEditing });
-//   props.updateUpStatus(state.status);
-// };
-// onStatusChange = e => {
-//   setState({ status: e.currentTarget.value });
-// };

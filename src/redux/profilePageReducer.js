@@ -4,6 +4,7 @@ import { showError } from "./errorsReducer";
 import { thunkErrorDecorator } from "../Utils/thunkErrorDecorator";
 
 const ADD_POST = "/profilePage/ADD-POST";
+const DELETE_POST = "./profilePage/DELETE-POST";
 const SET_PROFILE = "/profilePage/SET-PROFILE";
 const SET_STATUS = "/profilePage/SET-STATUS";
 const SET_LAST_USER = "/profilePage/SET-LAST-USER";
@@ -13,10 +14,7 @@ const SET_PHOTO = "/profilePage/SET-PHOTO";
 const STATUS_ERROR = "/profilePage/STATUS-ERROR";
 
 const initialState = {
-  posts: [
-    { id: 1, message: "ZA WARUDO", likes: "20" },
-    { id: 2, message: "TOKI WO TOMARE", likes: "0" }
-  ],
+  posts: [{ id: 1, message: "Click on like button", likes: "999" }],
   profile: null,
   status: "",
   statusErrorMessage: null,
@@ -38,6 +36,11 @@ const profilePageReducer = (state = initialState, action) => {
             likes: 0
           }
         ]
+      };
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: [...state.posts.filter(post => post.id !== action.id)]
       };
 
     case SET_PROFILE:
@@ -87,6 +90,13 @@ export const addPost = postText => ({ type: ADD_POST, postText }),
     type: SET_PROFILE,
     profile
   }),
+  deletePost = id => {
+    console.log(id);
+    return {
+      type: DELETE_POST,
+      id
+    };
+  },
   setStatus = status => ({
     type: SET_STATUS,
     status

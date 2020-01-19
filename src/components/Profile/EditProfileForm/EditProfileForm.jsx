@@ -5,10 +5,15 @@ import {
   maxLengthCreator
 } from "./../../../Utils/validators/validators";
 import s from "./EditProfileForm.module.css";
-import CustomInput from "./../../common/FormElements/CustomInput";
+import CustomInput, {
+  CustomSelect
+} from "./../../common/FormElements/CustomInput";
 import { fieldGenerator } from "../../../Utils/fieldGenerator";
 import { compose } from "redux";
 import { connect } from "react-redux";
+
+import { CustomInputFilled } from "./../../common/FormElements/CustomInput";
+import { Typography, MenuItem, Button } from "@material-ui/core";
 
 const maxLength30 = maxLengthCreator(30);
 const maxLength80 = maxLengthCreator(80);
@@ -23,54 +28,65 @@ const EditProfileForm = ({
     setUpProfileData(values);
   };
   const customSubmit = handleSubmit(submit);
+
   return (
     <form className={s.wrapper} onSubmit={customSubmit}>
-      <div className={s.label}>Full name</div>
+      <Typography variant="h5" className={s.label}>
+        Full name
+      </Typography>
       <div>
-        {fieldGenerator("fullName", "Full name", CustomInput, "text", [
+        {fieldGenerator("fullName", "Full name", CustomInputFilled, "text", [
           requiredField,
           maxLength30
         ])}
       </div>
 
-      <div className={s.label}>About you</div>
-      <div>
-        {fieldGenerator("aboutMe", "About you", CustomInput, "text", [
-          maxLength300
-        ])}
-      </div>
+      <Typography variant="h5" className={s.label}>
+        About you
+      </Typography>
 
-      <div className={s.label}>Are you looking for a job?</div>
-      <Field name="lookingForAJob" component="select">
-        <option value={true}>Yes</option>
-        <option value={false}>No</option>
+      {fieldGenerator("aboutMe", "About you", CustomInputFilled, "text", [
+        maxLength300
+      ])}
+
+      <Typography variant="h5" className={s.label}>
+        Are you looking for a job?
+      </Typography>
+      <Field name="lookingForAJob" component={CustomSelect}>
+        <MenuItem value={true}>Yes</MenuItem>
+        <MenuItem value={false}>No</MenuItem>
       </Field>
 
-      <div className={s.label}>Links to your social media</div>
+      <Typography variant="h5" className={s.label}>
+        Links to your social media
+      </Typography>
       <div className={s.contacts}>
         {fieldGenerator(
           Object.keys(contacts).map(serviceName => "contacts." + serviceName),
           Object.keys(contacts),
-          CustomInput,
+          CustomInputFilled,
           "text",
           [maxLength80],
           "same"
         )}
       </div>
 
-      <div className={s.label}>Job info</div>
-      <div>
-        {fieldGenerator(
-          "lookingForAJobDescription",
-          "About your job (or about job you want)",
-          CustomInput,
-          "text",
-          [maxLength300]
-        )}
-      </div>
-      {error && <div className={s.errorMessage}>{error}</div>}
+      <Typography variant="h5" className={s.label}>
+        Job info
+      </Typography>
+
+      {fieldGenerator(
+        "lookingForAJobDescription",
+        "About your job",
+        CustomInputFilled,
+        "text",
+        [maxLength300]
+      )}
+
       <div className="">
-        <button type="submit">Submit changes</button>
+        <Button variant="outlined" type="submit">
+          Submit changes
+        </Button>
       </div>
     </form>
   );

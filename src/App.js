@@ -16,6 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ErrorNotification from "./components/ErrorNotification/ErrorNotification";
 import Preloader from "./components/common/Preloader/Preloader";
 import { useSelector } from "react-redux";
+import { authStyleChanger } from "./Utils/authStyleChanger";
 
 const MobileMenu = React.lazy(() =>
   import("./components/Nav/MobileMenu/MobileMenu")
@@ -29,6 +30,7 @@ const App = () => {
     authenticated: state.auth.isAuth,
     loaded: state.auth.isLoading
   }));
+  const appWrapperStyle = authStyleChanger(authenticated);
   if (loaded) {
     return (
       <div className="Preloader">
@@ -36,8 +38,6 @@ const App = () => {
       </div>
     );
   }
-  const appWrapperStyle = authenticated ? "app-wrapper" : "app-wrapper_login";
-  console.log(authenticated);
   return (
     <Router>
       <hr className="decor"></hr>

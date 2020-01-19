@@ -15,7 +15,7 @@ export const useStyles = makeStyles(theme => ({
     textDecoration: "none",
     color: "var(--primaryColor)",
     "&:focus": {
-      color: "var(--focusColor)"
+      color: "var(--secondaryColor)"
     },
     display: "flex",
     alignItems: "inherit"

@@ -1,18 +1,32 @@
 import React, { useState } from "react";
 import s from "./Post.module.css";
+import { Button, Fab } from "@material-ui/core";
+import DeleteIcon from "@material-ui/icons/Delete";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
-const Post = props => {
-  let [likes, setLikes] = useState(+props.likes);
+const Post = ({ deletePost, message, likes, id }) => {
+  let [likesCount, setLikesCount] = useState(+likes);
   const likeButton = () => {
-    setLikes(++likes);
+    setLikesCount(++likesCount);
   };
   return (
     <div className={s.wrapper}>
-      <div className={s.text}>{props.message}</div>
+      <div className={s.content}>
+        <span className={s.text}>{message}</span>
+        <Button
+          style={{ height: "100%" }}
+          variant="contained"
+          onClick={() => deletePost(id)}
+          color="primary"
+        >
+          <DeleteIcon />
+        </Button>
+      </div>
       <div className={s.stats}>
-        <span>
-          <i className="fa fa-heart" onClick={likeButton}></i> {likes}
-        </span>
+        <Fab color="primary" size="small" onClick={likeButton}>
+          <FavoriteIcon />
+        </Fab>
+        <span className={s.likesNum}>{likesCount}</span>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import Posts from "./Posts";
-import { addNewPost } from "../../../redux/profilePageReducer.js";
+import { addNewPost, deletePost } from "../../../redux/profilePageReducer.js";
 import { connect } from "react-redux";
 
 const mapStateToProps = state => ({
@@ -8,7 +8,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  addNewPost
+  addNewPost,
+  deletePost
 };
 
 const PostsContainer = React.memo(props => <Posts {...props} />);

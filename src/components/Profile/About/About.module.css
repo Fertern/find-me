@@ -5,30 +5,13 @@
   font-weight: bold;
   font-size: 2vw;
 }
-
-.lookTrue,
-.lookFalse {
-  box-shadow: 3px 3px;
-  font-weight: bold;
-  padding: 5px;
-  font-size: 1.3em;
-  width: 100%;
-  white-space: nowrap;
-}
-.lookTrue {
-  color: rgb(21, 135, 21);
-  background-color: rgb(125, 211, 117);
-  border: 1px solid rgb(21, 213, 21);
-}
-.lookFalse {
-  color: rgba(88, 16, 16, 0.789);
-  background-color: rgb(164, 126, 96);
-  border: 1px solid rgb(220, 82, 2);
-}
 .status {
   font-size: 1.2em;
   word-break: break-word;
   margin-top: 5px !important;
+}
+.lookingForAJob {
+  margin-top: 5px;
 }
 
 .bottomBlock {

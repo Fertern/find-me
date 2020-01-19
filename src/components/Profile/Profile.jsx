@@ -64,7 +64,7 @@ const Profile = ({
         aboutMe={aboutMe}
         lookingForAJobDescription={lookingForAJobDescription}
       />
-      <PostsContainer />
+      {isOwnProfile && <PostsContainer />}
     </div>
   );
 };

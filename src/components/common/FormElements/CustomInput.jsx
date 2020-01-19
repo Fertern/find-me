@@ -2,6 +2,8 @@ import React from "react";
 import s from "./CustomInput.module.css";
 import Checkbox from "@material-ui/core/Checkbox";
 import { StyledInputLogin, StyledCheckbox } from "./CustomStyles";
+import TextField from "@material-ui/core/TextField";
+import { Select, MenuItem } from "@material-ui/core";
 
 const CustomInput = ({ input, meta, ...props }) => {
   const hasError = meta.touched && meta.error;
@@ -12,6 +14,20 @@ const CustomInput = ({ input, meta, ...props }) => {
   );
 };
 export default CustomInput;
+
+export const CustomInputFilled = ({ input, meta, ...props }) => {
+  const hasError = meta.touched && meta.error;
+  return (
+    <div className={s.wrapper + " " + (hasError ? s.error : "")}>
+      <TextField variant="filled" {...input} {...props} />
+    </div>
+  );
+};
+
+export const CustomSelect = ({ input, meta, ...props }) => {
+  const hasError = meta.touched && meta.error;
+  return <Select {...input} {...props} />;
+};
 
 export const CustomInputLogin = ({ input, meta, ...props }) => {
   const hasError = meta.touched && meta.error;

@@ -49,11 +49,11 @@ export const fieldGenerator = (
     return fields.map(field => (
       <Field
         name={field.name}
-        placeholder={field.placeholder}
         type={field.type}
         component={field.component}
         validate={field.validate}
         key={field.name}
+        label={field.placeholder}
       />
     ));
   }

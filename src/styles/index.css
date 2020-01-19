@@ -3,12 +3,16 @@ html {
   --primaryColor: #3490ce;
   --secondaryColor: #435a7e;
   --backColor: rgb(201, 224, 240);
-  --focusColor: #fff540;
+  --focusColor: #2f4e81;
   --borderColor: black;
 }
 body {
   margin: 0;
-  background: linear-gradient(to bottom, #2c3e50, #3498db);
+  /* background: linear-gradient(to bottom, #2c3e50, #3498db); */
+  /* background-color: #edeef0; */
+  /* background-color: #96d8f6; */
+  /* background: url("./../assets/blueLake.jpg");
+  background-size: cover; */
 }
 
 *,

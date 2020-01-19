@@ -6,8 +6,8 @@ import {
   maxLengthCreator
 } from "../../../../Utils/validators/validators";
 import { onTapEnter } from "../../../../Utils/onTapEnter";
+import { Button } from "@material-ui/core";
 
-const maxLength20 = maxLengthCreator(20);
 const AddPostForm = props => {
   const { handleSubmit, reset, addNewPost } = props;
   const submit = values => {
@@ -22,11 +22,13 @@ const AddPostForm = props => {
         placeholder="Write new post!"
         component="textarea"
         name="post"
-        validate={[requiredField, maxLength20]}
+        validate={[requiredField]}
         onKeyDown={onTapEnter(customSubmit)}
       />
       <div className={s.buttonWrapper}>
-        <button className={s.button}>Post</button>
+        <Button variant="outlined" className={s.button} type="submit">
+          Post
+        </Button>
       </div>
     </form>
   );

@@ -7,7 +7,7 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
-import defaultPhoto from "./../../assets/USER-LOGO.png";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 function Copyright() {
   return (
@@ -44,7 +44,7 @@ const Login = ({ login, isAuth, capthcaUrl }) => {
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.avatar}>
-          <img src={defaultPhoto} alt="" width="50" />
+          <AccountCircleIcon style={{ fontSize: "60px" }} />
         </div>
         <div className={classes.label}>Sign in</div>
         <LoginForm login={login} capthcaUrl={capthcaUrl} />
