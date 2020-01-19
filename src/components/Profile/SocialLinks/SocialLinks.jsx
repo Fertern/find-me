@@ -1,21 +1,31 @@
 import React from "react";
 import s from "./SocialLinks.module.css";
 import "./SocialLinksFA.css";
+import { makeStyles, Paper, Card } from "@material-ui/core";
 const unusualSocialMedia = {
   website: "window-maximize",
   mainLink: "link"
 };
-const SocialLinks = props => {
-  const linksElements = Object.keys(props.links).map(serviceName => {
+
+const socialLinksStyles = makeStyles({
+  wrapper: {
+    backgroundColor: "var(--primaryColor)",
+    display: "flex",
+    alignItems: "center"
+  }
+});
+const SocialLinks = ({ links }) => {
+  const { wrapper } = socialLinksStyles();
+  const linksElements = Object.keys(links).map(serviceName => {
     let serviceClass = serviceName;
     if (unusualSocialMedia.hasOwnProperty(serviceName)) {
       serviceClass = unusualSocialMedia[serviceName];
     }
-    if (props.links[serviceName]) {
+    if (links[serviceName]) {
       return (
         <a
           className={`fa fa-${serviceClass}`}
-          href={props.links[serviceName]}
+          href={links[serviceName]}
           key={serviceName}
         >
           <p>This text doesn't exist</p>
@@ -25,9 +35,9 @@ const SocialLinks = props => {
     return <span className={`fa fa-${serviceClass} off`} key={serviceName} />;
   });
   return (
-    <div className={s.linksWrapper}>
+    <Paper className={wrapper}>
       <div className={s.links}>{linksElements}</div>
-    </div>
+    </Paper>
   );
 };
 

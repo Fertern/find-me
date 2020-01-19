@@ -1,5 +1,16 @@
 import s from "./About.module.css";
 import React, { useState, useEffect } from "react";
+import {
+  Card,
+  CardContent,
+  Typography,
+  Paper,
+  Fab,
+  Box,
+  Input
+} from "@material-ui/core";
+import EditIcon from "@material-ui/icons/Edit";
+import { aboutStyle } from "./AboutStyle";
 
 const About = ({
   name,
@@ -15,7 +26,18 @@ const About = ({
   useEffect(() => {
     setStatus(newStatus);
   }, [newStatus]);
-
+  const {
+    edit,
+    nameBlock,
+    lookTrue,
+    wrapper,
+    lookFalse,
+    lookingForAJob,
+    nameText,
+    content,
+    statusInput,
+    inputWrapper
+  } = aboutStyle();
   const editStatus = () => {
       toggleEditStatus(!isStatusEditing);
       updateUpStatus(status);
@@ -31,38 +53,53 @@ const About = ({
   };
 
   return (
-    <div className={s.wrapper}>
-      <div className="nameBlock">
-        <span className={s.name}>{name}</span>
-        {isOwnProfile && !isProfileEditing && (
-          <button onClick={startEditProfile}>Edit</button>
-        )}
-      </div>
-      <div className={s.lookingForAJob}>
-        {job ? (
-          <span className={s.lookTrue}>Searching for a job!</span>
-        ) : (
-          <span className={s.lookFalse}>Already has a job</span>
-        )}
-      </div>
-      {isStatusEditing ? (
-        <div className={s.changeStatus}>
-          <input
-            onChange={onStatusChange}
-            autoFocus
-            onBlur={editStatus}
-            placeholder={"Write new status here!"}
-            value={status}
-          />
+    <Card className={wrapper}>
+      <CardContent className={content}>
+        <Box className={nameBlock}>
+          <Typography className={nameText} variant="h5">
+            {name}
+          </Typography>
+
+          {isOwnProfile && !isProfileEditing && (
+            <Fab className={edit} onClick={startEditProfile}>
+              <EditIcon />
+            </Fab>
+          )}
+        </Box>
+        <div className={s.bottomBlock}>
+          {isStatusEditing ? (
+            <Paper className={inputWrapper}>
+              <Input
+                className={statusInput}
+                onChange={onStatusChange}
+                autoFocus
+                onBlur={editStatus}
+                placeholder={"Write new status here!"}
+                value={status}
+              />
+            </Paper>
+          ) : isOwnProfile ? (
+            <Typography onDoubleClick={editStatus} className={s.status}>
+              {status || (
+                <Typography>Double click here to create new status</Typography>
+              )}
+            </Typography>
+          ) : (
+            <Typography className={s.status}>{status || " "}</Typography>
+          )}
+
+          <div className={lookingForAJob}>
+            {job ? (
+              <Paper variant="outlined" className={lookTrue}>
+                <Typography>Searching for a job!</Typography>
+              </Paper>
+            ) : (
+              <Paper className={lookFalse}>Already has a job</Paper>
+            )}
+          </div>
         </div>
-      ) : isOwnProfile ? (
-        <div onDoubleClick={editStatus} className={s.status}>
-          {status || <span>Double click here to create new status</span>}
-        </div>
-      ) : (
-        <div className={s.status}>{status || " "}</div>
-      )}
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 export default About;

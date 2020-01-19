@@ -7,6 +7,8 @@ import About from "./About/About";
 import SocialLinks from "./SocialLinks/SocialLinks";
 import Description from "./Description/Description";
 import EditProfileForm from "./EditProfileForm/EditProfileForm";
+import { Paper } from "@material-ui/core";
+import { profileStyles } from "./ProfileMaterial";
 
 const Profile = ({
   status,
@@ -18,6 +20,7 @@ const Profile = ({
   errorMessage
 }) => {
   const [isProfileEditing, setIsProfileEditing] = useState(false);
+  const { infoBlock } = profileStyles();
   if (!profile) {
     return <Preloader />;
   }
@@ -39,20 +42,17 @@ const Profile = ({
           isProfileEditing={isProfileEditing}
           altText={fullName}
         />
-
-        <div className={s.infoBlock}>
-          <About
-            name={fullName}
-            job={lookingForAJob}
-            newStatus={status}
-            updateUpStatus={updateUpStatus}
-            isOwnProfile={isOwnProfile}
-            isProfileEditing={isProfileEditing}
-            setIsProfileEditing={setIsProfileEditing}
-            errorMessage={errorMessage}
-          />
-          <SocialLinks links={contacts} />
-        </div>
+        <About
+          name={fullName}
+          job={lookingForAJob}
+          newStatus={status}
+          updateUpStatus={updateUpStatus}
+          isOwnProfile={isOwnProfile}
+          isProfileEditing={isProfileEditing}
+          setIsProfileEditing={setIsProfileEditing}
+          errorMessage={errorMessage}
+        />
+        <SocialLinks links={contacts} />
       </div>
       {isOwnProfile && isProfileEditing && (
         <EditProfileForm
