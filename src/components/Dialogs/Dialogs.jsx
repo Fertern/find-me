@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import s from "./Dialogs.module.css";
+import style from "./Dialogs.module.css";
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
 import AddMessageForm from "./AddMessageForm/AddMessageForm";
@@ -31,20 +31,27 @@ const Dialogs = ({ dialogs, messages, setUpDialogs, addNewMessage }) => {
       </div>
     );
   }
-  const dialogsElements = dialogs.map(d => (
-      <Dialog name={d.name} key={d.id} id={d.id} counter={d.count} />
+  const dialogsElements = dialogs.map(dialog => (
+      <Dialog
+        name={dialog.name}
+        key={dialog.id}
+        id={dialog.id}
+        counter={dialog.count}
+      />
     )),
-    messagesElements = messages.map(m => <Message key={m.id} text={m.text} />);
+    messagesElements = messages.map(message => (
+      <Message key={message.id} text={message.text} />
+    ));
 
   return (
-    <div className={s.dialogs}>
-      <div className={s.peopleArea}>
-        <div className={s.item}>{dialogsElements}</div>
+    <div className={style.dialogs}>
+      <div className={style.peopleArea}>
+        <div className={style.item}>{dialogsElements}</div>
       </div>
-      <div className={s.messageArea}>
-        <div className={s.messages}>{messagesElements}</div>
+      <div className={style.messageArea}>
+        <div className={style.messages}>{messagesElements}</div>
 
-        <div className={s.senderArea}>
+        <div className={style.senderArea}>
           <AddMessageForm addNewMessage={addNewMessage} />
         </div>
       </div>
@@ -53,9 +60,3 @@ const Dialogs = ({ dialogs, messages, setUpDialogs, addNewMessage }) => {
 };
 
 export default Dialogs;
-// sender = e => {
-//   if (e.keyCode === 13) {
-//     addNewMessage();
-//     e.preventDefault();
-//   }
-// },

@@ -17,18 +17,27 @@ import Preloader from "../common/Preloader/Preloader";
 
 class ProfileContainer extends React.Component {
   restartProfile() {
-    let userId = this.props.match.params.userId;
+    const {
+      match,
+      lastUser,
+      id,
+      setLastUser,
+      setUpProfile,
+      setUpStatus,
+      setIsOwnProfile
+    } = this.props;
+    let userId = match.params.userId;
     if (!userId) {
-      userId = this.props.lastUser;
+      userId = lastUser;
       if (!userId) {
-        userId = this.props.id;
+        userId = id;
       }
     }
 
-    this.props.setLastUser(userId);
-    this.props.setUpProfile(userId);
-    this.props.setUpStatus(userId);
-    this.props.setIsOwnProfile(+userId === this.props.id);
+    setLastUser(userId);
+    setUpProfile(userId);
+    setUpStatus(userId);
+    setIsOwnProfile(+userId === id);
   }
   componentDidMount() {
     this.restartProfile();

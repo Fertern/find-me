@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./SocialLinks.module.css";
+import style from "./SocialLinks.module.css";
 import "./SocialLinksFA.css";
 import { makeStyles, Paper } from "@material-ui/core";
 const unusualSocialMedia = {
@@ -36,7 +36,7 @@ const SocialLinks = ({ links }) => {
   });
   return (
     <Paper className={wrapper}>
-      <div className={s.links}>{linksElements}</div>
+      <div className={style.links}>{linksElements}</div>
     </Paper>
   );
 };

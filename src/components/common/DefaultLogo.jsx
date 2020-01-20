@@ -2,10 +2,11 @@ import React from "react";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { Avatar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+
 const useStyles = makeStyles(theme => ({
   avatar: {
-    width: theme.spacing(25),
-    height: theme.spacing(25),
+    width: 210,
+    height: 200,
     backgroundColor: "var(--primaryColor)"
   }
 }));

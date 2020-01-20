@@ -1,13 +1,12 @@
 import { Field, reduxForm } from "redux-form";
 import React from "react";
-import s from "./AddPostForm.module.css";
+import style from "./AddPostForm.module.css";
 import { requiredField } from "../../../../Utils/validators/validators";
 import { onTapEnter } from "../../../../Utils/onTapEnter";
 import { Button, ThemeProvider } from "@material-ui/core";
 import { blueTheme } from "../../../../materialUI/blueTheme";
 
-const AddPostForm = props => {
-  const { handleSubmit, reset, addNewPost } = props;
+const AddPostForm = ({ handleSubmit, reset, addNewPost }) => {
   const submit = values => {
     addNewPost(values);
     reset();
@@ -15,20 +14,19 @@ const AddPostForm = props => {
   const customSubmit = handleSubmit(submit);
   return (
     <ThemeProvider theme={blueTheme}>
-      <form className={s.writingArea} onSubmit={customSubmit}>
+      <form className={style.writingArea} onSubmit={customSubmit}>
         <Field
-          className={s.textarea}
+          className={style.textarea}
           placeholder="Write new post!"
           component="textarea"
           name="post"
           validate={[requiredField]}
           onKeyDown={onTapEnter(customSubmit)}
         />
-        <div className={s.buttonWrapper}>
+        <div className={style.buttonWrapper}>
           <Button
             variant="contained"
             color="primary"
-            className={s.button}
             type="submit"
             style={{
               width: "20%",

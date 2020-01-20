@@ -46,3 +46,8 @@ textarea {
   height: 50px;
   width: 100%;
 }
+@media (max-width: 425px) {
+  .app-content {
+    min-height: 900px;
+  }
+}

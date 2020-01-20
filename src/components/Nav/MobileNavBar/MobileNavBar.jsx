@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./MobileNavBar.module.css";
+import style from "./MobileNavBar.module.css";
 import { NavLink } from "react-router-dom";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import ChatIcon from "@material-ui/icons/Chat";
@@ -7,19 +7,19 @@ import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 
 const MobileNav = () => {
   return (
-    <div className={s.wrapper}>
-      <div className={s.item}>
-        <NavLink activeClassName={s.active} to="/profile">
+    <div className={style.wrapper}>
+      <div className={style.item}>
+        <NavLink activeClassName={style.active} to="/profile">
           <AccountBoxIcon style={{ fontSize: "40px" }} />
         </NavLink>
       </div>
-      <div className={s.item}>
-        <NavLink activeClassName={s.active} to="/dialogs">
+      <div className={style.item}>
+        <NavLink activeClassName={style.active} to="/dialogs">
           <ChatIcon style={{ fontSize: "40px" }} />
         </NavLink>
       </div>
-      <div className={s.item}>
-        <NavLink activeClassName={s.active} to="/users">
+      <div className={style.item}>
+        <NavLink activeClassName={style.active} to="/users">
           <PeopleAltIcon style={{ fontSize: "40px" }} />
         </NavLink>
       </div>

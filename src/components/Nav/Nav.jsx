@@ -1,6 +1,5 @@
 import React from "react";
-import s from "./Nav.module.css";
-//import Friends from "../Friends/Friends";
+import style from "./Nav.module.css";
 import { NavLink } from "react-router-dom";
 import MobileNavBar from "./MobileNavBar/MobileNavBar";
 import MenuList from "@material-ui/core/MenuList";
@@ -14,7 +13,7 @@ import { useStyles } from "./NavMaterilal";
 const Nav = () => {
   const { paper, item, icon } = useStyles();
   return (
-    <div className={s.wrapper}>
+    <div className={style.wrapper}>
       <nav>
         {/* <ThemeProvider theme={blueTheme}> */}
         <Paper className={paper}>
@@ -22,7 +21,7 @@ const Nav = () => {
             <MenuItem>
               <NavLink
                 className={item}
-                activeClassName={s.active}
+                activeClassName={style.active}
                 to="/profile"
               >
                 <AccountBoxIcon className={icon} />
@@ -32,7 +31,7 @@ const Nav = () => {
             <MenuItem>
               <NavLink
                 className={item}
-                activeClassName={s.active}
+                activeClassName={style.active}
                 to="/dialogs"
               >
                 <ChatIcon className={icon} />
@@ -40,7 +39,11 @@ const Nav = () => {
               </NavLink>
             </MenuItem>
             <MenuItem>
-              <NavLink className={item} activeClassName={s.active} to="/users">
+              <NavLink
+                className={item}
+                activeClassName={style.active}
+                to="/users"
+              >
                 <PeopleAltIcon className={icon} />
                 <span>Users</span>
               </NavLink>

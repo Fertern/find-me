@@ -9,17 +9,16 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
-function Copyright() {
+const Copyright = () => {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body1" color="textSecondary" align="center">
       {"created by Fertern © "}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="https://github.com/Fertern">
         https://github.com/Fertern
       </Link>
-      {` in ${new Date().getFullYear()}`}
     </Typography>
   );
-}
+};
 const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -40,7 +39,7 @@ const Login = ({ login, isAuth, capthcaUrl }) => {
   const classes = useStyles();
   if (isAuth) return <Redirect to={"/profile"} />;
   return (
-    <Container component="main" maxWidth="xs">
+    <Container style={{ minHeight: "800px" }} component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.avatar}>
@@ -49,7 +48,7 @@ const Login = ({ login, isAuth, capthcaUrl }) => {
         <div className={classes.label}>Sign in</div>
         <LoginForm login={login} capthcaUrl={capthcaUrl} />
       </div>
-      <Box mt={8}>
+      <Box mt={6}>
         <Copyright />
       </Box>
     </Container>

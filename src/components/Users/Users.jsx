@@ -1,6 +1,6 @@
 import React from "react";
 import User from "./User/User";
-import s from "./Users.module.css";
+import style from "./Users.module.css";
 import PageNumbers from "./PageNumbers/PageNumbers";
 import Preloader from "../common/Preloader/Preloader";
 
@@ -17,13 +17,13 @@ const Users = ({
   setStartNumberInRow,
   startNumberInRow
 }) => {
-  const allUsers = userList.map(u => (
+  const allUsers = userList.map(userInList => (
     <User
-      id={u.id}
-      key={u.id}
-      logo={u.photos}
-      followed={u.followed}
-      name={u.name}
+      id={userInList.id}
+      key={userInList.id}
+      logo={userInList.photos}
+      followed={userInList.followed}
+      name={userInList.name}
       followUser={followUser}
       unFollowUser={unFollowUser}
       followInProgressList={followInProgressList}
@@ -31,14 +31,14 @@ const Users = ({
   ));
 
   return (
-    <div className={s.wrapper}>
-      <div className={s.content}>
+    <div className={style.wrapper}>
+      <div className={style.content}>
         {isPageLoading ? (
-          <div className={s.preloader}>
+          <div className={style.preloader}>
             <Preloader />
           </div>
         ) : (
-          <div className={s.allUsers}>{allUsers}</div>
+          <div className={style.allUsers}>{allUsers}</div>
         )}
       </div>
 

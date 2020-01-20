@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { reduxForm, Field } from "redux-form";
 import {
   requiredField,
   maxLengthCreator
 } from "./../../../Utils/validators/validators";
-import s from "./EditProfileForm.module.css";
+import style from "./EditProfileForm.module.css";
 import { fieldGenerator } from "../../../Utils/fieldGenerator";
 import { compose } from "redux";
 import { connect } from "react-redux";
@@ -30,14 +30,13 @@ const maxLength300 = maxLengthCreator(300);
 const EditProfileForm = ({
   handleSubmit,
   setUpProfileData,
-  error,
   contacts,
   onClose,
   selectedValue,
   open,
-  initialValue
+  initialValues
 }) => {
-  useEffect(() => {}, [initialValue]);
+  console.log(initialValues);
   const submit = values => {
     setUpProfileData(values);
   };
@@ -57,8 +56,8 @@ const EditProfileForm = ({
         scroll={"body"}
       >
         <DialogTitle>Edit your profile</DialogTitle>
-        <form className={s.wrapper} onSubmit={customSubmit}>
-          <div className={s.block}>
+        <form className={style.wrapper} onSubmit={customSubmit}>
+          <div className={style.block}>
             <div>
               {fieldGenerator(
                 "fullName",
@@ -70,18 +69,18 @@ const EditProfileForm = ({
             </div>
           </div>
 
-          <div className={s.block}>
+          <div className={style.block}>
             {fieldGenerator(
               "aboutMe",
               "About you",
               CustomTextareaFilled,
               "text",
-              [maxLength300]
+              [requiredField, maxLength300]
             )}
           </div>
 
-          <div className={s.block}>
-            <div className={s.contacts}>
+          <div className={style.block}>
+            <div className={style.contacts}>
               {fieldGenerator(
                 Object.keys(contacts).map(
                   serviceName => "contacts." + serviceName
@@ -95,7 +94,7 @@ const EditProfileForm = ({
             </div>
           </div>
 
-          <div className={s.select}>
+          <div className={style.select}>
             <span>Are you looking for a job?</span>
             <Field name="lookingForAJob" component={CustomSelect}>
               <MenuItem value="" disabled>
@@ -106,13 +105,13 @@ const EditProfileForm = ({
             </Field>
           </div>
 
-          <div className={s.block}>
+          <div className={style.block}>
             {fieldGenerator(
               "lookingForAJobDescription",
               "About it job",
               CustomTextareaFilled,
               "text",
-              [maxLength300]
+              [requiredField, maxLength300]
             )}
           </div>
 
@@ -136,6 +135,7 @@ const mapStateToProps = state => ({
 });
 
 export default compose(
+  React.memo,
   connect(mapStateToProps),
   reduxForm({ form: "editProfile" })
 )(EditProfileForm);

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import s from "./Post.module.css";
+import style from "./Post.module.css";
 import { Button, Fab, ThemeProvider } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -12,9 +12,9 @@ const Post = ({ deletePost, message, likes, id }) => {
   };
   return (
     <ThemeProvider theme={blueTheme}>
-      <div className={s.wrapper}>
-        <div className={s.content}>
-          <span className={s.text}>{message}</span>
+      <div className={style.wrapper}>
+        <div className={style.content}>
+          <span className={style.text}>{message}</span>
           <Button
             style={{ height: "100%" }}
             variant="contained"
@@ -24,11 +24,11 @@ const Post = ({ deletePost, message, likes, id }) => {
             <DeleteIcon />
           </Button>
         </div>
-        <div className={s.stats}>
+        <div className={style.stats}>
           <Fab color="primary" size="small" onClick={likeButton}>
             <FavoriteIcon />
           </Fab>
-          <span className={s.likesNum}>{likesCount}</span>
+          <span className={style.likesNum}>{likesCount}</span>
         </div>
       </div>
     </ThemeProvider>

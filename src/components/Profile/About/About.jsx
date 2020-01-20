@@ -1,4 +1,4 @@
-import s from "./About.module.css";
+import style from "./About.module.css";
 import React, { useState, useEffect } from "react";
 import {
   Card,
@@ -9,11 +9,10 @@ import {
   Box,
   Input
 } from "@material-ui/core";
-//import { EditIcon, DoneIcon, WorkIcon } from "@material-ui/icons";
 import WorkIcon from "@material-ui/icons/Work";
 import EditIcon from "@material-ui/icons/Edit";
 import SearchIcon from "@material-ui/icons/Search";
-import { aboutStyle } from "./AboutStyle";
+import { aboutStyle } from "./AboutMaterial";
 import Tooltip from "@material-ui/core/Tooltip";
 
 const About = ({
@@ -69,7 +68,7 @@ const About = ({
             </Tooltip>
           )}
         </Box>
-        <div className={s.bottomBlock}>
+        <div className={style.bottomBlock}>
           {isStatusEditing ? (
             <Paper className={inputWrapper}>
               <Input
@@ -82,14 +81,14 @@ const About = ({
               />
             </Paper>
           ) : isOwnProfile ? (
-            <Typography onDoubleClick={editStatus} className={s.status}>
+            <Typography onDoubleClick={editStatus} className={style.status}>
               {status || "Double click here to create new status"}
             </Typography>
           ) : (
-            <Typography className={s.status}>{status || " "}</Typography>
+            <Typography className={style.status}>{status || " "}</Typography>
           )}
 
-          <div className={s.lookingForAJob}>
+          <div className={style.lookingForAJob}>
             <Paper variant="outlined" className={job ? lookTrue : lookFalse}>
               {job ? (
                 <>

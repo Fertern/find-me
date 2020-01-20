@@ -19,9 +19,6 @@ import { useSelector } from "react-redux";
 import { authStyleChanger } from "./Utils/authStyleChanger";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 
-const MobileMenu = React.lazy(() =>
-  import("./components/Nav/MobileMenu/MobileMenu")
-);
 const DialogsContainer = React.lazy(() =>
   import("./components/Dialogs/DialogsContainer")
 );
@@ -56,7 +53,6 @@ const App = () => {
                 render={() => <ProfileContainer />}
               />
               <Route path="/users" render={() => <UsersContainer />} />
-              <Route path="/menu" render={withSuspense(MobileMenu)} />
               <Route path="/login" render={() => <LoginContainer />} />
               <Route path="*" render={() => <PageNotFound />} />
             </Switch>

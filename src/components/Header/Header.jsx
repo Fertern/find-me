@@ -1,23 +1,26 @@
 import React from "react";
-import s from "./Header.module.css";
+import style from "./Header.module.css";
 import { NavLink } from "react-router-dom";
 import { Button } from "@material-ui/core";
 
 const Header = ({ id, logout, isAuth }) => {
   return (
-    <header className={s.header}>
+    <header className={style.header}>
       {isAuth && (
-        <Button variant="contained" style={{ marginRight: "5px" }}>
-          <NavLink
-            style={{
-              color: "#18425F",
-              textDecoration: "none"
-            }}
-            to={"/profile/" + id}
+        <NavLink
+          style={{
+            color: "#18425F",
+            textDecoration: "none"
+          }}
+          to={"/profile/" + id}
+        >
+          <Button
+            variant="contained"
+            style={{ marginRight: "5px", color: "rgb(24, 66, 95)" }}
           >
             My profile
-          </NavLink>
-        </Button>
+          </Button>
+        </NavLink>
       )}
 
       {isAuth && (
@@ -26,7 +29,7 @@ const Header = ({ id, logout, isAuth }) => {
             color: "#18425F"
           }}
           variant="contained"
-          className={s.logout}
+          className={style.logout}
           onClick={logout}
         >
           Logout

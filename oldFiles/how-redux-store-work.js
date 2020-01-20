@@ -1,5 +1,5 @@
-import profilePageReducer from "./profilePageReducer";
-import dialogsPageReducer from "./dialogsPageReducer";
+import profilePageReducer from "../src/redux/profilePageReducer";
+import dialogsPageReducer from "../src/redux/dialogsPageReducer";
 import navBarReducer from "./navBarReducer";
 
 let store = {

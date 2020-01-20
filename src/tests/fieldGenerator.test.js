@@ -1,6 +1,6 @@
-import { fieldGenerator } from "./fieldGenerator";
+import { fieldGenerator } from "../Utils/fieldGenerator";
 import CustomInput from "../components/common/FormElements/CustomInput";
-import { requiredField } from "./validators/validators";
+import { requiredField } from "../Utils/validators/validators";
 
 describe("FieldGenerator", () => {
   test("create Fields with params", () => {

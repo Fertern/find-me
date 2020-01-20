@@ -1,6 +1,6 @@
 import React from "react";
 import Checkbox from "@material-ui/core/Checkbox";
-import { StyledInputLogin, StyledCheckbox } from "./CustomStyles";
+import { StyledCheckbox } from "./CustomStyles";
 import TextField from "@material-ui/core/TextField";
 import { Select } from "@material-ui/core";
 
@@ -8,7 +8,7 @@ const CustomInput = ({ input, meta, ...props }) => {
   const hasError = meta.touched && meta.error;
   return (
     <div>
-      <input error={hasError} {...input} {...props} />
+      <input error={!!hasError} {...input} {...props} />
     </div>
   );
 };
@@ -19,7 +19,7 @@ export const CustomInputFilled = ({ input, meta, ...props }) => {
   return (
     <div>
       <TextField
-        error={hasError}
+        error={!!hasError}
         fullWidth
         variant="filled"
         {...input}
@@ -37,8 +37,8 @@ export const CustomInputLogin = ({ input, meta, ...props }) => {
   const hasError = meta.touched && meta.error;
   return (
     <div>
-      <StyledInputLogin
-        error={hasError}
+      <TextField
+        error={!!hasError}
         variant="filled"
         margin="normal"
         fullWidth
@@ -58,8 +58,8 @@ export const CustomInputPassword = ({ input, meta, ...props }) => {
   const hasError = meta.touched && meta.error;
   return (
     <div>
-      <StyledInputLogin
-        error={hasError}
+      <TextField
+        error={!!hasError}
         type="password"
         variant="filled"
         margin="normal"
@@ -77,14 +77,13 @@ export const CustomInputPassword = ({ input, meta, ...props }) => {
 };
 
 export const CustomInputRememberMe = ({ input, meta, ...props }) => {
-  const hasError = meta.touched && meta.error;
   return (
     <div>
       <StyledCheckbox
-        error={hasError}
-        control={<Checkbox value="remember" color="primary" />}
+        control={<Checkbox value={true} color="primary" />}
         label="Remember me"
         type="checkbox"
+        {...input}
       />
     </div>
   );
@@ -95,7 +94,7 @@ export const CustomTextareaFilled = ({ input, meta, ...props }) => {
   return (
     <div>
       <TextField
-        error={hasError}
+        error={!!hasError}
         multiline
         rows="4"
         variant="filled"

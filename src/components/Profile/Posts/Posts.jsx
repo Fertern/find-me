@@ -1,11 +1,10 @@
 import React from "react";
-import s from "./Posts.module.css";
+import style from "./Posts.module.css";
 import Post from "./Post/Post";
 import AddPostForm from "./AddPostForm/AddPostForm";
 import { Paper } from "@material-ui/core";
 
-const Posts = props => {
-  const { posts, addNewPost, deletePost } = props;
+const Posts = ({ posts, addNewPost, deletePost }) => {
   const postsElements = posts.map(post => (
     <Post
       deletePost={deletePost}
@@ -16,12 +15,12 @@ const Posts = props => {
     />
   ));
   return (
-    <Paper elevation={0} className={s.paper}>
-      <div className={s.wrapper}>
+    <Paper elevation={0} className={style.paper}>
+      <div className={style.wrapper}>
         <AddPostForm addNewPost={addNewPost} />
         {postsElements}
       </div>
-      <hr className={s.spy} /> {/* Empty space for mobile fixed navBar*/}
+      <hr className={style.spy} /> {/* Empty space for mobile fixed navBar*/}
     </Paper>
   );
 };

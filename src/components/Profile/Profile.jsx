@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import s from "./Profile.module.css";
+import style from "./Profile.module.css";
 import PostsContainer from "./Posts/PostsContainer";
 import Preloader from "../common/Preloader/Preloader";
 import AvatarBar from "./AvatarBar/AvatarBar";
@@ -32,16 +32,18 @@ const Profile = ({
   } = profile;
 
   const handleClickOpen = () => {
+    setIsProfileEditing(true);
     setOpen(true);
   };
 
-  const handleClose = value => {
+  const handleClose = () => {
+    setIsProfileEditing(false);
     setOpen(false);
   };
 
   return (
-    <div className={s.profile}>
-      <div className={s.overBlock}>
+    <div className={style.profile}>
+      <div className={style.overBlock}>
         <AvatarBar
           userPhoto={photos}
           isOwnProfile={isOwnProfile}
@@ -62,12 +64,13 @@ const Profile = ({
         />
         <SocialLinks links={contacts} />
       </div>
-      {isOwnProfile && (
+      {isOwnProfile && isProfileEditing && (
         <EditProfileForm
           setUpProfileData={setUpProfileData}
           contacts={contacts}
           open={open}
           onClose={handleClose}
+          profile={profile}
           fullScreen
         />
       )}

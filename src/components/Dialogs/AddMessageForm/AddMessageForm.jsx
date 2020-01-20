@@ -1,6 +1,6 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import s from "./AddMessageForm.module.css";
+import style from "./AddMessageForm.module.css";
 import {
   requiredField,
   maxLengthCreator
@@ -8,24 +8,24 @@ import {
 import { onTapEnter } from "../../../Utils/onTapEnter";
 
 const maxLength300 = maxLengthCreator(300);
-const AddMessageForm = props => {
-  const { handleSubmit, reset, addNewMessage } = props;
+
+const AddMessageForm = ({ handleSubmit, reset, addNewMessage }) => {
   const submit = values => {
     addNewMessage(values);
     reset();
   };
   const customSubmit = handleSubmit(submit);
   return (
-    <form onSubmit={customSubmit} className={s.wrapper}>
+    <form onSubmit={customSubmit} className={style.wrapper}>
       <Field
         component="textarea"
         name="message"
-        className={s.textarea}
+        className={style.textarea}
         placeholder="Write something..."
         validate={[requiredField, maxLength300]}
         onKeyDown={onTapEnter(customSubmit)}
       />
-      <button className={s.button}>Send</button>
+      <button className={style.button}>Send</button>
     </form>
   );
 };

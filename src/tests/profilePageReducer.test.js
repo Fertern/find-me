@@ -1,4 +1,4 @@
-import profilePageReducer, { addPost } from "./profilePageReducer";
+import profilePageReducer, { addPost } from "../redux/profilePageReducer";
 
 const state = {
   posts: [

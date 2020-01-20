@@ -9,7 +9,6 @@ import CustomInput, {
   CustomInputLogin,
   CustomInputRememberMe
 } from "../../common/FormElements/CustomElements";
-import s from "./LoginForm.module.css";
 import Button from "@material-ui/core/Button";
 import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
 import { fieldGenerator } from "../../../Utils/fieldGenerator";
@@ -48,7 +47,7 @@ const LoginForm = ({ handleSubmit, login, capthcaUrl, error }) => {
           "custom"
         )}
 
-        <div className={s.checkbox}>
+        <div>
           {fieldGenerator(
             "rememberMe",
             null,
