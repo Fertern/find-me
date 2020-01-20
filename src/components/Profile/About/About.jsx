@@ -14,6 +14,7 @@ import WorkIcon from "@material-ui/icons/Work";
 import EditIcon from "@material-ui/icons/Edit";
 import SearchIcon from "@material-ui/icons/Search";
 import { aboutStyle } from "./AboutStyle";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const About = ({
   name,
@@ -64,9 +65,11 @@ const About = ({
           </Typography>
 
           {isOwnProfile && !isProfileEditing && (
-            <Fab className={edit} onClick={startEditProfile}>
-              <EditIcon />
-            </Fab>
+            <Tooltip title="Edit profile">
+              <Fab className={edit} onClick={startEditProfile}>
+                <EditIcon />
+              </Fab>
+            </Tooltip>
           )}
         </Box>
         <div className={s.bottomBlock}>

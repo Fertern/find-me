@@ -1,16 +1,36 @@
 import React from "react";
 import s from "./Header.module.css";
 import { NavLink } from "react-router-dom";
+import { Button } from "@material-ui/core";
 
 const Header = ({ id, logout, isAuth }) => {
   return (
     <header className={s.header}>
-      {isAuth && <NavLink to={"/profile/" + id}>My profile</NavLink>}
+      {isAuth && (
+        <Button variant="contained" style={{ marginRight: "5px" }}>
+          <NavLink
+            style={{
+              color: "#18425F",
+              textDecoration: "none"
+            }}
+            to={"/profile/" + id}
+          >
+            My profile
+          </NavLink>
+        </Button>
+      )}
 
       {isAuth && (
-        <button className={s.logout} onClick={logout}>
+        <Button
+          style={{
+            color: "#18425F"
+          }}
+          variant="contained"
+          className={s.logout}
+          onClick={logout}
+        >
           Logout
-        </button>
+        </Button>
       )}
     </header>
   );

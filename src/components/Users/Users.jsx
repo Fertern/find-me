@@ -24,9 +24,6 @@ const Users = ({
       logo={u.photos}
       followed={u.followed}
       name={u.name}
-      description={u.description}
-      country="u.location.country"
-      city="u.location.city"
       followUser={followUser}
       unFollowUser={unFollowUser}
       followInProgressList={followInProgressList}
@@ -35,7 +32,6 @@ const Users = ({
 
   return (
     <div className={s.wrapper}>
-      <div className={s.label}>Users</div>
       <div className={s.content}>
         {isPageLoading ? (
           <div className={s.preloader}>

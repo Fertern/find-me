@@ -36,15 +36,6 @@ class UsersContainer extends React.Component {
     return <Users {...this.props} changeCurrent={this.changeCurrent} />;
   }
 }
-// const mapStateToProps = state => ({
-//   isPageLoading: state.usersPage.isPageLoading,
-//   followInProgressList: state.usersPage.followInProgressList,
-//   userList: state.usersPage.userList,
-//   page: state.usersPage.page,
-//   onPageUsersCount: state.usersPage.onPageUsersCount,
-//   usersCount: state.usersPage.usersCount,
-//   currentPage: state.usersPage.currentPage
-// });
 
 const mapStateToProps = state => ({
   isPageLoading: getIsPageLoading(state),

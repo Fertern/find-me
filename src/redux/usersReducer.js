@@ -17,7 +17,7 @@ const initialState = {
   followInProgressList: [],
   userList: [],
   page: 1,
-  onPageUsersCount: 4,
+  onPageUsersCount: 8,
   usersCount: 0,
   currentPage: 1,
   startNumberInRow: 1
@@ -129,6 +129,7 @@ export const unFollowUser = id => async dispatch => {
 };
 export const followUser = id => async dispatch => {
   try {
+    console.log(id);
     dispatch(toggleFollowStatus(true, id));
     let data = await usersAPI.followUser(id);
     if (data.resultCode === 0) {

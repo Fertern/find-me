@@ -14,7 +14,7 @@ const Post = ({ deletePost, message, likes, id }) => {
       <div className={s.content}>
         <span className={s.text}>{message}</span>
         <Button
-          style={{ height: "100%" }}
+          style={{ height: "100%", backgroundColor: "var(--primaryColor)" }}
           variant="contained"
           onClick={() => deletePost(id)}
           color="primary"
@@ -23,7 +23,12 @@ const Post = ({ deletePost, message, likes, id }) => {
         </Button>
       </div>
       <div className={s.stats}>
-        <Fab color="primary" size="small" onClick={likeButton}>
+        <Fab
+          color="primary"
+          size="small"
+          style={{ backgroundColor: "var(--primaryColor)" }}
+          onClick={likeButton}
+        >
           <FavoriteIcon />
         </Fab>
         <span className={s.likesNum}>{likesCount}</span>

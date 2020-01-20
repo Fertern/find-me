@@ -1,5 +1,12 @@
-import React from "react";
-import s from "./PageNumbers.module.css";
+import React, { useState, useLayoutEffect } from "react";
+import Fab from "@material-ui/core/Fab";
+import { pageNumbersStyles } from "./PageNumbersMaterial";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import Paper from "@material-ui/core/Paper";
+
+import ArrowLeftIcon from "@material-ui/icons/ArrowLeft";
+import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 
 const PageNumbers = ({
   page,
@@ -9,8 +16,20 @@ const PageNumbers = ({
   setStartNumberInRow,
   startNumberInRow
 }) => {
+  const { wrapper, common, selected, prev, next } = pageNumbersStyles();
   const pageCount = Math.ceil(usersCount / page);
-  const isPhoneView = window.matchMedia(`(max-width: 425px)`).matches;
+  const [isPhoneView, setIsPhoneView] = useState(
+    window.matchMedia(`(max-width: 425px)`).matches
+  );
+  useLayoutEffect(() => {
+    const updateView = () => {
+      setIsPhoneView(window.matchMedia(`(max-width: 425px)`).matches);
+    };
+    window.addEventListener("resize", updateView);
+    updateView();
+    return () => window.removeEventListener("resize", updateView);
+  }, []);
+
   const pages = [];
   const isPrevCorrect = startNumberInRow !== 1;
   let isNextCorrect = true;
@@ -38,28 +57,41 @@ const PageNumbers = ({
   }
   isNextCorrect = startNumberInRow + 10 <= pageCount;
   return (
-    <div className={s.wrapper}>
-      {isPrevCorrect ? (
-        <button onClick={PreviousRow}>Prev</button>
-      ) : (
-        <span></span>
-      )}
+    <Paper elevation={0} className={wrapper}>
+      <Fab
+        disabled={!isPrevCorrect}
+        size="small"
+        onClick={PreviousRow}
+        className={prev}
+      >
+        <ArrowLeftIcon />
+      </Fab>
+
       <div>
-        {pages.map(p => (
-          <span
-            key={p}
+        {pages.map(pageNumber => (
+          <Fab
+            size="small"
+            key={pageNumber}
             onClick={() => {
-              changeCurrent(p);
+              changeCurrent(pageNumber);
             }}
-            className={currentPage === p ? s.selected : s.common}
+            className={currentPage === pageNumber ? selected : common}
           >
-            {p}
-          </span>
+            {pageNumber}
+          </Fab>
         ))}
       </div>
-      {isNextCorrect ? <button onClick={NextRow}>Next</button> : <span></span>}
-    </div>
+
+      <Fab
+        disabled={!isNextCorrect}
+        size="small"
+        onClick={NextRow}
+        className={next}
+      >
+        <ArrowRightIcon />
+      </Fab>
+    </Paper>
   );
 };
 
-export default PageNumbers;
+export default React.memo(PageNumbers);

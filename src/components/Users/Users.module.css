@@ -1,5 +1,4 @@
 .wrapper {
-  background-color: var(--backColor);
   display: flex;
   flex-direction: column;
 }

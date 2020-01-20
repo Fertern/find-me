@@ -26,6 +26,10 @@
     flex-direction: column;
     text-align: center;
   }
+  .overBlock > div:nth-of-type(2) {
+    max-width: 100% !important;
+    margin-bottom: 10px;
+  }
   .infoBlock {
     width: 100%;
     flex-direction: column;
