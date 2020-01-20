@@ -1,15 +1,14 @@
 import React from "react";
-import s from "./CustomInput.module.css";
 import Checkbox from "@material-ui/core/Checkbox";
 import { StyledInputLogin, StyledCheckbox } from "./CustomStyles";
 import TextField from "@material-ui/core/TextField";
-import { Select, MenuItem } from "@material-ui/core";
+import { Select } from "@material-ui/core";
 
 const CustomInput = ({ input, meta, ...props }) => {
   const hasError = meta.touched && meta.error;
   return (
-    <div className={s.wrapper + " " + (hasError ? s.error : "")}>
-      <input {...input} {...props} />
+    <div>
+      <input error={hasError} {...input} {...props} />
     </div>
   );
 };
@@ -18,22 +17,28 @@ export default CustomInput;
 export const CustomInputFilled = ({ input, meta, ...props }) => {
   const hasError = meta.touched && meta.error;
   return (
-    <div className={s.wrapper + " " + (hasError ? s.error : "")}>
-      <TextField variant="filled" {...input} {...props} />
+    <div>
+      <TextField
+        error={hasError}
+        fullWidth
+        variant="filled"
+        {...input}
+        {...props}
+      />
     </div>
   );
 };
 
 export const CustomSelect = ({ input, meta, ...props }) => {
-  const hasError = meta.touched && meta.error;
-  return <Select {...input} {...props} />;
+  return <Select fullWidth {...input} {...props} />;
 };
 
 export const CustomInputLogin = ({ input, meta, ...props }) => {
   const hasError = meta.touched && meta.error;
   return (
-    <div className={s.wrapper + " " + (hasError ? s.error : "")}>
+    <div>
       <StyledInputLogin
+        error={hasError}
         variant="filled"
         margin="normal"
         fullWidth
@@ -52,8 +57,9 @@ export const CustomInputLogin = ({ input, meta, ...props }) => {
 export const CustomInputPassword = ({ input, meta, ...props }) => {
   const hasError = meta.touched && meta.error;
   return (
-    <div className={s.wrapper + " " + (hasError ? s.error : "")}>
+    <div>
       <StyledInputLogin
+        error={hasError}
         type="password"
         variant="filled"
         margin="normal"
@@ -73,11 +79,29 @@ export const CustomInputPassword = ({ input, meta, ...props }) => {
 export const CustomInputRememberMe = ({ input, meta, ...props }) => {
   const hasError = meta.touched && meta.error;
   return (
-    <div className={s.wrapper + " " + (hasError ? s.error : "")}>
+    <div>
       <StyledCheckbox
+        error={hasError}
         control={<Checkbox value="remember" color="primary" />}
         label="Remember me"
         type="checkbox"
+      />
+    </div>
+  );
+};
+
+export const CustomTextareaFilled = ({ input, meta, ...props }) => {
+  const hasError = meta.touched && meta.error;
+  return (
+    <div>
+      <TextField
+        error={hasError}
+        multiline
+        rows="4"
+        variant="filled"
+        fullWidth
+        {...input}
+        {...props}
       />
     </div>
   );

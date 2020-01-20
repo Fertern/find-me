@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./SocialLinks.module.css";
 import "./SocialLinksFA.css";
-import { makeStyles, Paper, Card } from "@material-ui/core";
+import { makeStyles, Paper } from "@material-ui/core";
 const unusualSocialMedia = {
   website: "window-maximize",
   mainLink: "link"

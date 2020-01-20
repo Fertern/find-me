@@ -1,14 +1,16 @@
 import Dialogs from "./Dialogs";
-import { addNewMessage } from "../../redux/dialogsPageReducer";
+import { addNewMessage, setUpDialogs } from "../../redux/dialogsPageReducer";
 import { connect } from "react-redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
 
 const mapStateToProps = state => ({
-  dialogsPage: state.dialogsPage
+  dialogs: state.dialogsPage.dialogs,
+  messages: state.dialogsPage.messages
 });
 const mapDispatchToProps = {
-  addNewMessage
+  addNewMessage,
+  setUpDialogs
 };
 
 export default compose(

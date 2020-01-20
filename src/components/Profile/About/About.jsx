@@ -23,7 +23,8 @@ const About = ({
   updateUpStatus,
   isOwnProfile,
   isProfileEditing,
-  setIsProfileEditing
+  setIsProfileEditing,
+  handleClickOpen
 }) => {
   const [isStatusEditing, toggleEditStatus] = useState(false),
     [status, setStatus] = useState(newStatus);
@@ -36,7 +37,6 @@ const About = ({
     lookTrue,
     wrapper,
     lookFalse,
-    lookingForAJob,
     nameText,
     content,
     statusInput,
@@ -52,9 +52,6 @@ const About = ({
         toggleEditStatus(true);
       }
     };
-  const startEditProfile = () => {
-    setIsProfileEditing(true);
-  };
 
   return (
     <Card className={wrapper}>
@@ -66,7 +63,7 @@ const About = ({
 
           {isOwnProfile && !isProfileEditing && (
             <Tooltip title="Edit profile">
-              <Fab className={edit} onClick={startEditProfile}>
+              <Fab className={edit} onClick={handleClickOpen}>
                 <EditIcon />
               </Fab>
             </Tooltip>

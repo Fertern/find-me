@@ -8,23 +8,12 @@ import CustomInput, {
   CustomInputPassword,
   CustomInputLogin,
   CustomInputRememberMe
-} from "../../common/FormElements/CustomInput";
+} from "../../common/FormElements/CustomElements";
 import s from "./LoginForm.module.css";
 import Button from "@material-ui/core/Button";
 import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
 import { fieldGenerator } from "../../../Utils/fieldGenerator";
-import { createMuiTheme } from "@material-ui/core/styles";
-
-const blueTheme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#3490ce"
-    },
-    secondary: {
-      main: "#435a7e"
-    }
-  }
-});
+import { blueTheme } from "../../../materialUI/blueTheme";
 
 const useStyles = makeStyles(theme => ({
   form: {

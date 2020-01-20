@@ -1,5 +1,7 @@
 import { thunkErrorDecorator } from "../Utils/thunkErrorDecorator";
+import { dialogsAPI } from "../api/api";
 
+const SET_DIALOGS = "/dialogsPage/SET-DIALOGS";
 const ADD_MESSAGE = "/dialogsPage/ADD-MESSAGE";
 
 const initialState = {
@@ -9,12 +11,8 @@ const initialState = {
     { id: 3, text: "I just wanna live" },
     { id: 4, text: "You're my best" }
   ],
-  dialogs: [
-    { id: 1, name: "First", count: 1 },
-    { id: 2, name: "Second", count: 1 },
-    { id: 3, name: "Thirst", count: 1 },
-    { id: 4, name: "Fourth", count: 1 }
-  ]
+  dialogs: [],
+  isDialogsLoaded: false
 };
 
 const dialogsPageReducer = (state = initialState, action) => {
@@ -30,18 +28,35 @@ const dialogsPageReducer = (state = initialState, action) => {
           }
         ]
       };
+    case SET_DIALOGS:
+      return {
+        ...state,
+        messages: action.messages,
+        dialogs: action.dialogs
+      };
 
     default:
       return state;
   }
 };
 
-export const sendMessage = messageText => ({ type: ADD_MESSAGE, messageText });
+export const sendMessage = messageText => ({ type: ADD_MESSAGE, messageText }),
+  setDialogs = (dialogs, messages) => ({
+    type: SET_DIALOGS,
+    dialogs,
+    messages
+  });
 
 export const addNewMessage = thunkErrorDecorator(values => async dispatch => {
   let data = { resultCode: 0 };
   if (data.resultCode === 0) {
     dispatch(sendMessage(values.message));
+  }
+});
+export const setUpDialogs = thunkErrorDecorator(() => async dispatch => {
+  let data = await dialogsAPI.getDialogs();
+  if (data === []) {
+    console.log(data);
   }
 });
 

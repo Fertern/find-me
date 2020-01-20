@@ -7,8 +7,6 @@ import About from "./About/About";
 import SocialLinks from "./SocialLinks/SocialLinks";
 import Description from "./Description/Description";
 import EditProfileForm from "./EditProfileForm/EditProfileForm";
-import { Paper } from "@material-ui/core";
-import { profileStyles } from "./ProfileMaterial";
 
 const Profile = ({
   status,
@@ -20,7 +18,7 @@ const Profile = ({
   errorMessage
 }) => {
   const [isProfileEditing, setIsProfileEditing] = useState(false);
-  const { infoBlock } = profileStyles();
+  const [open, setOpen] = useState(false);
   if (!profile) {
     return <Preloader />;
   }
@@ -32,6 +30,15 @@ const Profile = ({
     fullName,
     photos
   } = profile;
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = value => {
+    setOpen(false);
+  };
+
   return (
     <div className={s.profile}>
       <div className={s.overBlock}>
@@ -51,13 +58,17 @@ const Profile = ({
           isProfileEditing={isProfileEditing}
           setIsProfileEditing={setIsProfileEditing}
           errorMessage={errorMessage}
+          handleClickOpen={handleClickOpen}
         />
         <SocialLinks links={contacts} />
       </div>
-      {isOwnProfile && isProfileEditing && (
+      {isOwnProfile && (
         <EditProfileForm
           setUpProfileData={setUpProfileData}
           contacts={contacts}
+          open={open}
+          onClose={handleClose}
+          fullScreen
         />
       )}
       <Description

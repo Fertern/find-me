@@ -6,7 +6,6 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { Provider } from "react-redux";
 import { checkAuth } from "./redux/authReducer";
-import { BrowserRouter as Router } from "react-router-dom";
 
 store.dispatch(checkAuth());
 ReactDOM.render(

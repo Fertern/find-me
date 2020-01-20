@@ -1,16 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import s from "./Dialogs.module.css";
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
 import AddMessageForm from "./AddMessageForm/AddMessageForm";
-const Dialogs = props => {
-  const { dialogsPage, addNewMessage } = props;
-  const dialogsElements = dialogsPage.dialogs.map(d => (
+import SpeakerNotesOffIcon from "@material-ui/icons/SpeakerNotesOff";
+import { Typography } from "@material-ui/core";
+
+const Dialogs = ({ dialogs, messages, setUpDialogs, addNewMessage }) => {
+  useEffect(() => {
+    setUpDialogs();
+  }, [setUpDialogs]);
+  if (dialogs) {
+    return (
+      <div style={{ display: "flex" }}>
+        <div
+          style={{
+            margin: "0 auto",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center"
+          }}
+        >
+          <SpeakerNotesOffIcon
+            style={{ fontSize: "200px", color: "rgb(24, 66, 95)" }}
+          />
+          <Typography style={{ color: "var(--primaryColor" }} variant="h4">
+            No incoming messages
+          </Typography>
+        </div>
+      </div>
+    );
+  }
+  const dialogsElements = dialogs.map(d => (
       <Dialog name={d.name} key={d.id} id={d.id} counter={d.count} />
     )),
-    messagesElements = dialogsPage.messages.map(m => (
-      <Message key={m.id} text={m.text} />
-    ));
+    messagesElements = messages.map(m => <Message key={m.id} text={m.text} />);
 
   return (
     <div className={s.dialogs}>

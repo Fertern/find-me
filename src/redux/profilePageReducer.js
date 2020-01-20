@@ -14,7 +14,7 @@ const SET_PHOTO = "/profilePage/SET-PHOTO";
 const STATUS_ERROR = "/profilePage/STATUS-ERROR";
 
 const initialState = {
-  posts: [{ id: 1, message: "Click on like button", likes: "999" }],
+  posts: [{ id: 1, message: "Click on the like button", likes: "999" }],
   profile: null,
   status: "",
   statusErrorMessage: null,

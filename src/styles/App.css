@@ -2,7 +2,6 @@
 .container {
   max-width: 1200px;
   width: 100%;
-  min-height: 1024px;
   margin: 0 auto;
 }
 textarea {

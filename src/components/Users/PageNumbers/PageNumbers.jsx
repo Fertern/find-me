@@ -1,8 +1,6 @@
 import React, { useState, useLayoutEffect } from "react";
 import Fab from "@material-ui/core/Fab";
 import { pageNumbersStyles } from "./PageNumbersMaterial";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import Paper from "@material-ui/core/Paper";
 
 import ArrowLeftIcon from "@material-ui/icons/ArrowLeft";
@@ -70,6 +68,7 @@ const PageNumbers = ({
       <div>
         {pages.map(pageNumber => (
           <Fab
+            disabled={pageNumber === currentPage}
             size="small"
             key={pageNumber}
             onClick={() => {

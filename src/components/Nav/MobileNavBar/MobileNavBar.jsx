@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import ChatIcon from "@material-ui/icons/Chat";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
-import MenuIcon from "@material-ui/icons/Menu";
 
 const MobileNav = () => {
   return (

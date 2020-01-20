@@ -17,17 +17,7 @@
   font-size: 1.3em;
   background-color: var(--backColor);
 }
-.button {
-  padding: 5px !important;
-  color: white !important;
-  border: none !important;
-  margin-left: 80% !important;
-  width: 20% !important;
-  border-radius: 5px !important;
-  font-size: 1.2em !important;
-  cursor: pointer !important;
-  background-color: var(--primaryColor) !important;
-}
+
 .button:hover {
   color: var(--focusColor);
   transition: color 0.2s linear;

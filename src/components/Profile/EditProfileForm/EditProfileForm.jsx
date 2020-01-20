@@ -1,19 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { reduxForm, Field } from "redux-form";
 import {
   requiredField,
   maxLengthCreator
 } from "./../../../Utils/validators/validators";
 import s from "./EditProfileForm.module.css";
-import CustomInput, {
-  CustomSelect
-} from "./../../common/FormElements/CustomInput";
 import { fieldGenerator } from "../../../Utils/fieldGenerator";
 import { compose } from "redux";
 import { connect } from "react-redux";
 
-import { CustomInputFilled } from "./../../common/FormElements/CustomInput";
-import { Typography, MenuItem, Button } from "@material-ui/core";
+import BackupIcon from "@material-ui/icons/Backup";
+import {
+  CustomSelect,
+  CustomInputFilled,
+  CustomTextareaFilled
+} from "../../common/FormElements/CustomElements";
+import {
+  MenuItem,
+  Button,
+  ThemeProvider,
+  Dialog,
+  DialogTitle
+} from "@material-ui/core";
+import { blueTheme } from "../../../materialUI/blueTheme";
 
 const maxLength30 = maxLengthCreator(30);
 const maxLength80 = maxLengthCreator(80);
@@ -22,73 +31,103 @@ const EditProfileForm = ({
   handleSubmit,
   setUpProfileData,
   error,
-  contacts
+  contacts,
+  onClose,
+  selectedValue,
+  open,
+  initialValue
 }) => {
+  useEffect(() => {}, [initialValue]);
   const submit = values => {
     setUpProfileData(values);
   };
   const customSubmit = handleSubmit(submit);
 
+  const handleClose = () => {
+    onClose(selectedValue);
+  };
+
   return (
-    <form className={s.wrapper} onSubmit={customSubmit}>
-      <Typography variant="h5" className={s.label}>
-        Full name
-      </Typography>
-      <div>
-        {fieldGenerator("fullName", "Full name", CustomInputFilled, "text", [
-          requiredField,
-          maxLength30
-        ])}
-      </div>
+    <ThemeProvider theme={blueTheme}>
+      <Dialog
+        fullWidth
+        onClose={handleClose}
+        aria-labelledby="simple-dialog-title"
+        open={open}
+        scroll={"body"}
+      >
+        <DialogTitle>Edit your profile</DialogTitle>
+        <form className={s.wrapper} onSubmit={customSubmit}>
+          <div className={s.block}>
+            <div>
+              {fieldGenerator(
+                "fullName",
+                "Full name",
+                CustomInputFilled,
+                "text",
+                [requiredField, maxLength30]
+              )}
+            </div>
+          </div>
 
-      <Typography variant="h5" className={s.label}>
-        About you
-      </Typography>
+          <div className={s.block}>
+            {fieldGenerator(
+              "aboutMe",
+              "About you",
+              CustomTextareaFilled,
+              "text",
+              [maxLength300]
+            )}
+          </div>
 
-      {fieldGenerator("aboutMe", "About you", CustomInputFilled, "text", [
-        maxLength300
-      ])}
+          <div className={s.block}>
+            <div className={s.contacts}>
+              {fieldGenerator(
+                Object.keys(contacts).map(
+                  serviceName => "contacts." + serviceName
+                ),
+                Object.keys(contacts),
+                CustomInputFilled,
+                "text",
+                [maxLength80],
+                "same"
+              )}
+            </div>
+          </div>
 
-      <Typography variant="h5" className={s.label}>
-        Are you looking for a job?
-      </Typography>
-      <Field name="lookingForAJob" component={CustomSelect}>
-        <MenuItem value={true}>Yes</MenuItem>
-        <MenuItem value={false}>No</MenuItem>
-      </Field>
+          <div className={s.select}>
+            <span>Are you looking for a job?</span>
+            <Field name="lookingForAJob" component={CustomSelect}>
+              <MenuItem value="" disabled>
+                Are you looking for a job?
+              </MenuItem>
+              <MenuItem value={true}>Yes</MenuItem>
+              <MenuItem value={false}>No</MenuItem>
+            </Field>
+          </div>
 
-      <Typography variant="h5" className={s.label}>
-        Links to your social media
-      </Typography>
-      <div className={s.contacts}>
-        {fieldGenerator(
-          Object.keys(contacts).map(serviceName => "contacts." + serviceName),
-          Object.keys(contacts),
-          CustomInputFilled,
-          "text",
-          [maxLength80],
-          "same"
-        )}
-      </div>
+          <div className={s.block}>
+            {fieldGenerator(
+              "lookingForAJobDescription",
+              "About it job",
+              CustomTextareaFilled,
+              "text",
+              [maxLength300]
+            )}
+          </div>
 
-      <Typography variant="h5" className={s.label}>
-        Job info
-      </Typography>
-
-      {fieldGenerator(
-        "lookingForAJobDescription",
-        "About your job",
-        CustomInputFilled,
-        "text",
-        [maxLength300]
-      )}
-
-      <div className="">
-        <Button variant="outlined" type="submit">
-          Submit changes
-        </Button>
-      </div>
-    </form>
+          <Button
+            startIcon={<BackupIcon />}
+            variant="contained"
+            color="primary"
+            type="submit"
+            style={{ borderRadius: 0 }}
+          >
+            Submit changes
+          </Button>
+        </form>
+      </Dialog>
+    </ThemeProvider>
   );
 };
 

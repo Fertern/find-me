@@ -1,12 +1,9 @@
 import React from "react";
 import style from "./AvatarBar.module.css";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import PersonIcon from "@material-ui/icons/Person";
-import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import { Paper, Button } from "@material-ui/core";
-import DefaultLogo from "../../../assets/defaultLogo";
 import { AvatarBarEditingStyles, AvatarBarStyles } from "./AvatarBarMaterial";
+import DefaultLogo from "./../../common/DefaultLogo";
 
 const AvatarBar = ({
   userPhoto: { small, large },
