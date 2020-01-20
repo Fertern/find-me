@@ -17,6 +17,7 @@ import ErrorNotification from "./components/ErrorNotification/ErrorNotification"
 import Preloader from "./components/common/Preloader/Preloader";
 import { useSelector } from "react-redux";
 import { authStyleChanger } from "./Utils/authStyleChanger";
+import PageNotFound from "./components/PageNotFound/PageNotFound";
 
 const MobileMenu = React.lazy(() =>
   import("./components/Nav/MobileMenu/MobileMenu")
@@ -57,7 +58,7 @@ const App = () => {
               <Route path="/users" render={() => <UsersContainer />} />
               <Route path="/menu" render={withSuspense(MobileMenu)} />
               <Route path="/login" render={() => <LoginContainer />} />
-              <Route path="*" render={() => <div>404 page not found</div>} />
+              <Route path="*" render={() => <PageNotFound />} />
             </Switch>
           </div>
         </div>
