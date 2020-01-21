@@ -1,49 +1,9 @@
-import { authAPI, securityAPI } from "../api/api";
+import { authAPI, securityAPI } from "../../../api/api";
 import { stopSubmit } from "redux-form";
-import { thunkErrorDecorator } from "../Utils/thunkErrorDecorator";
-import { showError } from "./errorsReducer";
+import { thunkErrorDecorator } from "../../../utils/thunkErrorDecorator";
+import { showError } from "../errors/actions";
+import { SET_AUTH, UNSET_AUTH, SUCCESS_CAPTCHA } from "./selectors";
 
-const SET_AUTH = "/auth/SET-AUTH";
-const UNSET_AUTH = "/auth/UNSET-AUTH";
-const SUCCESS_CAPTCHA = "/auth/SUCCESS_CAPTHCA";
-
-const initialState = {
-  userId: null,
-  email: null,
-  login: null,
-  isAuth: false,
-  isLoading: true,
-  capthcaUrl: null
-};
-
-const authReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case SET_AUTH:
-      return {
-        ...state,
-        ...action.data,
-        isAuth: true,
-        isLoading: false
-      };
-    case UNSET_AUTH:
-      return {
-        ...state,
-        userId: null,
-        email: null,
-        login: null,
-        isAuth: false,
-        isLoading: false
-      };
-    case SUCCESS_CAPTCHA:
-      return {
-        ...state,
-        capthcaUrl: action.capthcaUrl
-      };
-
-    default:
-      return state;
-  }
-};
 export const setAuth = (userId, email, login) => ({
     type: SET_AUTH,
     data: {
@@ -95,5 +55,3 @@ export const getCaptcha = thunkErrorDecorator(() => async dispatch => {
   const capthcaUrl = data.url;
   dispatch(successCaptcha(capthcaUrl));
 });
-
-export default authReducer;

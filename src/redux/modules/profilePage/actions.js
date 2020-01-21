@@ -1,97 +1,25 @@
-import { profileAPI } from "../api/api";
+import {
+  ADD_POST,
+  DELETE_POST,
+  SET_PROFILE,
+  SET_STATUS,
+  SET_LAST_USER,
+  TOGGLE_PAGE_LOADER_STATUS,
+  SET_IS_OWN_PROFILE,
+  SET_PHOTO,
+  STATUS_ERROR
+} from "./selectors";
+import { profileAPI } from "../../../api/api";
 import { stopSubmit } from "redux-form";
-import { showError } from "./errorsReducer";
-import { thunkErrorDecorator } from "../Utils/thunkErrorDecorator";
+import { showError } from "../errors/actions";
+import { thunkErrorDecorator } from "../../../utils/thunkErrorDecorator";
 
-const ADD_POST = "/profilePage/ADD-POST";
-const DELETE_POST = "./profilePage/DELETE-POST";
-const SET_PROFILE = "/profilePage/SET-PROFILE";
-const SET_STATUS = "/profilePage/SET-STATUS";
-const SET_LAST_USER = "/profilePage/SET-LAST-USER";
-const TOGGLE_PAGE_LOADER_STATUS = "/profilePage/TOGGLE-LOADER";
-const SET_IS_OWN_PROFILE = "/profilePage/SET-IS-OWN-PROFILE";
-const SET_PHOTO = "/profilePage/SET-PHOTO";
-const STATUS_ERROR = "/profilePage/STATUS-ERROR";
-
-const initialState = {
-  posts: [{ id: 1, message: "Click on the like button", likes: "999" }],
-  profile: null,
-  status: "",
-  statusErrorMessage: null,
-  lastUser: null,
-  isPageLoading: true,
-  isOwnProfile: false
-};
-
-const profilePageReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_POST:
-      return {
-        ...state,
-        posts: [
-          ...state.posts,
-          {
-            id: `f${(+new Date()).toString(16)}`,
-            message: action.postText,
-            likes: 0
-          }
-        ]
-      };
-    case DELETE_POST:
-      return {
-        ...state,
-        posts: [...state.posts.filter(post => post.id !== action.id)]
-      };
-
-    case SET_PROFILE:
-      return {
-        ...state,
-        profile: action.profile
-      };
-
-    case SET_STATUS:
-      return {
-        ...state,
-        status: action.status,
-        statusErrorMessage: null
-      };
-    case SET_LAST_USER:
-      return {
-        ...state,
-        lastUser: action.lastUser
-      };
-    case TOGGLE_PAGE_LOADER_STATUS:
-      return {
-        ...state,
-        isPageLoading: action.isPageLoading
-      };
-    case SET_IS_OWN_PROFILE:
-      return {
-        ...state,
-        isOwnProfile: action.isOwnProfile
-      };
-    case SET_PHOTO:
-      return {
-        ...state,
-        profile: { ...state.profile, photos: action.photos }
-      };
-    case STATUS_ERROR:
-      return {
-        ...state,
-        statusErrorMessage: action.statusErrorMessage
-      };
-
-    default:
-      return state;
-  }
-};
 export const addPost = postText => ({ type: ADD_POST, postText }),
   setProfile = profile => ({
     type: SET_PROFILE,
     profile
   }),
   deletePost = id => {
-    console.log(id);
     return {
       type: DELETE_POST,
       id
@@ -183,4 +111,3 @@ export const setUpProfileData = thunkErrorDecorator(
     }
   }
 );
-export default profilePageReducer;

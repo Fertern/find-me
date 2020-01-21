@@ -16,7 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ErrorNotification from "./components/ErrorNotification/ErrorNotification";
 import Preloader from "./components/common/Preloader/Preloader";
 import { useSelector } from "react-redux";
-import { authStyleChanger } from "./Utils/authStyleChanger";
+import { authStyleChanger } from "./utils/authStyleChanger";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 
 const DialogsContainer = React.lazy(() =>

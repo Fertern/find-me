@@ -1,8 +1,8 @@
 import { Field, reduxForm } from "redux-form";
 import React from "react";
 import style from "./AddPostForm.module.css";
-import { requiredField } from "../../../../Utils/validators/validators";
-import { onTapEnter } from "../../../../Utils/onTapEnter";
+import { requiredField } from "../../../../utils/validators";
+import { onTapEnter } from "../../../../utils/onTapEnter";
 import { Button, ThemeProvider } from "@material-ui/core";
 import { blueTheme } from "../../../../materialUI/blueTheme";
 

@@ -1,11 +1,8 @@
 import React from "react";
 import { reduxForm, Field } from "redux-form";
-import {
-  requiredField,
-  maxLengthCreator
-} from "./../../../Utils/validators/validators";
+import { requiredField, maxLengthCreator } from "./../../../utils/validators";
 import style from "./EditProfileForm.module.css";
-import { fieldGenerator } from "../../../Utils/fieldGenerator";
+import { fieldGenerator } from "../../../utils/fieldGenerator";
 import { compose } from "redux";
 import { connect } from "react-redux";
 
@@ -36,7 +33,6 @@ const EditProfileForm = ({
   open,
   initialValues
 }) => {
-  console.log(initialValues);
   const submit = values => {
     setUpProfileData(values);
   };
@@ -114,7 +110,6 @@ const EditProfileForm = ({
               [requiredField, maxLength300]
             )}
           </div>
-
           <Button
             startIcon={<BackupIcon />}
             variant="contained"

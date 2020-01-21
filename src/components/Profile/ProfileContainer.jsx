@@ -9,7 +9,7 @@ import {
   setIsOwnProfile,
   setUpPhoto,
   setUpProfileData
-} from "../../redux/profilePageReducer";
+} from "../../redux/modules/profilePage/actions";
 import { withRouter } from "react-router-dom";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";

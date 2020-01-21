@@ -1,11 +1,8 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import style from "./AddMessageForm.module.css";
-import {
-  requiredField,
-  maxLengthCreator
-} from "../../../Utils/validators/validators";
-import { onTapEnter } from "../../../Utils/onTapEnter";
+import { requiredField, maxLengthCreator } from "../../../utils/validators";
+import { onTapEnter } from "../../../utils/onTapEnter";
 
 const maxLength300 = maxLengthCreator(300);
 

@@ -1,0 +1,9 @@
+export const ADD_POST = "/profilePage/ADD-POST",
+  DELETE_POST = "./profilePage/DELETE-POST",
+  SET_PROFILE = "/profilePage/SET-PROFILE",
+  SET_STATUS = "/profilePage/SET-STATUS",
+  SET_LAST_USER = "/profilePage/SET-LAST-USER",
+  TOGGLE_PAGE_LOADER_STATUS = "/profilePage/TOGGLE-LOADER",
+  SET_IS_OWN_PROFILE = "/profilePage/SET-IS-OWN-PROFILE",
+  SET_PHOTO = "/profilePage/SET-PHOTO",
+  STATUS_ERROR = "/profilePage/STATUS-ERROR";

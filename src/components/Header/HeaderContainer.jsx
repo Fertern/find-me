@@ -1,6 +1,6 @@
 import Header from "./Header";
 import { connect } from "react-redux";
-import { logout } from "../../redux/authReducer";
+import { logout } from "../../redux/modules/auth/actions";
 
 const mapStateToProps = state => ({
   isAuth: state.auth.isAuth,

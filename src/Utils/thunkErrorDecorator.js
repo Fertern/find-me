@@ -1,4 +1,4 @@
-import { showError } from "../redux/errorsReducer";
+import { showError } from "../redux/modules/errors/actions";
 
 const defaultErrorMessage = "Some server error. Please try later.";
 export const thunkErrorDecorator = callback => (...args) => async (

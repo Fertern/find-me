@@ -1,7 +1,10 @@
 import React from "react";
 import Posts from "./Posts";
-import { addNewPost, deletePost } from "../../../redux/profilePageReducer.js";
 import { connect } from "react-redux";
+import {
+  addNewPost,
+  deletePost
+} from "../../../redux/modules/profilePage/actions";
 
 const mapStateToProps = state => ({
   posts: state.profilePage.posts

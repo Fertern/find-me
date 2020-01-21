@@ -7,7 +7,7 @@ import {
   setCurrent,
   getUsers,
   setStartNumberInRow
-} from "../../redux/usersReducer";
+} from "../../redux/modules/users/actions";
 import {
   getUserList,
   getIsPageLoading,
@@ -17,7 +17,7 @@ import {
   getFollowInProgress,
   getPageCount,
   getStartNumberInRow
-} from "../../redux/users-selectors";
+} from "../../redux/modules/users/selectors";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
 

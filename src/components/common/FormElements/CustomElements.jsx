@@ -21,6 +21,7 @@ export const CustomInputFilled = ({ input, meta, ...props }) => {
       <TextField
         error={!!hasError}
         fullWidth
+        size="small"
         variant="filled"
         {...input}
         {...props}
@@ -96,7 +97,8 @@ export const CustomTextareaFilled = ({ input, meta, ...props }) => {
       <TextField
         error={!!hasError}
         multiline
-        rows="4"
+        rows="2"
+        size="small"
         variant="filled"
         fullWidth
         {...input}

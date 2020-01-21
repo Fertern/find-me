@@ -1,5 +1,14 @@
 import { createSelector } from "reselect";
 
+export const FOLLOW_USER = "/users/FOLLOW-USER",
+  UNFOLLOW_USER = "/users/UNFOLLOW-USER",
+  SET_USERS = "/users/SET-USERS",
+  SET_CURRENT = "/users/SET-CURRENT",
+  SET_COUNT = "/users/SET-ALL-COUNT",
+  TOGGLE_PAGE_LOADER_STATUS = "/users/TOGGLE-LOADER",
+  TOGGLE_FOLLOW_LOADER_STATUS = "/users/TOGGLE-FOLLOW-LOADER-STATUS",
+  SET_START_NUMBER_IM_ROW = "./users/SET-START-NUMBER-IM-ROW";
+
 // Common selectors, for test 'reselect' lib
 export const getUserList = state => state.usersPage.userList;
 //

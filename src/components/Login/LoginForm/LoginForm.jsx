@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  requiredField,
-  maxLengthCreator
-} from "../../../Utils/validators/validators";
+import { requiredField, maxLengthCreator } from "../../../utils/validators";
 import { reduxForm } from "redux-form";
 import CustomInput, {
   CustomInputPassword,
@@ -11,7 +8,7 @@ import CustomInput, {
 } from "../../common/FormElements/CustomElements";
 import Button from "@material-ui/core/Button";
 import { ThemeProvider } from "@material-ui/core/styles";
-import { fieldGenerator } from "../../../Utils/fieldGenerator";
+import { fieldGenerator } from "../../../utils/fieldGenerator";
 import { blueTheme } from "../../../materialUI/blueTheme";
 import { useStyles } from "./LoginFormMaterial";
 

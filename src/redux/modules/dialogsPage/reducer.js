@@ -1,8 +1,4 @@
-import { thunkErrorDecorator } from "../Utils/thunkErrorDecorator";
-import { dialogsAPI } from "../api/api";
-
-const SET_DIALOGS = "/dialogsPage/SET-DIALOGS";
-const ADD_MESSAGE = "/dialogsPage/ADD-MESSAGE";
+import { SET_DIALOGS, ADD_MESSAGE } from "./selectors";
 
 const initialState = {
   messages: [
@@ -39,25 +35,5 @@ const dialogsPageReducer = (state = initialState, action) => {
       return state;
   }
 };
-
-export const sendMessage = messageText => ({ type: ADD_MESSAGE, messageText }),
-  setDialogs = (dialogs, messages) => ({
-    type: SET_DIALOGS,
-    dialogs,
-    messages
-  });
-
-export const addNewMessage = thunkErrorDecorator(values => async dispatch => {
-  let data = { resultCode: 0 };
-  if (data.resultCode === 0) {
-    dispatch(sendMessage(values.message));
-  }
-});
-export const setUpDialogs = thunkErrorDecorator(() => async dispatch => {
-  let data = await dialogsAPI.getDialogs();
-  if (data === []) {
-    console.log(data);
-  }
-});
 
 export default dialogsPageReducer;

@@ -1,5 +1,8 @@
 import Dialogs from "./Dialogs";
-import { addNewMessage, setUpDialogs } from "../../redux/dialogsPageReducer";
+import {
+  addNewMessage,
+  setUpDialogs
+} from "../../redux/modules/dialogsPage/actions";
 import { connect } from "react-redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
