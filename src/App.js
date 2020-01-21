@@ -36,6 +36,7 @@ const App = () => {
       </div>
     );
   }
+
   return (
     <Router>
       <hr className="decor"></hr>
