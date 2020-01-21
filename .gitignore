@@ -3,9 +3,8 @@
 /.pnp
 .pnp.js
 /.vscode
-# CSS by LESS
+/oldFiles
 
-src/dist
 
 
 # testing
