@@ -7,6 +7,7 @@ export const authStyleChanger = value => {
   } else {
     window.document.body.style.background = `url(${backgroundImg})`;
     window.document.body.style.backgroundSize = `cover`;
+    window.document.body.style.backdropFilter = "blur(3px)";
   }
   return value ? "app-wrapper" : "app-wrapper_login";
 };

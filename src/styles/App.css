@@ -24,6 +24,16 @@ textarea {
   grid-gap: 0px;
 }
 
+#email,
+#password {
+  color: white;
+}
+
+#email-label,
+#password-label {
+  color: white;
+}
+
 @media (max-width: 768px) {
   .app-wrapper {
     display: grid;

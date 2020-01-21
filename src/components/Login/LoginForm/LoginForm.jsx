@@ -10,19 +10,10 @@ import CustomInput, {
   CustomInputRememberMe
 } from "../../common/FormElements/CustomElements";
 import Button from "@material-ui/core/Button";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/core/styles";
 import { fieldGenerator } from "../../../Utils/fieldGenerator";
 import { blueTheme } from "../../../materialUI/blueTheme";
-
-const useStyles = makeStyles(theme => ({
-  form: {
-    width: "100%",
-    marginTop: theme.spacing(1)
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2)
-  }
-}));
+import { useStyles } from "./LoginFormMaterial";
 
 const maxLength25 = maxLengthCreator(25);
 const maxLength30 = maxLengthCreator(30);
@@ -61,17 +52,27 @@ const LoginForm = ({ handleSubmit, login, capthcaUrl, error }) => {
             requiredField,
             maxLength25
           ])}
-        <div className="">
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            className={classes.submit}
-            color="primary"
-          >
-            Sign In
-          </Button>
-        </div>
+
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          className={classes.submit}
+          color="primary"
+        >
+          Sign In
+        </Button>
+        <Button
+          fullWidth
+          variant="contained"
+          className={classes.enterGuest}
+          color="primary"
+          onClick={() => {
+            login("free@samuraijs.com", "free");
+          }}
+        >
+          Enter as a guest
+        </Button>
       </form>
     </ThemeProvider>
   );

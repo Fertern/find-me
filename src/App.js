@@ -37,7 +37,7 @@ const App = () => {
     );
   }
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <hr className="decor"></hr>
       <div className="container">
         <ErrorNotification />
