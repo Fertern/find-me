@@ -2,7 +2,7 @@ import React from "react";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import "./styles/App.css";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Route,
   Redirect,
   Switch
@@ -37,7 +37,7 @@ const App = () => {
     );
   }
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router>
       <hr className="decor"></hr>
       <div className="container">
         <ErrorNotification />
