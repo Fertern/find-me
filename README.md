@@ -1,7 +1,10 @@
 # Social network "Find me"
 
 Back-end by Samurai-JS server API.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+GitHub pages: https://fertern.github.io/find-me/
 
 ### How to login
 
