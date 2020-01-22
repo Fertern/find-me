@@ -1,6 +1,6 @@
 # Social network "Find me"
 
-Back-end by Samurai-JS server API.
+Back-end by Samurai-JS server API: https://social-network.samuraijs.com/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -41,8 +41,6 @@ With server API:
 
 - Error notifications
 
-- Tests
-
 - User lists
 
 - Pagintion
@@ -56,6 +54,7 @@ Offline:
 - Create posts
 - Like posts
 - Delete posts
+- Tests
 
 Also:
 
