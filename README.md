@@ -32,7 +32,8 @@ With server API:
 
 - Follow / Unfollow other users
 
-- Viewing pages of other users
+- Viewing pages of other users (just click on the avatar to go to another profile)
+
 - Routing
 
 - Edit profile
