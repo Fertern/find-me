@@ -40,6 +40,8 @@ With server API:
 
 - Edit status
 
+- Unusable (null) social links in the profile are gray, usable - have color
+
 - Error notifications
 
 - User lists
