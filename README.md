@@ -1,6 +1,6 @@
 # Social network "Find me"
 
-Back-end by Samurai-JS server API.
+Back-end by Samurai-JS server API: https://social-network.samuraijs.com/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -32,16 +32,17 @@ With server API:
 
 - Follow / Unfollow other users
 
-- Viewing pages of other users
+- Viewing pages of other users (just click on the avatar to go to another profile)
+
 - Routing
 
 - Edit profile
 
 - Edit status
 
-- Error notifications
+- Unusable (null) social links in the profile are gray, usable - have color
 
-- Tests
+- Error notifications
 
 - User lists
 
@@ -56,6 +57,7 @@ Offline:
 - Create posts
 - Like posts
 - Delete posts
+- Tests
 
 Also:
 
