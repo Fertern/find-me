@@ -1,16 +1,16 @@
-import React from "react";
-import style from "./AvatarBar.module.css";
-import Avatar from "@material-ui/core/Avatar";
-import { Paper, Button } from "@material-ui/core";
-import { AvatarBarEditingStyles, AvatarBarStyles } from "./AvatarBarMaterial";
-import DefaultLogo from "./../../common/DefaultLogo";
+import React from 'react';
+import style from './AvatarBar.module.css';
+import Avatar from '@material-ui/core/Avatar';
+import { Paper, Button } from '@material-ui/core';
+import { AvatarBarEditingStyles, AvatarBarStyles } from './AvatarBarMaterial';
+import DefaultLogo from './../../common/DefaultLogo';
 
 const AvatarBar = ({
   userPhoto: { small, large },
   isOwnProfile,
   setUpPhoto,
   isProfileEditing,
-  altText
+  altText,
 }) => {
   const editingClasses = AvatarBarEditingStyles();
   const { avatar, wrapper, inputButton } = AvatarBarStyles();
@@ -28,27 +28,27 @@ const AvatarBar = ({
         {large || small ? (
           <Avatar
             alt={altText}
-            variant="rounded"
+            variant='rounded'
             src={large || small}
             className={isEditModeOn ? editingClasses.avatar : avatar}
           />
         ) : (
-          <DefaultLogo alt={altText} size="200px" />
+          <DefaultLogo alt={altText} size='200px' />
         )}
 
-        {isOwnProfile && isProfileEditing && (
+        {isOwnProfile && (
           <label>
             <input
               onChange={onSelectPhoto}
               className={style.customFileInput}
-              id="contained-button-file"
-              type="file"
+              id='contained-button-file'
+              type='file'
             />
-            <label htmlFor="contained-button-file">
+            <label htmlFor='contained-button-file'>
               <Button
-                variant="contained"
+                variant='contained'
                 className={inputButton}
-                component="span"
+                component='span'
               >
                 Upload new avatar
               </Button>
